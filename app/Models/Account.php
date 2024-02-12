@@ -13,7 +13,6 @@ use App\Models\Specialization;
 
 class Account extends Model
 {
-
     use HasFactory;
 
     protected $fillable = ['cv', 'image', 'user_id', 'phone', 'address', 'performances', 'visible'];

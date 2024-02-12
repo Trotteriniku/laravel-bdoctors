@@ -33,16 +33,18 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $formData = $request->all();
+        $formData = $request->validated();
 
         //$user_id = $formData['id'];
 
         $user = User::create($formData);
-        dd($user->attributes);
+        $user_id = $user['id'];
         // if ($request->has('items')) {
         //     $user->items()->attach($request->items);
         // }
-        return to_route('account.index', compact('user'));
+        //return to_route('account.index', ['user_id' => $user_id]);
+        session()->flash('user_id', $user->id);
+        return to_route('accounts.index');
     }
 
     /**

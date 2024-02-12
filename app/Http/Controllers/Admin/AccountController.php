@@ -21,7 +21,7 @@ class AccountController extends Controller
     {
         $accounts = Account::all();
         $specializations = Specialization::all();
-        return view('account.index', compact('accounts', 'specializations'));
+        return view('accounts.index', compact('accounts', 'specializations'));
     }
 
     /**
@@ -35,22 +35,15 @@ class AccountController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAccountRequest $request, $user_id)
+    public function store(StoreAccountRequest $request)
     {
-        var_dump('controller');
+        //var_dump('controller');
 
         $formData = $request->validated();
         //CREATE SLUG
         // $slug = Account::getSlug($formData['title']);
         //add slug to formData
         //$formData['slug'] = $slug;
-
-        //prendiamo l'id dell'utente loggato
-
-        $userId = $user_id;
-        //dd($userId);
-        //aggiungiamo l'id dell'utente
-        $formData['user_id'] = $userId;
 
         if ($request->hasFile('image')) {
             $img_path = Storage::put('image', $request->image);
@@ -60,13 +53,14 @@ class AccountController extends Controller
             $cv_path = Storage::put('cv', $request->cv);
             $formData['cv-preview'] = $cv_path;
         }
+        $formData['visible'] = 1;
         $account = Account::create($formData);
         // if ($request->has('sponsorships', 'ratings', 'specializations')) {
         //     $account->sponsorships()->attach($request->sponsorships);
         //     $account->ratings()->attach($request->ratings);
         //     $account->specializations()->attach($request->specializations);
         // }
-        return redirect()->route('accounts.show', $account->slug);
+        return redirect()->route('admin.dashboard');
     }
 
     /**
@@ -114,11 +108,11 @@ class AccountController extends Controller
         $account->update($formData);
 
         if ($request->has('sponsorships', 'ratings', 'specializations')) {
-            $account->technologies()->sync($request->technologies);
+            $account->specializations()->sync($request->specializations);
             $account->sponsorships()->sync($request->sponsorships);
             $account->ratings()->sync($request->ratings);
         } else {
-            $account->technologies()->detach();
+            $account->specializations()->detach();
             $account->ratings()->detach();
             $account->sponsorships()->detach();
         }

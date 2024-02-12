@@ -25,6 +25,9 @@ class UpdateAccountRequest extends FormRequest
             'image' => ['image', 'mimes:png,jpg,jpeg'],
             'cv' => ['required', 'mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'],
             'address' => ['required', 'min:3', 'max:1000'],
+            'performance' => ['min:3', 'max:1000'],
+            'user_id' => ['numeric'],
+            'phone' => ['min:10'],
         ];
     }
 
@@ -39,7 +42,8 @@ class UpdateAccountRequest extends FormRequest
             'address.max' => 'L\'indirizzo deve contenere almeno :max caratteri',
             'performance.max' => 'La descrizione deve essere di massimo :max caratteri',
             'performances.min' => 'La descrizione deve essere di minimo :min caratteri',
-            'performances.max' => 'La descrizione deve essere di massimo :max caratteri',
+            'user_id.numeric' => 'user id deve essere un numero',
+            'phone.min' => 'Il numero di telefono deve essere di :min caratteri',
         ];
     }
 }

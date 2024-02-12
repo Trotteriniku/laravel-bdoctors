@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user/index', [RegisterController::class, 'index'])->name('user-register');
 Route::resource('users', UserController::class);
 
-Route::get('account/index', [AccountController::class, 'index'])->name('account.index');
+Route::get('accounts/index', [AccountController::class, 'index'])->name('accounts.index');
 Route::resource('accounts', AccountController::class);
 
 Route::middleware(['auth', 'verified'])

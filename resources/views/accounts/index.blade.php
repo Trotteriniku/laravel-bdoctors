@@ -30,6 +30,7 @@
                                     enctype="multipart/form-data">
 
                                     @csrf
+                                    <input type="text" name="user_id" value="{{ session('user_id') }}">
                                     {{-- IMAGE --}}
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">Your Image</label>

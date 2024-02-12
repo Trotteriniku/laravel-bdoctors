@@ -21,12 +21,11 @@ class StoreUserRequest extends FormRequest
      */
     public function rules(): array
     {
-
         return [
             'name' => ['required'],
             'surname' => ['required'],
             'email' => ['required', 'email:rfc,dns', 'unique:users'],
-            'password' => ['required', 'min:3', 'max:12']
+            'password' => ['required', 'min:3', 'max:12'],
         ];
     }
     public function messages()
@@ -39,9 +38,7 @@ class StoreUserRequest extends FormRequest
             'email.unique' => 'Questa email è gia in uso, usane un\'altra',
             'password.required' => 'La password è obbligatoria',
             'password.min' => 'La password deve essere di :min caratteri',
-            'password.max' => 'La password deve essere di :max caratteri'
-
+            'password.max' => 'La password deve essere di :max caratteri',
         ];
-
     }
 }
