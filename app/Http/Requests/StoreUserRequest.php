@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAccountRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,7 +12,6 @@ class StoreAccountRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
-
     }
 
     /**
@@ -22,10 +21,11 @@ class StoreAccountRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'name' => ['required'],
             'surname' => ['required'],
-            'email' => ['required', 'email:rfc,dns', 'unique:accounts'],
+            'email' => ['required', 'email:rfc,dns', 'unique:users'],
             'password' => ['required', 'min:3', 'max:12']
         ];
     }
@@ -37,7 +37,11 @@ class StoreAccountRequest extends FormRequest
             'email.required' => 'L\' mail è richiesta',
             'email.email' => 'Deve essere una email valida ',
             'email.unique' => 'Questa email è gia in uso, usane un\'altra',
-            'password' => ''
+            'password.required' => 'La password è obbligatoria',
+            'password.min' => 'La password deve essere di :min caratteri',
+            'password.max' => 'La password deve essere di :max caratteri'
+
         ];
+
     }
 }

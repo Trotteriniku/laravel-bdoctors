@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\ComicController;
-
+use App\Http\Controllers\Admin\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,12 +18,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/user/index', [RegisterController::class, 'index'])->name('user-register');
+Route::resource('users', UserController::class);
+
+Route::get('accont/index', [AccountController::class, 'index'])->name('account.index');
+
+
 
 
 Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     //Route::resource('comics', ComicController::class);
+    Route::resource('accounts', AccountController::class)->parameters([
+        'accounts' => 'account:slug'
+    ]);
+    // Route::resource('types', TypeController::class);
+    /*Route::resource('types', TypeController::class)->parameters([
+        'types' => 'type:slug',
+    ]);
+    Route::resource('technologies', TechnologyController::class)->parameters([
+        'technologies' => 'technology:slug',
+    ]);*/
 });
 
 
