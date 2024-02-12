@@ -55,11 +55,7 @@ class AccountController extends Controller
         }
         $formData['visible'] = 1;
         $account = Account::create($formData);
-        // if ($request->has('sponsorships', 'ratings', 'specializations')) {
-        //     $account->sponsorships()->attach($request->sponsorships);
-        //     $account->ratings()->attach($request->ratings);
-        //     $account->specializations()->attach($request->specializations);
-        // }
+        Auth::login($account);
         return redirect()->route('admin.dashboard');
     }
 

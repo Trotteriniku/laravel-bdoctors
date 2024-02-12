@@ -10,9 +10,12 @@ use App\Models\User;
 use App\Models\Sponsorship;
 use App\Models\Rating;
 use App\Models\Specialization;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Auth\Authenticatable;
 
-class Account extends Model
+class Account extends Model implements AuthenticatableContract
 {
+    use Authenticatable;
     use HasFactory;
 
     protected $fillable = ['cv', 'image', 'user_id', 'phone', 'address', 'performances', 'visible'];
