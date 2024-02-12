@@ -54,12 +54,20 @@
         </ul>
 
         <ul class="sidebar-nav" id="sidebar-nav">
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('logout') }}">
-                    <i class="fa-solid fa-right-from-bracket txt-dark"></i>
-                    <span class="fs-6 txt-dark">Esci dalla dashboard</span>
-                </a>
-            </li><!-- End Login Page Nav -->
+            <li class="nav-item d-flex  align-items-center ">
+                <span><i class="fa-solid fa-right-from-bracket txt-dark"></i></span>
+                <span>
+                    <a class="nav-link collapsed txt-dark fs-5" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+                </span>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
         </ul>
     </container>
 </aside>
