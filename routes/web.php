@@ -21,26 +21,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user/index', [RegisterController::class, 'index'])->name('user-register');
 Route::resource('users', UserController::class);
 
-Route::get('accont/index', [AccountController::class, 'index'])->name('account.index');
+Route::get('account/index', [AccountController::class, 'index'])->name('account.index');
+Route::resource('accounts', AccountController::class);
 
-
-
-
-Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    //Route::resource('comics', ComicController::class);
-    Route::resource('accounts', AccountController::class)->parameters([
-        'accounts' => 'account:slug'
-    ]);
-    // Route::resource('types', TypeController::class);
-    /*Route::resource('types', TypeController::class)->parameters([
+Route::middleware(['auth', 'verified'])
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        //Route::resource('comics', ComicController::class);
+        Route::resource('accounts', AccountController::class)->parameters([
+            'accounts' => 'account:slug',
+        ]);
+        // Route::resource('types', TypeController::class);
+        /*Route::resource('types', TypeController::class)->parameters([
         'types' => 'type:slug',
     ]);
     Route::resource('technologies', TechnologyController::class)->parameters([
         'technologies' => 'technology:slug',
     ]);*/
-});
-
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

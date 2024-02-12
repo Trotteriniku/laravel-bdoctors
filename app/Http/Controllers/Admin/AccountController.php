@@ -10,7 +10,7 @@ use App\Models\Message;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Specialization;
 
 class AccountController extends Controller
 {
@@ -20,7 +20,8 @@ class AccountController extends Controller
     public function index()
     {
         $accounts = Account::all();
-        return view('admin.accounts.index', compact('accounts'));
+        $specializations = Specialization::all();
+        return view('account.index', compact('accounts', 'specializations'));
     }
 
     /**
@@ -28,38 +29,44 @@ class AccountController extends Controller
      */
     public function create()
     {
-
         return view('admin.accounts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAccountRequest $request)
+    public function store(StoreAccountRequest $request, $user_id)
     {
+        var_dump('controller');
+
         $formData = $request->validated();
         //CREATE SLUG
-        $slug = Account::getSlug($formData['title']);
+        // $slug = Account::getSlug($formData['title']);
         //add slug to formData
-        $formData['slug'] = $slug;
+        //$formData['slug'] = $slug;
+
         //prendiamo l'id dell'utente loggato
-        $userId = Auth::id();
+
+        $userId = $user_id;
         //dd($userId);
         //aggiungiamo l'id dell'utente
         $formData['user_id'] = $userId;
 
-
         if ($request->hasFile('image')) {
-            $img_path = Storage::put('images', $request->image);
+            $img_path = Storage::put('image', $request->image);
             $formData['preview'] = $img_path;
         }
-        $account = Account::create($formData);
-        if ($request->has('sponsorships', 'ratings', 'specializations')) {
-            $account->sponsorships()->attach($request->sponsorships);
-            $account->ratings()->attach($request->ratings);
-            $account->specializations()->attach($request->specializations);
+        if ($request->hasFile('cv')) {
+            $cv_path = Storage::put('cv', $request->cv);
+            $formData['cv-preview'] = $cv_path;
         }
-        return redirect()->route('admin.accounts.show', $account->slug);
+        $account = Account::create($formData);
+        // if ($request->has('sponsorships', 'ratings', 'specializations')) {
+        //     $account->sponsorships()->attach($request->sponsorships);
+        //     $account->ratings()->attach($request->ratings);
+        //     $account->specializations()->attach($request->specializations);
+        // }
+        return redirect()->route('accounts.show', $account->slug);
     }
 
     /**
@@ -77,7 +84,6 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-
         return view('admin.accounts.edit', compact('account'));
     }
 

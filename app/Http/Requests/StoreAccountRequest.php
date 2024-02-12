@@ -12,7 +12,6 @@ class StoreAccountRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
-
     }
 
     /**
@@ -23,21 +22,23 @@ class StoreAccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'surname' => ['required'],
-            'email' => ['required', 'email:rfc,dns', 'unique:accounts'],
-            'password' => ['required', 'min:3', 'max:12']
+            'image' => ['image', 'mimes:png,jpg,jpeg'],
+            'cv' => ['mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'],
+            'address' => ['required', 'min:3', 'max:500'],
+            'performance' => ['min:3', 'max:1000'],
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'Il nome è obbligatorio',
-            'surname.required' => 'Il cognome è obbligatorio',
-            'email.required' => 'L\' mail è richiesta',
-            'email.email' => 'Deve essere una email valida ',
-            'email.unique' => 'Questa email è gia in uso, usane un\'altra',
-            'password' => ''
+            'image.image' => 'Il file deve essere un immagine',
+            'image.mimes' => 'Utilizza uno dei formati accettati: .png, .jpg, .jpeg',
+            'cv.mimes' => 'Il CV deve essere in formato PDF',
+            'address.required' => 'L\'indirizzo è obbligatorio',
+            'address.min' => 'L\'indirizzo deve contenere almeno :min caratteri',
+            'address.max' => 'L\'indirizzo deve contenere almeno :max caratteri',
+            'performance.max' => 'La descrizione deve essere di massimo :max caratteri',
+            'performance.min' => 'La descrizione deve essere di minimo :min caratteri',
         ];
     }
 }
