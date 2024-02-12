@@ -55,7 +55,7 @@
 
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{ route('logout') }}">
                     <i class="fa-solid fa-right-from-bracket txt-dark"></i>
                     <span class="fs-6 txt-dark">Esci dalla dashboard</span>
                 </a>
