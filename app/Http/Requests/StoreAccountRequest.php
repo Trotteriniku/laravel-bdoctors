@@ -27,7 +27,7 @@ class StoreAccountRequest extends FormRequest
             'address' => ['required', 'min:3', 'max:500'],
             'performance' => ['min:3', 'max:1000'],
             'user_id' => ['numeric'],
-            'phone' => ['min:10'],
+            'phone' => ['min:9'],
         ];
     }
     public function messages()
