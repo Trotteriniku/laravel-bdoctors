@@ -11,13 +11,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 
+
 class RegisterController extends Controller
 {
     public function create()
     {
+
         $accounts = Account::all();
         $specializations = Specialization::all();
         return view('auth.register', compact('accounts', 'specializations'));
+
     }
     /*   public function store(Request $request)
       {
