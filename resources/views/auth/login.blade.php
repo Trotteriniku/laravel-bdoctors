@@ -81,7 +81,7 @@
                                             </button>
 
                                             @if (Route::has('password.request'))
-                                                <a class="btn btn-link" href="{{ route('user-register') }}">
+                                                <a class="btn btn-link" href="{{ route('register') }}">
                                                     {{ __('Crea un nuovo account') }}
                                                 </a>
                                             @endif
