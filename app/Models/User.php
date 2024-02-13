@@ -50,4 +50,21 @@ class User extends Authenticatable
     {
         return $this->hasOne(Account::class);
     }
+
+    // Account Model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class);
+    }
+
+    // Specialization Model
+    public function accounts()
+    {
+        return $this->belongsToMany(Account::class);
+    }
 }

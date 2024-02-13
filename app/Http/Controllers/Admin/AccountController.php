@@ -29,7 +29,9 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('admin.accounts.create');
+        $specializations = Specialization::all();
+        $account = new Account();
+        return view('admin.accounts.create', compact('specializations', 'account'));
     }
 
     /**
