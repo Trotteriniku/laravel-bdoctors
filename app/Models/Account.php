@@ -41,9 +41,12 @@ class Account extends Model implements AuthenticatableContract
     }
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class);
+        return $this->belongsToMany(Specialization::class, 'account_specialization');
     }
-
+    public function accounts()
+    {
+        return $this->belongsToMany(Account::class, 'account_specialization');
+    }
     public function ratings()
     {
         return $this->belongsToMany(Rating::class);

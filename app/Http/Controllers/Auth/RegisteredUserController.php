@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Specialization;
+use App\Models\Account;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +22,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $accounts = Account::all();
+        $specializations = Specialization::all();
+        return view('auth.register', compact('accounts', 'specializations'));
     }
 
     /**
@@ -30,17 +34,36 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        // $specializations = Specialization::all();
+        //dd($request->specializations);
+        $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+                'surname' => ['required', 'string', 'max:255'],
+                'address' => ['required', 'string', 'max:255'],
+                'specialization' => ['required', 'array'],
+                'specialization.*' => ['exists:specializations,id'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ],
+        );
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'surname' => $request->surname,
+            'visibile' => 1,
             'password' => Hash::make($request->password),
         ]);
+        $account = new Account();
+        $account->address = $request->address;
+        $account['user_id'] = $user->id;
+        $account->visible = 1;
+        $account->save();
+
+        if (!empty($request->specializations)) {
+            $account->specializations()->attach($request->specializations);
+        }
 
         event(new Registered($user));
 

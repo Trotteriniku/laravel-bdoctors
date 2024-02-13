@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Account;
+use App\Models\Specialization;
 
 class UserController extends Controller
 {
@@ -44,7 +46,7 @@ class UserController extends Controller
         // }
         //return to_route('account.index', ['user_id' => $user_id]);
         session()->flash('user_id', $user->id);
-        return to_route('accounts.index');
+        return to_route('register');
     }
 
     /**
