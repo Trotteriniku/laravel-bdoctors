@@ -13,12 +13,10 @@ return new class extends Migration {
         Schema::create('account_specialization', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('account_id');
-            $table->foreign('account_id')->references('id')->on('specializations')->cascadeOnDelete();
+            $table->foreign('account_id')->references('id')->on('accounts')->cascadeOnDelete(); // Referenzia la tabella 'accounts'
 
             $table->unsignedBigInteger('specialization_id');
-            $table->foreign('specialization_id')->references('id')->on('accounts')->cascadeOnDelete();
-
-
+            $table->foreign('specialization_id')->references('id')->on('specializations')->cascadeOnDelete(); // Referenzia la tabella 'specializations'
 
             $table->timestamps();
         });
