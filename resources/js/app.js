@@ -3,6 +3,34 @@ import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**", "../fonts/**"]);
 
+//preview per le immagini
+
+const previewImage = document.getElementById("image");
+previewImage.addEventListener("change", (event) => {
+    var oFReader = new FileReader();
+    // var image  =  previewImage.files[0];
+    // console.log(image);
+    oFReader.readAsDataURL(previewImage.files[0]);
+
+    oFReader.onload = function (oFREvent) {
+        //console.log(oFREvent);
+        document.getElementById("uploadPreview").src = oFREvent.target.result;
+    };
+});
+
+const previewCv = document.getElementById("cv");
+previewCv.addEventListener("change", (event) => {
+    var oFReader = new FileReader();
+    // var image  =  previewImage.files[0];
+    // console.log(image);
+    oFReader.readAsDataURL(previewCv.files[0]);
+
+    oFReader.onload = function (oFREvent) {
+        //console.log(oFREvent);
+        document.getElementById("uploadPreviewCv").src = oFREvent.target.result;
+    };
+});
+
 (function () {
     "use strict";
 

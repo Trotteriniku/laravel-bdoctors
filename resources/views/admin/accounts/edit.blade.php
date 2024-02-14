@@ -46,16 +46,39 @@
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    {{-- image preview --}}
+                                    <div class="d-flex p-4 ">
+                                        <div class=" w-100 " style="height: fit-content;">
+                                            @if ($account->image !== '')
+                                                <img id="uploadPreview" style="width: 100%; "
+                                                    src="{{ asset($account->image) }}">
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     {{-- CV --}}
                                     <div class="col-12">
                                         <label for="cv" class="form-label">CV</label>
-                                        <input type="file" accept=".pdf" name="cv"
-                                            class="form-control  @error('cv') is-invalid @enderror" id="cv"
-                                            value="{{ old('curriculum', $account->curriculum) }}">
+                                        <div class="d-flex flex-row">
+                                            <input type="file" accept=".pdf" name="cv"
+                                                class="form-control  @error('cv') is-invalid @enderror" id="cv"
+                                                value="{{ old('curriculum', $account->curriculum) }}">
+                                        </div>
                                         @error('cv')
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
                                         <div class="invalid-feedback">Inserisci il tuo curriculum</div>
+                                    </div>
+
+                                    {{-- cv preview --}}
+                                    <div class="d-flex p-4 ">
+                                        <div class="framed w-100 " style="height: fit-content;">
+                                            @if ($account->cv !== '')
+                                                <iframe id="uploadPreviewCv" style="width: 100%; min-height: 400px;"
+                                                    src="{{ asset($account->cv) }}">
+                                                </iframe>
+                                            @endif
+                                        </div>
                                     </div>
 
                                     {{-- PHONE --}}
