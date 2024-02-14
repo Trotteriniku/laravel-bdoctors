@@ -39,17 +39,17 @@
                                     {{-- IMAGE --}}
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">Your Image</label>
-                                        <input type="file" name="name"
-                                            class="form-control  @error('image') is-invalid @enderror" id="yourName">
+                                        <input type="file" accept=".jpeg,.jpg,.png" name="image"
+                                            class="form-control  @error('image') is-invalid @enderror" id="yourName"
+                                            value="{{ old('image', $account->image) }}">
                                         @error('image')
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
-                                        <div class="invalid-feedback">Please, enter your name!</div>
                                     </div>
                                     {{-- CV --}}
                                     <div class="col-12">
                                         <label for="cv" class="form-label">CV</label>
-                                        <input type="file" name="cv"
+                                        <input type="file" accept=".pdf" name="cv"
                                             class="form-control  @error('cv') is-invalid @enderror" id="cv"
                                             value="{{ old('curriculum', $account->curriculum) }}">
                                         @error('cv')
@@ -109,13 +109,13 @@
                                     </fieldset>
 
 
-                                    {{-- PERFORMANCE --}}
+                                    {{-- PERFORMANCES --}}
                                     <div class="col-12">
-                                        <label for="performance" class="form-label">Your performance</label>
+                                        <label for="performances" class="form-label">Your performances</label>
                                         <div class="input-group has-validation">
-                                            <input type="text" name="performance"
+                                            <input type="text" name="performances"
                                                 class="form-control  @error('performances') is-invalid @enderror"
-                                                id="performance"
+                                                id="performances"
                                                 value="{{ old('performances', $account->performances) }}" />
 
                                         </div>

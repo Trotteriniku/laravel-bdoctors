@@ -92,8 +92,8 @@ class AccountController extends Controller
     {
         $request->validate(
             [
-                'phone' => ['nullable', 'numeric', 'min:10', Rule::unique('accounts')->ignore($account->id)],
-                'photo' => 'nullable|image|mimes:png,jpg,jpeg',
+                'phone' => ['nullable', 'numeric', 'min:9', Rule::unique('accounts')->ignore($account->id)],
+                'image' => 'nullable|image|mimes:png,jpg,jpeg',
                 'cv' => 'nullable|file:pdf',
                 'address' => 'required|min:3|max:1000',
                 'performances' => 'nullable|string|min:3|max:1000',
@@ -103,7 +103,7 @@ class AccountController extends Controller
                 'phone.numeric' => 'Il telefono può contenere solo numeri',
                 'phone.min' => 'Il telefono deve avere almeno :min cifre',
                 'phone.unique' => 'Il telefono risulta già assegnato ad un altro utente',
-                'photo.image' => 'La foto profilo deve essere una foto',
+                'image.image' => 'La foto profilo deve essere una foto',
                 'cv.file' => 'Il CV deve essere un PDF',
                 'address.string' => 'Inseriti caratteri non validi',
                 'performances.string' => 'Inseriti caratteri non validi',
@@ -111,24 +111,23 @@ class AccountController extends Controller
             ],
         );
         $data = $request->all();
-
-        //adding photo data
-        if (array_key_exists('photo', $data)) {
-            // Check if we already have a profile photo
-            if ($account->photo) {
+        //adding image data
+        if (array_key_exists('image', $data)) {
+            // Check if we already have a profile image
+            if ($account->image) {
                 // Extract the relative path from the absolute URL
-                $photo_path = str_replace(asset('storage/'), '', $account->photo);
-                // Delete the old profile photo using the relative path
-                Storage::delete($photo_path);
+                $image_path = str_replace(asset('storage/'), '', $account->image);
+                // Delete the old profile image using the relative path
+                Storage::delete($image_path);
             }
-            // Store the uploaded image in photos directory
-            $img_path = $data['photo']->store('photos', 'public');
+            // Store the uploaded image in images directory
+            $img_path = $data['image']->store('account_images', 'public');
 
             // Generate the absolute URL for the stored image
             $img_url = asset('storage/' . $img_path);
 
-            // Update the 'photo' field with the absolute URL
-            $data['photo'] = $img_url;
+            // Update the 'image' field with the absolute URL
+            $data['image'] = $img_url;
         }
 
         //updating cv data
@@ -137,7 +136,7 @@ class AccountController extends Controller
             if ($account->cv) {
                 // Extract the relative path from the absolute URL
                 $old_cv_path = str_replace(asset('storage/'), '', $account->cv);
-                // Delete the old profile photo using the relative path
+                // Delete the old profile image using the relative path
                 Storage::delete($old_cv_path);
             }
             // Store the uploaded cv in account_cvs directory
