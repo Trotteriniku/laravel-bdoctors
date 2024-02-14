@@ -9,7 +9,7 @@ use App\Models\Account;
 class Message extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'name', 'email', 'accout_id', 'content'];
+    protected $fillable = ['title', 'name', 'email', 'account_id', 'content'];
 
     public function account()
     {
