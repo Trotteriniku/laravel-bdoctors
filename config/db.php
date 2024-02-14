@@ -208,4 +208,78 @@ return [
             'value' => 1
         ],
     ]*/
+
+    'reviews' => [
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 1
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 2
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 3
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 4
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 5
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 6
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 7
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 8
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 9
+        ],
+        [
+            'name' => 'Luca ravenna ',
+            'title' => 'fa schifo sto medico',
+            'email' => 'luca.ravenna@gmail.com',
+            'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
+            'account_id' => 10
+        ],
+
+    ]
 ];
