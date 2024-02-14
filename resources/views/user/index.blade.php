@@ -20,8 +20,8 @@
                             <div class="card-body">
 
                                 <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                                    <p class="text-center small">Enter your personal details to create account</p>
+                                    <h5 class="card-title text-center pb-0 fs-4">Crea un Account</h5>
+                                    <p class="text-center small">Inserisci i tuoi dati personali per creare un account</p>
                                 </div>
 
                                 <form action="{{ route('users.store') }}" method="POST" class="row g-3 needs-validation"
@@ -30,28 +30,28 @@
                                     @csrf
 
                                     <div class="col-12">
-                                        <label for="yourName" class="form-label">Your Name</label>
+                                        <label for="yourName" class="form-label">Nome</label>
                                         <input type="text" name="name"
                                             class="form-control  @error('name') is-invalid @enderror" id="yourName"
                                             required>
-                                        <div class="invalid-feedback">Please, enter your name!</div>
+                                        <div class="invalid-feedback">Per favore, inserisci il tuo nome</div>
                                         @error('name')
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-12">
-                                        <label for="yourName" class="form-label">Your Surname</label>
+                                        <label for="yourName" class="form-label">Cognome</label>
                                         <input type="text" name="surname"
                                             class="form-control @error('surname') is-invalid @enderror" id="yourSurname"
                                             required>
-                                        <div class="invalid-feedback">Please, enter your surname!</div>
+                                        <div class="invalid-feedback">Per favore, inserisci il tuo cognome</div>
                                         @error('surname')
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourEmail" class="form-label">Your Email</label>
+                                        <label for="yourEmail" class="form-label">Email</label>
                                         <div class="input-group has-validation">
                                             <span class="input-group-text" id="inputGroupPrepend">@</span>
                                             <input type="email" name="email"
@@ -59,7 +59,7 @@
                                                 required>
 
                                         </div>
-                                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                                        <div class="invalid-feedback">Inserisci un email valida</div>
                                         @error('email')
                                             <div class="">{{ $message }}</div>
                                         @enderror
@@ -70,7 +70,7 @@
                                         <input type="password" name="password"
                                             class="form-control @error('password') is-invalid @enderror" id="yourPassword"
                                             required minlength="3" maxlength="12">
-                                        <div class="invalid-feedback">Please enter your password!</div>
+                                        <div class="invalid-feedback">Per favore inserisci una password valida</div>
                                         @error('password')
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
@@ -86,10 +86,10 @@
                                         </div>
                                     </div> --}}
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                                        <button class="btn btn-primary w-100" type="submit">Creazione Account</button>
                                     </div>
                                     <div class="col-12">
-                                        <p class="small mb-0">Already have an account? <a href="{{ route('login') }}">Log
+                                        <p class="small mb-0">Hai già l'account? <a href="{{ route('login') }}">Log
                                                 in</a>
                                         </p>
                                     </div>
