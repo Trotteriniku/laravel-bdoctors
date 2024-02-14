@@ -14,6 +14,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\Specialization;
 use App\Models\Account;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUserController extends Controller
 {
@@ -40,7 +41,7 @@ class RegisteredUserController extends Controller
         $request->validate(
             [
                 'image' => ['image', 'mimes:png,jpg,jpeg'],
-                'cv' => ['mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'],
+                'cv' => ['file', 'mimes:pdf', 'max:1000'],
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
                 'surname' => ['required', 'string', 'max:255'],
@@ -73,7 +74,6 @@ class RegisteredUserController extends Controller
             ],
         );
 
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -81,13 +81,26 @@ class RegisteredUserController extends Controller
             'visibile' => 1,
             'password' => Hash::make($request->password),
         ]);
-        //dd($request);
+
         $account = new Account();
         $account->address = $request->address;
         $account->phone = $request->phone;
         $account->performances = $request->performance;
         $account['user_id'] = $user->id;
         $account->visible = 1;
+        //inserting cv url to curriculum
+
+        if ($request->hasFile('cv')) {
+            $file_url = Storage::putFile('account_cvs', $request->file('cv'));
+            $account->cv = $file_url;
+        }
+
+        //inserting img url data into profile photo
+        if ($request->hasFile('image')) {
+            $img_url = Storage::putFile('account_images', $request['image']);
+            $account['image'] = $img_url;
+        }
+
         $account->save();
 
         if (!empty($request->specializations)) {

@@ -76,12 +76,17 @@
                                 @enderror
                             </div>
 
-                            <!--<input class="d-none" type="text" name="user_id" value="{{ session('user_id') }}">-->
+
+
+
+
+                            <input class="d-none" type="text" name="user_id" value="{{ session('user_id') }}">
                             {{-- IMAGE --}}
                             <div class="col-12">
                                 <label for="yourName" class="form-label">Foto</label>
-                                <input type="file" name="name"
-                                    class="form-control  @error('image') is-invalid @enderror" id="yourName">
+                                <input type="file" accept=".jpeg,.jpg,.png" name="image"
+                                    class="form-control  @error('image') is-invalid @enderror" id="image"
+                                    value="{{ old('image') }}">
                                 @error('image')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -89,8 +94,8 @@
                             {{-- CV --}}
                             <div class="col-12">
                                 <label for="cv" class="form-label">CV</label>
-                                <input type="file" name="cv" class="form-control  @error('cv') is-invalid @enderror"
-                                    id="cv">
+                                <input type="file" accept=".pdf" name="cv"
+                                    class="form-control  @error('cv') is-invalid @enderror" id="cv">
                                 @error('cv')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -127,7 +132,8 @@
                                     <div class="d-flex mt-2">
                                         @foreach ($specializations as $specialization)
                                             <div class="@error('specializations') is-invalid @enderror">
-                                                <div class="form-check pe-4 @error('specializations') is-invalid @enderror">
+                                                <div
+                                                    class="form-check pe-4 @error('specializations') is-invalid @enderror">
                                                     <input type="checkbox" class="form-check-input"
                                                         name="specializations[]"
                                                         value="{{ old('specializations[]', $specialization->id) }}"
