@@ -20,8 +20,8 @@
                             <div class="card-body">
 
                                 <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
-                                    <p class="text-center small">Enter your username & password to login</p>
+                                    <h5 class="card-title text-center pb-0 fs-4">Accedi al tuo account</h5>
+                                    <p class="text-center small">Inserisci il tuo username & password per collegarti</p>
                                 </div>
 
                                 <form method="POST" action="{{ route('login') }}">
@@ -29,7 +29,7 @@
 
                                     <div class="mb-4 row">
                                         <label for="email"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                            class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="email" type="email"
@@ -68,7 +68,7 @@
                                                     id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                                 <label class="form-check-label" for="remember">
-                                                    {{ __('Remember Me') }}
+                                                    {{ __('Ricordami') }}
                                                 </label>
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                     <div class="mb-4 row">
                                         <div class="col-md-8 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
-                                                {{ __('Login') }}
+                                                {{ __('Accedi') }}
                                             </button>
 
                                             @if (Route::has('password.request'))

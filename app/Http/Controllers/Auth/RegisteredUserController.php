@@ -36,15 +36,43 @@ class RegisteredUserController extends Controller
     {
         // $specializations = Specialization::all();
         //dd($request->specializations);
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'surname' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'specializations' => ['required', 'array'],
-            'specializations.*' => ['exists:specializations,id'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+
+        $request->validate(
+            [
+                'image' => ['image', 'mimes:png,jpg,jpeg'],
+                'cv' => ['mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'],
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+                'surname' => ['required', 'string', 'max:255'],
+                'address' => ['required', 'string', 'max:255'],
+                'specializations' => ['required', 'array'],
+                'specializations.*' => ['exists:specializations,id'],
+                'performance' => ['min:3', 'max:1000'],
+                'phone' => ['min:9'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ],
+            [
+                'image.image' => 'Il file deve essere un immagine',
+                'image.mimes' => 'Utilizza uno dei formati accettati: .png, .jpg, .jpeg',
+                'cv.mimes' => 'Il CV deve essere in formato PDF',
+                'address.required' => 'L\'indirizzo è obbligatorio',
+                'address.min' => 'L\'indirizzo deve contenere almeno :min caratteri',
+                'address.max' => 'L\'indirizzo deve contenere almeno :max caratteri',
+                'performance.max' => 'La performance deve essere di massimo :max caratteri',
+                'performance.min' => 'La performance deve essere di minimo :min caratteri',
+                'user_id.numeric' => 'user id deve essere un numero',
+                'phone.min' => 'Il numero di telefono deve essere di :min caratteri',
+                'email.required' => 'L\'email è obbligatoria',
+                'email.unique' => 'L\'email deve essere univoca',
+                'name.required' => 'Il nome è obbligatorio',
+                'name.max' => 'Il nome deve essere di massimo :max caratteri',
+                'surname.required' => 'Il cognome è obbligatorio',
+                'surname.max' => 'Il cognome deve essere di massimo :max caratteri',
+                'specializations.required' => 'La specializazione è obbligatoria',
+                'password.required' => 'La password è obbligatoria',
+            ],
+        );
+
 
         $user = User::create([
             'name' => $request->name,
