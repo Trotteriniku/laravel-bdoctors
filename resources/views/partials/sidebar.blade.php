@@ -15,7 +15,7 @@
             <li class="nav-heading">Pagine</li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{route('admin.accounts.show', Auth::id())}}">
                     <i class="fa-solid fa-person"></i>
                     <span>Profile</span>
                 </a>

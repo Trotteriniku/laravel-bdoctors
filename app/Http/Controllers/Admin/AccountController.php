@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Specialization;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class AccountController extends Controller
 {
@@ -69,9 +70,20 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        $reviews = Review::all();
-        $messages = Message::all();
-        return view('admin.accounts.show', compact('account', 'reviews', 'messages'));
+        $user_id = Auth::id();
+        //prendere solo le recensioni di
+        $user = User::find($user_id);
+        $reviews = Review::where('account_id', '=', $user_id)->get();
+        $messages = Message::where('account_id', '=', $user_id)->get();
+
+        // per prendere i dati nelle specialization, nota da mettere use Illuminate\Support\Facades\DB;
+        $specializations = DB::table('account_specialization')
+            ->join('specializations', 'account_specialization.specialization_id', '=', 'specializations.id')
+            ->where('account_specialization.account_id', $user_id)
+            ->select('specializations.*') // Seleziona i campi desiderati dalla tabella specialization
+            ->get();
+
+        return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations'));
     }
 
     /**
@@ -106,7 +118,7 @@ class AccountController extends Controller
                 'cv.file' => 'Il CV deve essere un PDF',
                 'address.string' => 'Inseriti caratteri non validi',
                 'performances.string' => 'Inseriti caratteri non validi',
-                'specialization' => 'Seleziona una specializzazione tra quelle disponibili.',
+                'specialization' => 'Seleziona una specialization tra quelle disponibili.',
             ],
         );
         $data = $request->all();
@@ -152,21 +164,21 @@ class AccountController extends Controller
 
         //aggiungiamo l'id dell'utente proprietario del post
 
-        // Gestione delle specializzazioni
+        // Gestione delle specialization
         $account_specialization_ids = [];
 
         foreach ($account->specializations as $acc_spec) {
             $account_specialization_ids[] = $acc_spec->id;
         }
 
-        // Se una specializzazione dei dati non è contenuta nelle specializzazioni del dottore, la inserisco
+        // Se una specialization dei dati non è contenuta nelle specialization del dottore, la inserisco
         foreach ($data['specialization'] as $data_spec) {
             if (!in_array($data_spec, $account_specialization_ids)) {
                 $account->specializations()->attach($data_spec);
             }
         }
 
-        // Se una specializzazione del dottore non è contenuta nelle specializzazioni dei dati, la tolgo
+        // Se una specialization del dottore non è contenuta nelle specialization dei dati, la tolgo
         foreach ($account_specialization_ids as $acc_spec_id) {
             if (!in_array($acc_spec_id, $data['specialization'])) {
                 $account->specializations()->detach($acc_spec_id);
