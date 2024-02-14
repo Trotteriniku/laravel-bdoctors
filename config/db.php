@@ -77,7 +77,7 @@ return [
 
     'accounts' => [
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-1.jpg',
             'cv' => '',
             'phone' => '347 123 4567',
             'address' => 'Via Napoli 100',
@@ -85,7 +85,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-2.jpg',
             'cv' => '',
             'phone' => '339 765 4321',
             'address' => 'Piazza del Mercato 22',
@@ -93,7 +93,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-3.jpg',
             'cv' => '',
             'phone' => '345 678 9012',
             'address' => 'Via Lazio 5',
@@ -101,7 +101,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-4.jpg',
             'cv' => '',
             'phone' => '333 987 6543',
             'address' => 'Corso Umberto I, 27',
@@ -109,7 +109,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-5.jpg',
             'cv' => '',
             'phone' => '328 765 4321',
             'address' => 'Viale Regina Margherita 8',
@@ -117,7 +117,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-6.jpg',
             'cv' => '',
             'phone' => '340 123 4567',
             'address' => 'Via Garibaldi 54',
@@ -125,7 +125,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-7.jpg',
             'cv' => '',
             'phone' => '347 890 1234',
             'address' => 'Piazza San Carlo 33',
@@ -133,7 +133,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-8.jpg',
             'cv' => '',
             'phone' => '349 876 5432',
             'address' => 'Via dei Mille 21',
@@ -141,7 +141,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-9.jpg',
             'cv' => '',
             'phone' => '333 456 7890',
             'address' => 'Via XX Settembre 12',
@@ -149,7 +149,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-10.jpg',
             'cv' => '',
             'phone' => '328 123 4567',
             'address' => 'Corso Vittorio Emanuele II, 58',
@@ -203,11 +203,85 @@ return [
         ],
     ],
 
-    /*'ratings' => [
+    'ratings' => [
         [
-            'value' => 1
+            'value' => 1,
         ],
-    ]*/
+        [
+            'value' => 2,
+        ],
+        [
+            'value' => 3,
+        ],
+        [
+            'value' => 4,
+        ],
+        [
+            'value' => 5,
+        ],
+
+    ],
+
+    'account_rating' => [
+        [
+            'account_id' => 1,
+            'rating_id' => 1,
+        ],
+        [
+            'account_id' => 2,
+            'rating_id' => 3,
+        ],
+        [
+            'account_id' => 3,
+            'rating_id' => 5,
+        ],
+        [
+            'account_id' => 4,
+            'rating_id' => 2,
+        ],
+        [
+            'account_id' => 5,
+            'rating_id' => 1,
+        ],
+
+    ],
+
+    'messages' => [
+        [
+            'account_id' => 5,
+            'name' => "Mario Rossi",
+            'content' => "Vorrei prenotare una visita per domani",
+            'title' => "Visita Urgente",
+            'email' => "mariorossi@example.com",
+        ],
+        [
+            'account_id' => 4,
+            'name' => "Enzo Bianchi",
+            'content' => "Il mio problema mi si è ripresentato",
+            'title' => "Problema al colon",
+            'email' => "enzo@example.com",
+        ],
+        [
+            'account_id' => 2,
+            'name' => "Giovanna Rossi",
+            'content' => "Vorrei prenotare una visita il prima possibile",
+            'title' => "Visita di controllo",
+            'email' => "gi@example.com",
+        ],
+        [
+            'account_id' => 6,
+            'name' => "Andrea Bruno",
+            'content' => "Vorrei prenotare una visita il prima possibile",
+            'title' => "Visita Funzionale",
+            'email' => "mariorossi@example.com",
+        ],
+        [
+            'account_id' => 9,
+            'name' => "Alessandro Rossi",
+            'content' => "Mi serve un certificato medico per i prossimi 3 giorni ",
+            'title' => "Certificato Medico",
+            'email' => "alessandrolessandro@example.com",
+        ],
 
     'reviews' => [
         [
@@ -280,6 +354,7 @@ return [
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore ullam, voluptas ex natus laudantium in amet. Quos earum quibusdam blanditiis.',
             'account_id' => 10
         ],
+
 
     ]
 ];

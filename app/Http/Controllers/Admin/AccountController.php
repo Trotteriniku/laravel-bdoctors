@@ -24,7 +24,7 @@ class AccountController extends Controller
     {
         $accounts = Account::all();
         $specializations = Specialization::all();
-        return view('accounts.index', compact('accounts', 'specializations'));
+        return view('admin.accounts.index', compact('accounts', 'specializations'));
     }
 
     /**
