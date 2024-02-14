@@ -23,7 +23,7 @@ class UpdateAccountRequest extends FormRequest
     {
         return [
             'image' => ['image', 'mimes:png,jpg,jpeg'],
-            'cv' => ['required', 'mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'],
+            'cv' => ['mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'],
             'address' => ['required', 'min:3', 'max:1000'],
             'performance' => ['min:3', 'max:1000'],
             'user_id' => ['numeric'],
