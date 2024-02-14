@@ -4,7 +4,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="index.html">
+                <a class="nav-link " href="{{route('admin.dashboard')}}">
                     <i class="fa-solid fa-grid"></i>
                     <span>Dashboard</span>
                 </a>
@@ -22,7 +22,7 @@
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{route('admin.accounts.edit', Auth::id())}}">
                     <i class="fa-solid fa-wrench"></i>
                     <span>Modifica il profilo</span>
                 </a>

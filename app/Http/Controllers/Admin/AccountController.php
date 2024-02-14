@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Account;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
 use App\Http\Controllers\Controller;
@@ -11,6 +13,7 @@ use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Specialization;
+use Illuminate\Validation\Rule;
 
 class AccountController extends Controller
 {
@@ -76,46 +79,101 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        return view('admin.accounts.edit', compact('account'));
+        $user_id = Auth::id();
+        $specializations = Specialization::all();
+        return view('admin.accounts.edit', compact('account', 'specializations', 'user_id'));
+        //return view('admin.accounts.edit', compact('account'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAccountRequest $request, Account $account)
+    public function update(Request $request, Account $account)
     {
-        $formData = $request->validated();
-        //CREATE SLUG
-        if ($account->title !== $formData['title']) {
-            $slug = Account::getSlug($formData['title']);
-            $formData['slug'] = $slug;
-        }
-        //add slug to formData
-
-        if ($request->hasFile('image')) {
+        $request->validate(
+            [
+                'phone' => ['nullable', 'numeric', 'min:9', Rule::unique('accounts')->ignore($account->id)],
+                'image' => 'nullable|image|mimes:png,jpg,jpeg',
+                'cv' => 'nullable|file:pdf',
+                'address' => 'required|min:3|max:1000',
+                'performances' => 'nullable|string|min:3|max:1000',
+                'specialization' => 'required',
+            ],
+            [
+                'phone.numeric' => 'Il telefono può contenere solo numeri',
+                'phone.min' => 'Il telefono deve avere almeno :min cifre',
+                'phone.unique' => 'Il telefono risulta già assegnato ad un altro utente',
+                'image.image' => 'La foto profilo deve essere una foto',
+                'cv.file' => 'Il CV deve essere un PDF',
+                'address.string' => 'Inseriti caratteri non validi',
+                'performances.string' => 'Inseriti caratteri non validi',
+                'specialization' => 'Seleziona una specializzazione tra quelle disponibili.',
+            ],
+        );
+        $data = $request->all();
+        //adding image data
+        if (array_key_exists('image', $data)) {
+            // Check if we already have a profile image
             if ($account->image) {
-                Storage::delete($account->image);
+                // Extract the relative path from the absolute URL
+                $image_path = str_replace(asset('storage/'), '', $account->image);
+                // Delete the old profile image using the relative path
+                Storage::delete($image_path);
             }
-            $img_path = Storage::put('images', $formData['image']);
-            $formData['image'] = $img_path;
+            // Store the uploaded image in images directory
+            $img_path = $data['image']->store('account_images', 'public');
+
+            // Generate the absolute URL for the stored image
+            $img_url = asset('storage/' . $img_path);
+
+            // Update the 'image' field with the absolute URL
+            $data['image'] = $img_url;
         }
+
+        //updating cv data
+        if (array_key_exists('cv', $data)) {
+            // Check if we already have a cv
+            if ($account->cv) {
+                // Extract the relative path from the absolute URL
+                $old_cv_path = str_replace(asset('storage/'), '', $account->cv);
+                // Delete the old profile image using the relative path
+                Storage::delete($old_cv_path);
+            }
+            // Store the uploaded cv in account_cvs directory
+            $cv_path = $data['cv']->store('account_cvs', 'public');
+
+            // Generate the absolute URL for the stored cv
+            $cv_url = asset('storage/' . $cv_path);
+
+            // Update the 'cv' field with the absolute URL
+            $data['cv'] = $cv_url;
+        }
+
+        $account->update($data);
 
         //aggiungiamo l'id dell'utente proprietario del post
-        $formData['user_id'] = $account->user_id;
 
-        $account->update($formData);
+        // Gestione delle specializzazioni
+        $account_specialization_ids = [];
 
-        if ($request->has('sponsorships', 'ratings', 'specializations')) {
-            $account->specializations()->sync($request->specializations);
-            $account->sponsorships()->sync($request->sponsorships);
-            $account->ratings()->sync($request->ratings);
-        } else {
-            $account->specializations()->detach();
-            $account->ratings()->detach();
-            $account->sponsorships()->detach();
+        foreach ($account->specializations as $acc_spec) {
+            $account_specialization_ids[] = $acc_spec->id;
         }
 
-        return redirect()->route('admin.accounts.show', $account->slug);
+        // Se una specializzazione dei dati non è contenuta nelle specializzazioni del dottore, la inserisco
+        foreach ($data['specialization'] as $data_spec) {
+            if (!in_array($data_spec, $account_specialization_ids)) {
+                $account->specializations()->attach($data_spec);
+            }
+        }
+
+        // Se una specializzazione del dottore non è contenuta nelle specializzazioni dei dati, la tolgo
+        foreach ($account_specialization_ids as $acc_spec_id) {
+            if (!in_array($acc_spec_id, $data['specialization'])) {
+                $account->specializations()->detach($acc_spec_id);
+            }
+        }
+        return redirect()->route('admin.dashboard');
     }
 
     /**

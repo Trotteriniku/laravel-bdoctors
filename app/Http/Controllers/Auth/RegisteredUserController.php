@@ -36,6 +36,7 @@ class RegisteredUserController extends Controller
     {
         // $specializations = Specialization::all();
         //dd($request->specializations);
+
         $request->validate(
             [
                 'image' => ['image', 'mimes:png,jpg,jpeg'],
@@ -72,6 +73,7 @@ class RegisteredUserController extends Controller
             ],
         );
 
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -79,8 +81,11 @@ class RegisteredUserController extends Controller
             'visibile' => 1,
             'password' => Hash::make($request->password),
         ]);
+        //dd($request);
         $account = new Account();
         $account->address = $request->address;
+        $account->phone = $request->phone;
+        $account->performances = $request->performance;
         $account['user_id'] = $user->id;
         $account->visible = 1;
         $account->save();
