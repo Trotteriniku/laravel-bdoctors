@@ -77,7 +77,7 @@ return [
 
     'accounts' => [
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-1.jpg',
             'cv' => '',
             'phone' => '347 123 4567',
             'address' => 'Via Napoli 100',
@@ -85,7 +85,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-2.jpg',
             'cv' => '',
             'phone' => '339 765 4321',
             'address' => 'Piazza del Mercato 22',
@@ -93,7 +93,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-3.jpg',
             'cv' => '',
             'phone' => '345 678 9012',
             'address' => 'Via Lazio 5',
@@ -101,7 +101,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-4.jpg',
             'cv' => '',
             'phone' => '333 987 6543',
             'address' => 'Corso Umberto I, 27',
@@ -109,7 +109,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-5.jpg',
             'cv' => '',
             'phone' => '328 765 4321',
             'address' => 'Viale Regina Margherita 8',
@@ -117,7 +117,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-6.jpg',
             'cv' => '',
             'phone' => '340 123 4567',
             'address' => 'Via Garibaldi 54',
@@ -125,7 +125,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-7.jpg',
             'cv' => '',
             'phone' => '347 890 1234',
             'address' => 'Piazza San Carlo 33',
@@ -133,7 +133,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-8.jpg',
             'cv' => '',
             'phone' => '349 876 5432',
             'address' => 'Via dei Mille 21',
@@ -141,7 +141,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-9.jpg',
             'cv' => '',
             'phone' => '333 456 7890',
             'address' => 'Via XX Settembre 12',
@@ -149,7 +149,7 @@ return [
             'visible' => 1,
         ],
         [
-            'image' => '',
+            'image' => './../public/storage/images/doc-10.jpg',
             'cv' => '',
             'phone' => '328 123 4567',
             'address' => 'Corso Vittorio Emanuele II, 58',
