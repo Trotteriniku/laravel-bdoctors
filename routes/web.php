@@ -23,7 +23,6 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 Route::get('/login', [ProfileController::class, 'index'])->name('login');
 
-
 // Route::get('accounts/index', [AccountController::class, 'index'])->name('accounts.index');
 // Route::resource('accounts', AccountController::class);
 
@@ -34,7 +33,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('accounts', AccountController::class)->parameters([
-            'accounts' => 'account:slug',
+            'accounts' => 'account:id',
         ]);
         // Route::resource('types', TypeController::class);
         /*Route::resource('types', TypeController::class)->parameters([

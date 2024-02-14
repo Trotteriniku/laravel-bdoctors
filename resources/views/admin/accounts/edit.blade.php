@@ -1,19 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container pt-5">
 
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                    <div class="col-lg-8  d-flex flex-column align-items-center justify-content-center">
 
-                        <div class="d-flex justify-content-center py-4">
-                            <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                <img src="assets/img/logo.png" alt="">
-                                <span class="d-none d-lg-block">Bdoctors</span>
-                            </a>
-                        </div><!-- End Logo -->
+
 
                         <div class="card mb-3">
                             @if ($errors->any())
@@ -29,73 +24,61 @@
                             <div class="card-body">
 
                                 <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                                    <p class="text-center small">Enter your personal details to create account</p>
+                                    <h5 class="card-title text-center pb-0 fs-4">Edit your Account</h5>
+                                    <p class="text-center small">Edit the information in your account</p>
                                 </div>
 
-                                <form action="{{ route('admin.account.update', $account) }}" method="POST"
+                                <form action="{{ route('admin.accounts.update', $account) }}" method="POST"
                                     class="row g-3 needs-validation" enctype="multipart/form-data">
 
                                     @method('PUT')
                                     @csrf
-                                    <div class="col-12">
-                                        <label for="yourName" class="form-label">Your Name</label>
-                                        <input type="text" name="name"
-                                            class="form-control  @error('name') is-invalid @enderror" id="yourName"
-                                            required value="{{ old('profile_photo', $doctor->profile_photo) }}">
-                                        <div class="invalid-feedback">Please, enter your name!</div>
-                                        @error('name')
-                                            <div class="invalid-feedbac">{{ $message }}</div>
-                                        @enderror
-                                    </div>
 
-                                    <div class="col-12">
-                                        <label for="yourName" class="form-label">Your Surname</label>
-                                        <input type="text" name="surname"
-                                            class="form-control @error('surname') is-invalid @enderror" id="yourSurname"
-                                            required value="{{ old('surname', $account->surname) }}">
-                                        <div class="invalid-feedback">Please, enter your surname!</div>
-                                        @error('surname')
-                                            <div class="invalid-feedbac">{{ $message }}</div>
-                                        @enderror
-                                    </div>
 
-                                    <div class="col-12">
-                                        <label for="yourEmail" class="form-label">Your Email</label>
-                                        <div class="input-group has-validation">
-                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                            <input type="email" name="email"
-                                                class="form-control @error('email') is-invalid @enderror" id="yourEmail"
-                                                required value="{{ old('email', $account->email) }}">
 
-                                        </div>
-                                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
-                                        @error('email')
-                                            <div class="">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <input class="d-none" type="text" name="user_id" value="{{ session('user_id') }}">
                                     {{-- IMAGE --}}
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">Your Image</label>
-                                        <input type="file" name="name"
-                                            class="form-control  @error('image') is-invalid @enderror" id="yourName">
+                                        <input type="file" accept=".jpeg,.jpg,.png" name="image"
+                                            class="form-control  @error('image') is-invalid @enderror" id="yourName"
+                                            value="{{ old('image', $account->image) }}">
                                         @error('image')
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
-                                        <div class="invalid-feedback">Please, enter your name!</div>
                                     </div>
+                                    {{-- image preview --}}
+                                    <div class="d-flex p-4 ">
+                                        <div class=" w-100 " style="height: fit-content;">
+                                            @if ($account->image !== '')
+                                                <img id="uploadPreview" style="width: 100%; "
+                                                    src="{{ asset($account->image) }}">
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     {{-- CV --}}
                                     <div class="col-12">
                                         <label for="cv" class="form-label">CV</label>
-                                        <input type="file" name="cv"
-                                            class="form-control  @error('cv') is-invalid @enderror" id="cv"
-                                            value="{{ old('curriculum', $account->curriculum) }}">
+                                        <div class="d-flex flex-row">
+                                            <input type="file" accept=".pdf" name="cv"
+                                                class="form-control  @error('cv') is-invalid @enderror" id="cv"
+                                                value="{{ old('curriculum', $account->curriculum) }}">
+                                        </div>
                                         @error('cv')
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
                                         <div class="invalid-feedback">Inserisci il tuo curriculum</div>
+                                    </div>
+
+                                    {{-- cv preview --}}
+                                    <div class="d-flex p-4 ">
+                                        <div class="framed w-100 " style="height: fit-content;">
+                                            @if ($account->cv !== '')
+                                                <iframe id="uploadPreviewCv" style="width: 100%; min-height: 400px;"
+                                                    src="{{ asset($account->cv) }}">
+                                                </iframe>
+                                            @endif
+                                        </div>
                                     </div>
 
                                     {{-- PHONE --}}
@@ -134,7 +117,7 @@
                                                 <input class="form-check-input specialization" type="checkbox"
                                                     value="{{ $specialization->id }}" id="{{ $specialization->name }}"
                                                     name="specialization[]"
-                                                    @foreach ($account->specializations as $doctor_spec) @if ($doctor_spec->id == $specialization->id) checked @endif @endforeach>
+                                                    @foreach ($account->specializations as $account_spec) @if ($account_spec->id == $specialization->id) checked @endif @endforeach>
                                                 <label class="form-check-label label-specialization"
                                                     id="{{ $specialization->id }}" for="{{ $specialization->name }}">
                                                     {{ ucfirst($specialization->name) }}
@@ -149,13 +132,15 @@
                                     </fieldset>
 
 
-                                    {{-- PERFORMANCE --}}
+                                    {{-- PERFORMANCES --}}
                                     <div class="col-12">
-                                        <label for="performance" class="form-label">Your performance</label>
+                                        <label for="performances" class="form-label">Your performances</label>
                                         <div class="input-group has-validation">
-                                            <textarea type="text" name="performance" class="form-control  @error('performances') is-invalid @enderror"
-                                                id="performance" value="{{ old('performance', $account->performance) }}">
-                                            </textarea>
+                                            <input type="text" name="performances"
+                                                class="form-control  @error('performances') is-invalid @enderror"
+                                                id="performances"
+                                                value="{{ old('performances', $account->performances) }}" />
+
                                         </div>
                                         @error('performances')
                                             <div class="invalid-feedbac">{{ $message }}</div>
@@ -178,13 +163,9 @@
                                     </div> --}}
 
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                                        <button class="btn btn-primary w-100" type="submit">Edit Account</button>
                                     </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">Hai già un account? <a href="{{ route('login') }}">Log
-                                                in</a>
-                                        </p>
-                                    </div>
+
 
                                 </form>
 
