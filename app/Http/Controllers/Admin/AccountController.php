@@ -92,7 +92,7 @@ class AccountController extends Controller
     {
         $request->validate(
             [
-                'phone' => ['nullable', 'numeric', 'min:9', Rule::unique('accounts')->ignore($account->id)],
+                'phone' => ['nullable', 'numeric', 'min:9'],
                 'image' => 'nullable|image|mimes:png,jpg,jpeg',
                 'cv' => 'nullable|file:pdf',
                 'address' => 'required|min:3|max:1000',
@@ -102,7 +102,6 @@ class AccountController extends Controller
             [
                 'phone.numeric' => 'Il telefono può contenere solo numeri',
                 'phone.min' => 'Il telefono deve avere almeno :min cifre',
-                'phone.unique' => 'Il telefono risulta già assegnato ad un altro utente',
                 'image.image' => 'La foto profilo deve essere una foto',
                 'cv.file' => 'Il CV deve essere un PDF',
                 'address.string' => 'Inseriti caratteri non validi',
