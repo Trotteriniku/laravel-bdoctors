@@ -31,17 +31,26 @@
                             <div class="col-12">
                                 <label for="yourName" class="form-label">Nome</label>
                                 <input type="text" name="name"
-                                    class="form-control  @error('name') is-invalid @enderror" id="yourName">
+                                    class="form-control  @error('name') is-invalid @enderror" id="name">
+
+                                <div id="name-errorField" class="d-none"></div>
                                 @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <div class="col-12">
                                 <label for="yourName" class="form-label">Cognome</label>
                                 <input type="text" name="surname"
-                                    class="form-control @error('surname') is-invalid @enderror" id="yourSurname">
+                                    class="form-control @error('surname') is-invalid @enderror" id="last_name">
+
+
+                                <div id="last-name-errorField" class="d-none"></div>
                                 @error('surname')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
                             <div class="col-12">
@@ -49,20 +58,32 @@
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
                                     <input type="email" name="email"
-                                        class="form-control @error('email') is-invalid @enderror" id="yourEmail">
+                                        class="form-control @error('email') is-invalid @enderror" id="email">
                                 </div>
+
+                                <div id="email-errorField" class="d-none"></div>
                                 @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
 
+
+
+
                             <div class="col-12">
                                 <label for="yourPassword" class="form-label">Password</label>
-                                <input type="password" name="password"
+                                <input type="password" name="password" id="password"
                                     class="form-control @error('password') is-invalid @enderror" id="yourPassword"
                                     minlength="3" maxlength="12">
+
+                                {{-- Error field  --}}
+                                <div id="psw-errorField" class="d-none"></div>
                                 @error('password')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
 
@@ -71,8 +92,11 @@
                                 <input id="password-confirm" type="password"
                                     class="form-control @error('password') is-invalid @enderror"
                                     name="password_confirmation" autocomplete="new-password">
+                                <div id="confirmPsw-errorField" class="d-none"></div>
                                 @error('password')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
                             </div>
 
@@ -165,7 +189,8 @@
                                 @enderror
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary p-2" type="submit">Crea Account</button>
+                                <button class="btn btn-primary p-2" id="registration-form" type="submit">Crea
+                                    Account</button>
                             </div>
                             <div class="col-12">
                                 <p class="small mb-0">Hai già un account? <a href="{{ route('login') }}">Accedi</a></p>
@@ -177,3 +202,6 @@
         </div>
     </div>
 @endsection
+<script>
+    @vite('resources/js/validations/register-validation.js')
+</script>
