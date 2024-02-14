@@ -13,6 +13,13 @@ class RatingSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $ratings = config('db.ratings');
+        foreach ($ratings as $rating) {
+            $newRating = new Rating();
+            $newRating->value = $rating['value'];
+            $newRating->save();
+        }
+
+
     }
 }

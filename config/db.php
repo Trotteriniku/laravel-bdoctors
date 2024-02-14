@@ -203,9 +203,84 @@ return [
         ],
     ],
 
-    /*'ratings' => [
+    'ratings' => [
         [
-            'value' => 1
+            'value' => 1,
         ],
-    ]*/
+        [
+            'value' => 2,
+        ],
+        [
+            'value' => 3,
+        ],
+        [
+            'value' => 4,
+        ],
+        [
+            'value' => 5,
+        ],
+
+    ],
+
+    'account_rating' => [
+        [
+            'account_id' => 1,
+            'rating_id' => 1,
+        ],
+        [
+            'account_id' => 2,
+            'rating_id' => 3,
+        ],
+        [
+            'account_id' => 3,
+            'rating_id' => 5,
+        ],
+        [
+            'account_id' => 4,
+            'rating_id' => 2,
+        ],
+        [
+            'account_id' => 5,
+            'rating_id' => 1,
+        ],
+
+    ],
+
+    'messages' => [
+        [
+            'account_id' => 5,
+            'name' => "Mario Rossi",
+            'content' => "Vorrei prenotare una visita per domani",
+            'title' => "Visita Urgente",
+            'email' => "mariorossi@example.com",
+        ],
+        [
+            'account_id' => 4,
+            'name' => "Enzo Bianchi",
+            'content' => "Il mio problema mi si è ripresentato",
+            'title' => "Problema al colon",
+            'email' => "enzo@example.com",
+        ],
+        [
+            'account_id' => 2,
+            'name' => "Giovanna Rossi",
+            'content' => "Vorrei prenotare una visita il prima possibile",
+            'title' => "Visita di controllo",
+            'email' => "gi@example.com",
+        ],
+        [
+            'account_id' => 6,
+            'name' => "Andrea Bruno",
+            'content' => "Vorrei prenotare una visita il prima possibile",
+            'title' => "Visita Funzionale",
+            'email' => "mariorossi@example.com",
+        ],
+        [
+            'account_id' => 9,
+            'name' => "Alessandro Rossi",
+            'content' => "Mi serve un certificato medico per i prossimi 3 giorni ",
+            'title' => "Certificato Medico",
+            'email' => "alessandrolessandro@example.com",
+        ],
+    ]
 ];
