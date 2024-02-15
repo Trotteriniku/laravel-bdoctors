@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // CREATE ROTTE API
 Route::get('accounts', [AccountController::class, 'index']);
 Route::get('accounts/{id}', [AccountController::class, 'show']);
+Route::get('accounts/{id}/{AVGrating}/{minNumberReviews}', [AccountController::class, 'indexBySpecializationsAndRatingAndReviews']);
+Route::get('accounts/advanced', [AccountController::class, 'indexBySpecializationsAndRatingAndReviewsAdvanced']);
 
 //rotta per prendere una risorsa
 Route::get('specializations', [SpecializationController::class, 'index']);
