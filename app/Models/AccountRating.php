@@ -9,5 +9,5 @@ class AccountRating extends Model
 {
     use HasFactory;
     public $table = 'account_rating';
-    protected $fillable = ['account_id', 'rating_id'];
+    protected $guarded = [];
 }

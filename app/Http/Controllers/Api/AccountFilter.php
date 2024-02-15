@@ -49,6 +49,7 @@ class AccountFilter extends Controller
         if ($minVote > 0) {
             $accounts = $accounts->filter(function ($account) use ($minVote) {
                 $averageRating = $account->ratings()->avg('value');
+                //$averageRating = $account->ratings()->get();
                 dd($averageRating);
                 return $averageRating >= $minVote;
             });

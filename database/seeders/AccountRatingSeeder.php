@@ -17,15 +17,30 @@ class AccountRatingSeeder extends Seeder
     {
         $accounts = Account::all();
         $ratings = Rating::all();
+        $relations = config('db.account_rating');
 
-        foreach ($accounts as $account) {
-            foreach ($ratings as $rating) {
-                AccountRating::create([
-                    'account_id' => 2,
-                    'rating_id' => 1,
-
+        /*  foreach ($accounts as $account) {
+            foreach ($specializations as $specialization) {
+                AccountSpecialization::create([
+                    'account_id' => $account->id,
+                    'specialization_id' => $specialization->id,
                 ]);
             }
+        } */
+        foreach ($relations as $relation) {
+            AccountRating::create([
+                'account_id' => $relation['account_id'],
+                'rating_id' => $relation['rating_id'],
+            ]);
         }
+
+        // foreach ($accounts as $account) {
+        //     foreach ($ratings as $rating) {
+        //         AccountRating::create([
+        //             'account_id' => 2,
+        //             'rating_id' => 1,
+        //         ]);
+        //     }
+        // }
     }
 }
