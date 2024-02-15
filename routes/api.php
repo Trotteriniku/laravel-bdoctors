@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\SpecializationController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('specializations', [SpecializationController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
