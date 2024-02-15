@@ -13,9 +13,9 @@ return new class extends Migration {
         Schema::create('account_rating', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('account_id');
-            $table->foreign('account_id')->references('id')->on('ratings')->cascadeOnDelete();
+            $table->foreign('account_id')->references('id')->on('accounts')->cascadeOnDelete();
             $table->unsignedBigInteger('rating_id');
-            $table->foreign('rating_id')->references('id')->on('accounts')->cascadeOnDelete();
+            $table->foreign('rating_id')->references('id')->on('ratings')->cascadeOnDelete();
             $table->timestamps();
         });
     }
