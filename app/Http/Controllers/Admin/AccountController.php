@@ -52,7 +52,7 @@ class AccountController extends Controller
         //$formData['slug'] = $slug;
 
         if ($request->hasFile('image')) {
-            $img_path = Storage::put('image', $request->image);
+            $img_path = Storage::put('images', $request->image);
             $formData['preview'] = $img_path;
         }
         if ($request->hasFile('cv')) {
@@ -132,7 +132,7 @@ class AccountController extends Controller
                 Storage::delete($image_path);
             }
             // Store the uploaded image in images directory
-            $img_path = $data['image']->store('account_images', 'public');
+            $img_path = $data['image']->store('images', 'public');
 
             // Generate the absolute URL for the stored image
             $img_url = asset('storage/' . $img_path);
