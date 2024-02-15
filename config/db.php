@@ -233,6 +233,70 @@ return [
         ],
     ],
 
+    'account_specialization' => [
+        [
+            'account_id' => 1,
+            'specialization_id' => 2,
+        ],
+        [
+            'account_id' => 2,
+            'specialization_id' => 3,
+        ],
+        [
+            'account_id' => 3,
+            'specialization_id' => 4,
+        ],
+        [
+            'account_id' => 4,
+            'specialization_id' => 5,
+        ],
+        [
+            'account_id' => 5,
+            'specialization_id' => 6,
+        ],
+        [
+            'account_id' => 6,
+            'specialization_id' => 7,
+        ],
+        [
+            'account_id' => 7,
+            'specialization_id' => 2,
+        ],
+        [
+            'account_id' => 8,
+            'specialization_id' => 1,
+        ],
+        [
+            'account_id' => 9,
+            'specialization_id' => 2,
+        ],
+        [
+            'account_id' => 10,
+            'specialization_id' => 1,
+        ],
+    ],
+
+    'account_sponsorship' => [
+        [
+            'account_id' => 1,
+            'sponsorship_id' => 2,
+            'start_date' => '2024-02-15',
+            'end_date' => '2024-02-16',
+        ],
+        [
+            'account_id' => 2,
+            'sponsorship_id' => 3,
+            'start_date' => '2024-02-15',
+            'end_date' => '2024-02-18',
+        ],
+        [
+            'account_id' => 2,
+            'sponsorship_id' => 3,
+            'start_date' => '2024-02-15',
+            'end_date' => '2024-02-21',
+        ],
+    ],
+
     'messages' => [
         [
             'account_id' => 5,
