@@ -14,14 +14,11 @@ class AccountController extends Controller
     {
         $specializationId = $request->query('specialization');
 
-
         if ($specializationId) {
-            $accounts = DB::table('account_specialization')
-                ->join('accounts', 'account_specialization.account_id', '=', 'accounts.id')
-                ->where('account_specialization.specialization_id', $specializationId)
-                ->select('accounts.*')
-                ->with(['specializations', 'sponsorships', 'ratings', 'user'])
-                ->get();
+            $accounts = Account::whereHas('specializations', function ($query) use ($specializationId) {
+                // Qui specifico che 'id' si riferisce alla tabella delle specializzazioni
+                $query->where('specializations.id', $specializationId);
+            })->with(['specializations', 'sponsorships', 'ratings', 'user'])->get();
         } else {
             $accounts = Account::with(['specializations', 'sponsorships', 'ratings', 'user'])->get();
         }
