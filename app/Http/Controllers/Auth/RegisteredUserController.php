@@ -92,12 +92,14 @@ class RegisteredUserController extends Controller
 
         if ($request->hasFile('cv')) {
             $file_url = Storage::putFile('account_cvs', $request->file('cv'));
+            $file_url = 'storage/' . $file_url;
             $account->cv = $file_url;
         }
 
         //inserting img url data into profile photo
         if ($request->hasFile('image')) {
             $img_url = Storage::putFile('account_images', $request['image']);
+            $img_url = 'storage/' . $img_url;
             $account['image'] = $img_url;
         }
 
