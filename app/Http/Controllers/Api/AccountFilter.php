@@ -27,11 +27,19 @@ class AccountFilter extends Controller
         }
 
         //numero recensioni minime
+
         if ($request->query('mr')) {
             $reviewsMinum = $request->query('mr');
         } else {
             $reviewsMinum = 0;
         }
+        //ASC // DESC
+        if ($request->query('order')) {
+            $order = $request->query('order');
+        } else {
+            $order = 'DESC';
+        }
+
 
         $accounts = Account::with(['user', 'specializations', 'ratings', 'reviews'])
             ->select('accounts.*')
@@ -46,13 +54,50 @@ class AccountFilter extends Controller
             ->get();
 
         //se nella query non vengono specificate le ratings, allora possiamo ignorare il filtro per voto medio
-        if ($minVote > 0) {
-            $accounts = $accounts->filter(function ($account) use ($minVote) {
-                $averageRating = $account->ratings()->avg('value');
-                //$averageRating = $account->ratings()->get();
-                return $averageRating >= $minVote;
-            });
+        //if ($minVote > 0) {
+        $accounts = $accounts->filter(function ($account) use ($minVote) {
+            $averageRating = $account->ratings()->avg('value');
+
+            if (empty($averageRating)) {
+
+                $averageRating = 0;
+            }
+            $account->average_rating = $averageRating;
+
+            //$averageRating = $account->ratings()->get();
+            return $averageRating >= $minVote;
+        });
+
+
+
+
+        $accounts = $accounts->filter(function ($account) {
+            $numberReview = $account->reviews()->count();
+
+            if (empty($numberReview)) {
+
+                $numberReview = 0;
+            }
+            $account->total_reviews = $numberReview;
+
+            //$averageRating = $account->ratings()->get();
+            return true;
+        });
+        //// dd(array(...$accounts));
+
+        $accounts = array(...$accounts);
+        $totalReviews = array_column($accounts, 'total_reviews');
+
+        // Ordina l'array principale in base all'array di valori di 'total_reviews'
+        if ($order === 'DESC') {
+            array_multisort($totalReviews, SORT_DESC, $accounts);
+
+        } else {
+            array_multisort($totalReviews, SORT_ASC, $accounts);
         }
+
+
+        //}
         //pagination
         // $accounts = new LengthAwarePaginator($accounts->values()->forPage(request()->input('page'), 20), $accounts->count(), 20, null, ['path' => url()->current()]);
 
