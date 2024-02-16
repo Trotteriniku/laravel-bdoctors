@@ -184,7 +184,8 @@ class AccountController extends Controller
                 $account->specializations()->detach($acc_spec_id);
             }
         }
-        return redirect()->route('admin.dashboard');
+        // return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.accounts.show', $account);
     }
 
     /**
