@@ -33,6 +33,13 @@ class AccountFilter extends Controller
         } else {
             $reviewsMinum = 0;
         }
+        //ASC // DESC
+        if ($request->query('order')) {
+            $order = $request->query('order');
+        } else {
+            $order = 'DESC';
+        }
+
 
         $accounts = Account::with(['user', 'specializations', 'ratings', 'reviews'])
             ->select('accounts.*')
@@ -52,6 +59,7 @@ class AccountFilter extends Controller
             $averageRating = $account->ratings()->avg('value');
 
             if (empty($averageRating)) {
+
                 $averageRating = 0;
             }
             $account->average_rating = $averageRating;
@@ -59,6 +67,37 @@ class AccountFilter extends Controller
             //$averageRating = $account->ratings()->get();
             return $averageRating >= $minVote;
         });
+
+
+
+
+
+        $accounts = $accounts->filter(function ($account) {
+            $numberReview = $account->reviews()->count();
+
+            if (empty($numberReview)) {
+
+                $numberReview = 0;
+            }
+            $account->total_reviews = $numberReview;
+
+            //$averageRating = $account->ratings()->get();
+            return true;
+        });
+        //// dd(array(...$accounts));
+
+        $accounts = array(...$accounts);
+        $totalReviews = array_column($accounts, 'total_reviews');
+
+        // Ordina l'array principale in base all'array di valori di 'total_reviews'
+        if ($order === 'DESC') {
+            array_multisort($totalReviews, SORT_DESC, $accounts);
+
+        } else {
+            array_multisort($totalReviews, SORT_ASC, $accounts);
+        }
+
+
         //}
         //pagination
         // $accounts = new LengthAwarePaginator($accounts->values()->forPage(request()->input('page'), 20), $accounts->count(), 20, null, ['path' => url()->current()]);
