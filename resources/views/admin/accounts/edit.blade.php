@@ -25,9 +25,8 @@
                                     <h5 class="card-title text-center pb-0 fs-4">Modifica il tuo profilo</h5>
                                 </div>
 
-                                <form id="registrationForm" action="{{ route('admin.accounts.update', $account) }}"
-                                    method="POST" class="row g-3 needs-validation form-register"
-                                    enctype="multipart/form-data">
+                                <form id="myForm" action="{{ route('admin.accounts.update', $account) }}" method="POST"
+                                    class="row g-3 needs-validation form-register" enctype="multipart/form-data">
 
                                     @method('PUT')
                                     @csrf
@@ -36,24 +35,19 @@
 
                                     {{-- IMAGE --}}
                                     <div class="col-10">
-                                        <label for="yourName" class="form-label">Immagine del profilo</label>
+                                        <label for="imageUpload" class="form-label">Immagine del profilo</label>
                                         <input type="file" accept=".jpeg,.jpg,.png" name="image"
-                                            class="form-control  @error('image') is-invalid @enderror" id="yourName"
-                                            value="{{ old('image', $account->image) }}">
+                                            class="form-control @error('image') is-invalid @enderror" id="imageUpload">
                                         @error('image')
-                                            <div class="invalid-feedbac">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    {{-- image preview --}}
+
+                                    {{-- Anteprima dell'immagine --}}
                                     <div class="col-2 d-flex justify-content-end">
                                         <div class="box-img border">
-                                            @if ($account->image !== null)
-                                                <img id="uploadPreview" style="width: 100%; "
-                                                    src="{{ asset($account->image) }}">
-                                            @else
-                                                <img id="uploadPreview" style="width: 100%; "
-                                                    src="https://placehold.jp/023E73/ffffff/150x150.png?text=Anteprima%20Immagine">
-                                            @endif
+                                            <img id="uploadPreview" style="width: 100%;"
+                                                src="{{ $account->image ? asset($account->image) : 'https://placehold.jp/023E73/ffffff/150x150.png?text=Anteprima%20Immagine' }}">
                                         </div>
                                     </div>
 

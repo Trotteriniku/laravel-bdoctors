@@ -3,21 +3,6 @@ import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**", "../fonts/**"]);
 
-//preview per le immagini
-
-const previewImage = document.getElementById("image");
-previewImage.addEventListener("change", (event) => {
-    var oFReader = new FileReader();
-    // var image  =  previewImage.files[0];
-    // console.log(image);
-    oFReader.readAsDataURL(previewImage.files[0]);
-
-    oFReader.onload = function (oFREvent) {
-        //console.log(oFREvent);
-        document.getElementById("uploadPreview").src = oFREvent.target.result;
-    };
-});
-
 const previewCv = document.getElementById("cv");
 previewCv.addEventListener("change", (event) => {
     var oFReader = new FileReader();
@@ -389,7 +374,7 @@ previewCv.addEventListener("change", (event) => {
 })();
 
 //LINE CHART
-document.addEventListener("DOMContentLoaded", () => {
+/* document.addEventListener("DOMContentLoaded", () => {
     new Chart(document.querySelector("#lineChart"), {
         type: "line",
         data: {
@@ -432,10 +417,10 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         },
     });
-});
+}); */
 
 //BAR CHART
-document.addEventListener("DOMContentLoaded", () => {
+/* document.addEventListener("DOMContentLoaded", () => {
     new Chart(document.querySelector("#barChart"), {
         type: "bar",
         data: {
@@ -487,7 +472,7 @@ document.addEventListener("DOMContentLoaded", () => {
             },
         },
     });
-});
+}); */
 
 //REQUIRED CHECKOBOX
 document.addEventListener("DOMContentLoaded", function () {
@@ -514,7 +499,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //PREVIEW IMAGE REGISTER
-ocument.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     const imageInput = document.getElementById("image");
     const uploadPreview = document.getElementById("uploadPreview");
     const previewContainer = document.getElementById("previewContainer");
@@ -525,5 +510,43 @@ ocument.addEventListener("DOMContentLoaded", function () {
             uploadPreview.src = URL.createObjectURL(file);
             previewContainer.style.display = "block"; // Mostra il contenitore
         }
+    });
+});
+
+//EDIT CHECKOBX
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("myForm").addEventListener("submit", function (e) {
+        var checkboxes = document.querySelectorAll(".specialization:checked");
+        if (checkboxes.length == 0) {
+            e.preventDefault(); // Previene l'invio del form
+            document
+                .getElementById("specialization-error")
+                .classList.remove("d-none"); // Mostra il messaggio di errore
+        }
+    });
+});
+
+//preview per le immagini
+
+const previewImage = document.getElementById("image");
+previewImage.addEventListener("change", (event) => {
+    var oFReader = new FileReader();
+    oFReader.readAsDataURL(previewImage.files[0]);
+
+    oFReader.onload = function (oFREvent) {
+        //console.log(oFREvent);
+        document.getElementById("uploadPreview").src = oFREvent.target.result;
+    };
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const previewImageEdit = document.getElementById("imageUpload");
+    previewImageEdit.addEventListener("change", (event) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(event.target.files[0]);
+
+        fileReader.onload = function (event) {
+            document.getElementById("uploadPreview").src = event.target.result;
+        };
     });
 });
