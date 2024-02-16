@@ -27,6 +27,7 @@ class AccountFilter extends Controller
         }
 
         //numero recensioni minime
+
         if ($request->query('mr')) {
             $reviewsMinum = $request->query('mr');
         } else {
@@ -46,13 +47,19 @@ class AccountFilter extends Controller
             ->get();
 
         //se nella query non vengono specificate le ratings, allora possiamo ignorare il filtro per voto medio
-        if ($minVote > 0) {
-            $accounts = $accounts->filter(function ($account) use ($minVote) {
-                $averageRating = $account->ratings()->avg('value');
-                //$averageRating = $account->ratings()->get();
-                return $averageRating >= $minVote;
-            });
-        }
+        //if ($minVote > 0) {
+        $accounts = $accounts->filter(function ($account) use ($minVote) {
+            $averageRating = $account->ratings()->avg('value');
+
+            if (empty($averageRating)) {
+                $averageRating = 0;
+            }
+            $account->average_rating = $averageRating;
+
+            //$averageRating = $account->ratings()->get();
+            return $averageRating >= $minVote;
+        });
+        //}
         //pagination
         // $accounts = new LengthAwarePaginator($accounts->values()->forPage(request()->input('page'), 20), $accounts->count(), 20, null, ['path' => url()->current()]);
 
