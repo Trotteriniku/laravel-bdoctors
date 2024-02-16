@@ -25,7 +25,7 @@ class StoreAccountRequest extends FormRequest
             'image' => ['image', 'mimes:png,jpg,jpeg'],
             'cv' => ['mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'],
             'address' => ['required', 'min:3', 'max:500'],
-            'performance' => ['min:3', 'max:1000'],
+            'performance' => ['min:10', 'max:1000'],
             'user_id' => ['numeric'],
             'phone' => ['min:9'],
         ];

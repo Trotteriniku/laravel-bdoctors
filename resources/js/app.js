@@ -488,3 +488,42 @@ document.addEventListener("DOMContentLoaded", () => {
         },
     });
 });
+
+//REQUIRED CHECKOBOX
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".form-register");
+    const specializationsContainer = document.getElementById(
+        "specializations-container"
+    );
+    const specializationError = document.getElementById("specialization-error");
+    const checkboxes = specializationsContainer.querySelectorAll(
+        'input[type="checkbox"]'
+    );
+
+    form.addEventListener("submit", function (event) {
+        const isChecked = Array.from(checkboxes).some(
+            (checkbox) => checkbox.checked
+        );
+        if (!isChecked) {
+            event.preventDefault();
+            specializationError.classList.remove("d-none");
+        } else {
+            specializationError.classList.add("d-none");
+        }
+    });
+});
+
+//PREVIEW IMAGE REGISTER
+ocument.addEventListener("DOMContentLoaded", function () {
+    const imageInput = document.getElementById("image");
+    const uploadPreview = document.getElementById("uploadPreview");
+    const previewContainer = document.getElementById("previewContainer");
+
+    imageInput.addEventListener("change", function () {
+        const [file] = imageInput.files;
+        if (file) {
+            uploadPreview.src = URL.createObjectURL(file);
+            previewContainer.style.display = "block"; // Mostra il contenitore
+        }
+    });
+});
