@@ -21,7 +21,7 @@
 
                                 <div class="pt-4 pb-2">
                                     <h5 class="card-title text-center pb-0 fs-4">Accedi al tuo account</h5>
-                                    <p class="text-center small">Inserisci il tuo username & password per collegarti</p>
+                                    <p class="text-center small">Inserisci la tua email e password per collegarti</p>
                                 </div>
 
                                 <form method="POST" action="{{ route('login') }}">
@@ -80,12 +80,15 @@
                                                 {{ __('Accedi') }}
                                             </button>
 
-                                            @if (Route::has('password.request'))
-                                                <a class="btn btn-link" href="{{ route('register') }}">
-                                                    {{ __('Crea un nuovo account') }}
-                                                </a>
-                                            @endif
                                         </div>
+                                    </div>
+                                    <div class="mb-4 row ">
+
+                                        @if (Route::has('password.request'))
+                                            <a class="btn btn-link" href="{{ route('register') }}">
+                                                {{ __('Crea un nuovo account') }}
+                                            </a>
+                                        @endif
                                     </div>
                                 </form>
                             </div>

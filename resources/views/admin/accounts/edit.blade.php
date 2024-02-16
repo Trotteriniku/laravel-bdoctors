@@ -37,7 +37,7 @@
 
 
                                     {{-- IMAGE --}}
-                                    <div class="col-12">
+                                    <div class="col-10">
                                         <label for="yourName" class="form-label">Your Image</label>
                                         <input type="file" accept=".jpeg,.jpg,.png" name="image"
                                             class="form-control  @error('image') is-invalid @enderror" id="yourName"
@@ -45,16 +45,17 @@
                                         @error('image')
                                             <div class="invalid-feedbac">{{ $message }}</div>
                                         @enderror
+                                        {{-- image preview --}}
                                     </div>
-                                    {{-- image preview --}}
-                                    <div class="d-flex p-4 ">
-                                        <div class=" w-100 " style="height: fit-content;">
+                                    <div class="col-2 d-flex justify-content-end">
+                                        <div class="box-img ">
                                             @if ($account->image !== '')
                                                 <img id="uploadPreview" style="width: 100%; "
                                                     src="{{ asset($account->image) }}">
                                             @endif
                                         </div>
                                     </div>
+
 
                                     {{-- CV --}}
                                     <div class="col-12">
