@@ -30,9 +30,10 @@
                             @csrf
                             {{-- NAME --}}
                             <div class="col-12 col-lg-6  ">
-                                <label for="yourName" class="form-label">Nome</label>
+                                <label for="yourName" class="form-label">Nome*</label>
                                 <input type="text" name="name"
-                                    class="form-control  @error('name') is-invalid @enderror" id="name">
+                                    class="form-control  @error('name') is-invalid @enderror" id="name"
+                                    value="{{ old('name') }}">
                                 <div id="name-errorField" class="d-none"></div>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -42,9 +43,10 @@
                             </div>
                             {{-- SURNAME --}}
                             <div class="col-12 col-lg-6  ">
-                                <label for="yourName" class="form-label">Cognome</label>
+                                <label for="yourName" class="form-label">Cognome*</label>
                                 <input type="text" name="surname"
-                                    class="form-control @error('surname') is-invalid @enderror" id="last_name">
+                                    class="form-control @error('surname') is-invalid @enderror" id="last_name"
+                                    value="{{ old('surname') }}">
                                 <div id="last-name-errorField" class="d-none"></div>
                                 @error('surname')
                                     <span class="invalid-feedback" role="alert">
@@ -54,11 +56,12 @@
                             </div>
                             {{-- EMAIL --}}
                             <div class="col-12 col-lg-6  ">
-                                <label for="yourEmail" class="form-label">Email</label>
+                                <label for="yourEmail" class="form-label">Email*</label>
                                 <div class="input-group has-validation">
                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
                                     <input type="email" name="email"
-                                        class="form-control @error('email') is-invalid @enderror" id="email">
+                                        class="form-control @error('email') is-invalid @enderror" id="email"
+                                        value="{{ old('email') }}">
                                 </div>
                                 <div id="email-errorField" class="d-none"></div>
                                 @error('email')
@@ -69,17 +72,17 @@
                             </div>
                             {{-- PHONE --}}
                             <div class="col-12 col-lg-6  ">
-                                <label for="phone" class="form-label">Telefono</label>
+                                <label for="phone" class="form-label">Telefono*</label>
                                 <input type="text" name="phone"
-                                    class="form-control  @error('phone') is-invalid @enderror" id="phone"
-                                    minlength="9">
+                                    class="form-control  @error('phone') is-invalid @enderror" id="phone" minlength="9"
+                                    value="{{ old('phone') }}">
                                 @error('phone')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             {{-- PASSWORD --}}
                             <div class="col-12 col-lg-6  ">
-                                <label for="yourPassword" class="form-label">Password</label>
+                                <label for="yourPassword" class="form-label">Password*</label>
                                 <input type="password" name="password" id="password"
                                     class="form-control @error('password') is-invalid @enderror" id="yourPassword"
                                     minlength="3" maxlength="12">
@@ -93,7 +96,7 @@
                             </div>
                             {{-- CONFIRM PASSWORD --}}
                             <div class="col-12 col-lg-6  ">
-                                <label for="password-confirm" class="form-label">Conferma Password</label>
+                                <label for="password-confirm" class="form-label">Conferma Password*</label>
                                 <input id="password-confirm" type="password"
                                     class="form-control @error('password') is-invalid @enderror"
                                     name="password_confirmation" autocomplete="new-password">
@@ -126,11 +129,11 @@
                             </div>
                             {{-- INDIRIZZO --}}
                             <div class="col-12">
-                                <label for="address" class="form-label">Indirizzo</label>
+                                <label for="address" class="form-label">Indirizzo*</label>
                                 <div class="input-group has-validation">
                                     <input type="text" value="{{ old('address') }}" name="address"
                                         class="form-control  @error('address') is-invalid @enderror" id="address"
-                                        minlength="3" maxlength="500">
+                                        minlength="3" maxlength="500" value="{{ old('address') }}">
                                     @error('address')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -139,7 +142,7 @@
                             {{-- SPECIALIZATIONS --}}
                             <div class="mb-3">
                                 <div class="form-group">
-                                    <h5>Seleziona una specializzazione:</h5>
+                                    <h5>Seleziona una specializzazione:*</h5>
                                     <div class="d-flex flex-wrap align-items-center justify-content-start  mt-2">
                                         @foreach ($specializations as $specialization)
                                             <div class="@error('specializations') is-invalid @enderror">
@@ -171,7 +174,7 @@
                                         id="performance" minlength="3" maxlength="1000"></textarea>
                                 </div>
                                 @error('performances')
-                                    <div class="invalid-feedbac">{{ $message }}</div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             {{-- CREA ACCOUNT --}}
