@@ -71,7 +71,7 @@ return [
             'phone' => '3471234567',
             'address' => 'Via Napoli 100',
             'performances' => '',
-            'visible' => 0,
+            'visible' => 1,
         ],
         [
             'image' => 'storage/images/doc-2.jpg',
