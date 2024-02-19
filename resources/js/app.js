@@ -3,18 +3,7 @@ import "~resources/scss/app.scss";
 import * as bootstrap from "bootstrap";
 import.meta.glob(["../img/**", "../fonts/**"]);
 
-const previewCv = document.getElementById("cv");
-previewCv.addEventListener("change", (event) => {
-    var oFReader = new FileReader();
-    // var image  =  previewImage.files[0];
-    // console.log(image);
-    oFReader.readAsDataURL(previewCv.files[0]);
 
-    oFReader.onload = function (oFREvent) {
-        //console.log(oFREvent);
-        document.getElementById("uploadPreviewCv").src = oFREvent.target.result;
-    };
-});
 
 (function () {
     "use strict";
@@ -549,4 +538,17 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("uploadPreview").src = event.target.result;
         };
     });
+});
+
+const previewCv = document.getElementById("cv");
+previewCv.addEventListener("change", (event) => {
+    var oFReader = new FileReader();
+    // var image  =  previewImage.files[0];
+    // console.log(image);
+    oFReader.readAsDataURL(previewCv.files[0]);
+
+    oFReader.onload = function (oFREvent) {
+        //console.log(oFREvent);
+        document.getElementById("uploadPreviewCv").src = oFREvent.target.result;
+    };
 });

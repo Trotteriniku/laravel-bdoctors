@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Message;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 
@@ -13,7 +15,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::where('account_id', Auth::id())->get();
+        return view('admin.messages.index', compact('messages'));
+
     }
 
 

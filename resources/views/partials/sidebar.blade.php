@@ -30,7 +30,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{route('admin.messages.index', Auth::id())}}">
                     <i class="fa-solid fa-envelope"></i>
                     <span>Messaggi</span>
                 </a>

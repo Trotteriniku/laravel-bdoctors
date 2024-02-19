@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\MessageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 Route::get('/login', [ProfileController::class, 'index'])->name('login');
 
+
 // Route::get('accounts/index', [AccountController::class, 'index'])->name('accounts.index');
 // Route::resource('accounts', AccountController::class);
 
@@ -32,7 +34,7 @@ Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
+        Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
         Route::resource('accounts', AccountController::class)->parameters([
             'accounts' => 'account:id',
         ]);
