@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\AccountController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,11 +38,12 @@ Route::middleware(['auth', 'verified'])
         ]);
         // Route::resource('types', TypeController::class);
         /*Route::resource('types', TypeController::class)->parameters([
-        'types' => 'type:slug',
-    ]);
-    Route::resource('technologies', TechnologyController::class)->parameters([
-        'technologies' => 'technology:slug',
-    ]);*/
+            'types' => 'type:slug',
+        ]);
+        Route::resource('technologies', TechnologyController::class)->parameters([
+            'technologies' => 'technology:slug',
+        ]);*/
+        Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
     });
 
 Route::middleware('auth')->group(function () {
