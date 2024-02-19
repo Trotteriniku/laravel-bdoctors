@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\SpecializationController;
 use App\Http\Controllers\Api\AccountFilter;
+use App\Http\Controllers\Api\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,5 @@ Route::get('accounts/{id}/{AVGrating}/{minNumberReviews}', [AccountController::c
 
 //rotta per prendere una risorsa
 Route::get('specializations', [SpecializationController::class, 'index']);
+
+Route::post('/reviews', [ReviewController::class, 'store']);
