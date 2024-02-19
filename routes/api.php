@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\SpecializationController;
 use App\Http\Controllers\Api\AccountFilter;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,4 @@ Route::get('accounts/{id}/{AVGrating}/{minNumberReviews}', [AccountController::c
 Route::get('specializations', [SpecializationController::class, 'index']);
 
 Route::post('/reviews', [ReviewController::class, 'store']);
+Route::post('/messages', [MessageController::class, 'store']);
