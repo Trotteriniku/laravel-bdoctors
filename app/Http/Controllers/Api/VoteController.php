@@ -18,7 +18,7 @@ class VoteController extends Controller
 
         Account::findOrFail($account_id);
 
-        if (!is_int($rating) || $rating > 5 || $rating < 1) {
+        if (!is_numeric($rating) || $rating > 5 || $rating < 1) {
             return response()->json([
                 'success' => false,
                 'error' => 'inserire un numero intero tra 1 e 5',
