@@ -42,6 +42,6 @@ class ReviewController extends Controller
         //$review->fill($data);
         //$review->save();
         $review = Review::create($data);
-        dd($review);
+
     }
 }

@@ -51,6 +51,6 @@ class MessageController extends Controller
 
         $data = $request->all();
         $message = Message::create($data);
-        dd($message);
+        // dd($message);
     }
 }
