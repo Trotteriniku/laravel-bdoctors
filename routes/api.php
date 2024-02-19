@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\SpecializationController;
 use App\Http\Controllers\Api\AccountFilter;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\VoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,4 @@ Route::get('specializations', [SpecializationController::class, 'index']);
 
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::post('/messages', [MessageController::class, 'store']);
+Route::post('/votes', [VoteController::class, 'store']);
