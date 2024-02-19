@@ -37,7 +37,7 @@
             </li><!-- End Contact Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{route('admin.reviews.index', Auth::id())}}">
                     <i class="fa-solid fa-thumbs-up"></i>
                     <span>Recensioni</span>
                 </a>
