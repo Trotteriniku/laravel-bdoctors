@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Account;
 
-
 class Review extends Model
 {
     use HasFactory;
-    protected $fillable = ['accout_id', 'name', 'content', 'title', 'email'];
+    protected $fillable = ['account_id', 'name', 'content', 'title', 'email'];
 
     public function account()
     {
