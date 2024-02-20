@@ -17,7 +17,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{route('admin.accounts.show', Auth::id())}}">
                     <i class="fa-solid fa-person"></i>
-                    <span>Profile</span>
+                    <span>Profilo</span>
                 </a>
             </li><!-- End Profile Page Nav -->
 

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <h1 class="card-title fw-semibold ">Recensioni Ricevute</h1>
+                <h1 class="card-title fw-semibold ">{{ count($reviews) }} recensioni ricevute</h1>
                 @foreach ($reviews as $review)
                     <div class="card p-3 ">
                         <div class="card-body">

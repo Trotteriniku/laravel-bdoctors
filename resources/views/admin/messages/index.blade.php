@@ -5,8 +5,9 @@
             <div class="col-md-8">
                 <div class="container">
                     <div class="row">
+                        <h2 class=" w-100 card-title fw-semibold px-2">{{count($messages)}} messaggi ricevuti</h2>
                         @foreach ($messages as $message)
-                            <div class="w-75 pt-3 ps-5">
+                            <div class="w-100 pt-3">
                                 <div class="card">
                                     <h1 class="text-center">{{ $message->name }}</h1>
                                     <div class="card-body">

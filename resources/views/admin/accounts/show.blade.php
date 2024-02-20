@@ -19,7 +19,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <div class="w-100  d-flex justify-content-center">
-                            @if (isset($account->image))
+                            @if ($account->image)
                                 <div class="box-img mt-3 ">
                                     <img src="{{ asset($account->image) }}" alt="hello">
                                 </div>
@@ -38,6 +38,15 @@
 
                             </div>
                         </div>
+
+                        @if($account->cv)
+                            <h1 class="card-title fw-semibold border-bottom">Curriculum</h1>
+                            <div class="row " style="color: #0476D9; height: 400px;">
+                                <div class="col-12">
+                                    <iframe class="w-100 h-100" src="{{asset($account->cv)}}" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
