@@ -1,27 +1,34 @@
 @extends('layouts.admin')
-
 @section('content')
-    <div class="container mt-4 pt-5" style="background-color: #f6f9ff;">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-
-                <h1 class="card-title fw-semibold ">{{ count($reviews) }} recensioni ricevute</h1>
+    <div class="container">
+        <h1 class="card-head">Recensioni : {{ count($reviews) }}</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Titolo</th>
+                    <th scope="col">Anteprima</th>
+                    <th scope="col">Data/ora</th>
+                    <th scope="col">Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach ($reviews as $review)
-                    <div class="card p-3 ">
-                        <div class="card-body">
-                            <div class=" mb-3 ">
-                                <h4 class="card-subtitle mb-2 py-3 text-muted" style="color: #0476D9">{{ $review->title }}
-                                </h4>
-                                <p><strong>Nome:</strong> {{ $review->name }}</p>
-                                <p><strong>Email:</strong> {{ $review->email }}</p>
-                                <p><strong>Data:</strong> {{ substr($review->created_at, 0, 10) }}</p>
-                                <p><strong>Contenuto:</strong> {{ $review->content }}</p>
-                            </div>
-                        </div>
-                    </div>
+                    <tr class="text-center">
+                        <td>{{ $review->name }}</td>
+                        <td>{{ $review->email }}</td>
+                        <td>{{ $review->title }} </td>
+                        <td>{{ strlen($review->content) > 80 ? substr($review->body, 0, 80) . '...' : $review->body }}</td>
+                        <td class="col-3">{{ date('d-m-Y \O\r\e\: H:i:s', strtotime($review->created_at)) }} </td>
+                        <td class="">
+                            <a class="btn btn-primary" href=" {{ route('admin.reviews.show', $review->id) }}"><i
+                                    class="fa-regular fa-eye"></i></a>
+                        </td>
+                    </tr>
                 @endforeach
+            </tbody>
+        </table>
 
-            </div>
-        </div>
     </div>
 @endsection

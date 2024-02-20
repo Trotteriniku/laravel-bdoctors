@@ -13,9 +13,17 @@ class ReviewController extends Controller
 {
     public function index()
     {
-        $reviews = Review::where('account_id', Auth::id())->get();
+        $reviews = Review::where('account_id', Auth::id())->orderBy('created_at', 'desc')->get();
         $ratings = AccountRating::where('account_id', Auth::id())->get();
         //dd($reviews);
         return view('admin.reviews.index', compact('reviews', 'ratings'));
+    }
+
+    public function show($id)
+    {
+        //dd($id);
+        $review = Review::findOrFail($id);
+
+        return view('admin.reviews.show', compact('review'));
     }
 }
