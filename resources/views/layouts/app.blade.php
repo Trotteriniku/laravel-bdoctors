@@ -8,12 +8,12 @@
     {{-- modificato --}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
+    <title>BDoctors - Login/Register</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     {{-- Favicons --}}
-    <link href="assets/img/favicon.png" rel="icon">
+    <link href="/favicon.ico" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     {{-- CSRF Token --}}
