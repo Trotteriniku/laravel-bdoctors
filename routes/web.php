@@ -35,6 +35,7 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+        Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
         Route::resource('accounts', AccountController::class)->parameters([
             'accounts' => 'account:id',
         ]);
@@ -46,6 +47,8 @@ Route::middleware(['auth', 'verified'])
             'technologies' => 'technology:slug',
         ]);*/
         Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+        Route::get('/reviews/{id}', [ReviewController::class, 'show'])->name('reviews.show');
+
     });
 
 Route::middleware('auth')->group(function () {
