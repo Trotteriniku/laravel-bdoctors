@@ -66,15 +66,17 @@
                                     </div>
 
                                     {{-- cv preview --}}
-                                    <div class="d-flex py-2 ">
-                                        <div class="framed w-100 border" style="height: fit-content;">
-                                            @if ($account->cv !== '')
-                                                <iframe id="uploadPreviewCv" style="width: 100%; min-height: 400px;"
-                                                    src="{{ asset($account->cv) }}">
-                                                </iframe>
-                                            @endif
+                                    @if ($account->cv)
+                                        <div class="d-flex py-2 ">
+                                            <div class="framed w-100 border" style="height: fit-content;">
+                                                @if ($account->cv !== '')
+                                                    <iframe id="uploadPreviewCv" style="width: 100%; min-height: 400px;"
+                                                        src="{{ asset($account->cv) }}">
+                                                    </iframe>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
 
                                     {{-- PHONE --}}
                                     <div class="col-12 col-lg-6">
