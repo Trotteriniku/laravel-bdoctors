@@ -37,7 +37,11 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
         Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
+
         Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors.index');
+        Route::get('/sponsors/{id}', [SponsorController::class, 'show'])->name('sponsors.show');
+        Route::post('/sponsors', [SponsorController::class, 'store'])->name('sponsors.store');
+
         Route::get('/braintree/token', 'SponsorController@getClientToken');
         Route::resource('accounts', AccountController::class)->parameters([
             'accounts' => 'account:id',

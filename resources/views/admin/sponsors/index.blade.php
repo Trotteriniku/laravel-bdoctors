@@ -1,56 +1,32 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container d-flex  justify-content-center mt-5 pt-5 ">
-        <div id="dropin-wrapper">
-            <div id="checkout-message"></div>
-            <div id="dropin-container"></div>
-            <button id="submit-button">Submit payment</button>
-        </div>
+    <h2 class="text-center fs-1 container mt-5 p-5">Scegli l'abbonamento che fa al caso tuo!</h2>
+    <div class="container d-flex justify-content-center mt-3">
+        @foreach ($sponsorships as $item)
+            <div class="card p-5 m-5 shadow">
+                <div class="card-body text-center">
+                    <h2 class="p-2 text-primary fw-semibold dislpay-5">{{ $item->name }}</h2>
+                    <h5 class="p-3"><i class="fa-solid fa-money-bill-1" style="color: #85bb65;"></i> Prezzo:
+                        {{ $item->price }} &euro;</h5>
+                    <h5 class="p-3"><i class="fa-solid fa-calendar-days"></i> Durata abbonamento:<br>
+                        {{--  {{ substr($item->duration, 0, 5) }} ore --}}
+                        @if ($item->duration == '24:00:00')
+                            1 giorno
+                        @elseif($item->duration == '72:00:00')
+                            3 giorni
+                        @elseif($item->duration == '144:00:00')
+                            6 giorni
+                        @endif
+
+                    </h5>
+                    <button class="btn btn-primary ">
+                        <a class="text-white text-decoration-none" href="{{ route('admin.sponsors.show', $item->id) }}">
+                            Conferma
+                        </a>
+                    </button>
+                </div>
+            </div>
+        @endforeach
     </div>
-
-    <script>
-        let button = document.querySelector('#submit-button');
-
-        braintree.dropin.create({
-            // Insert your tokenization key here
-            authorization: 'sandbox_ykrczb43_k69tfbm6dgfd722j',
-            container: '#dropin-container'
-        }, function(createErr, instance) {
-            button.addEventListener('click', function() {
-                instance.requestPaymentMethod(function(requestPaymentMethodErr, payload) {
-                    // When the user clicks on the 'Submit payment' button this code will send the
-                    // encrypted payment information in a variable called a payment method nonce
-                    $.ajax({
-                        type: 'POST',
-                        url: '/checkout',
-                        data: {
-                            'paymentMethodNonce': payload.nonce
-                        }
-                    }).done(function(result) {
-                        // Tear down the Drop-in UI
-                        instance.teardown(function(teardownErr) {
-                            if (teardownErr) {
-                                console.error('Could not tear down Drop-in UI!');
-                            } else {
-                                console.info('Drop-in UI has been torn down!');
-                                // Remove the 'Submit payment' button
-                                $('#submit-button').remove();
-                            }
-                        });
-
-                        if (result.success) {
-                            $('#checkout-message').html(
-                                '<h1>Success</h1><p>Your Drop-in UI is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>'
-                            );
-                        } else {
-                            console.log(result);
-                            $('#checkout-message').html(
-                                '<h1>Error</h1><p>Check your console.</p>');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 @endsection
