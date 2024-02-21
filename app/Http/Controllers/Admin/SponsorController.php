@@ -6,14 +6,25 @@ use App\Models\Sponsorship;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Braintree\Gateway as BraintreeGateway;
+use App\Models\Account;
+use App\Models\AccountSponsorship;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class SponsorController extends Controller
 {
     public function index()
     {
+        $accounts = Account::all();
         $sponsorships = Sponsorship::all();
         $clientToken = $this->getClientToken(); // Ottieni il token del cliente come stringa
-        return view('admin.sponsors.index', compact('sponsorships', 'clientToken'));
+        return view('admin.sponsors.index', compact('sponsorships', 'clientToken', 'accounts'));
+    }
+
+    public function show($id)
+    {
+        $sponsorship = Sponsorship::findOrFail($id);
+        return view('admin.sponsors.show', compact('sponsorship'));
     }
 
     // Metodo per generare il client token
@@ -35,5 +46,33 @@ class SponsorController extends Controller
         // Configura il gateway Braintree
         // Usa $request->paymentMethodNonce e altri parametri per creare una transazione
         // ...
+        // dd($request);
+        $sponsorship_id = $request->sponsor;
+        $sponsorship = Sponsorship::findOrFail($sponsorship_id);
+
+        $doctor_id = Auth::id();
+
+        $start_date = Carbon::now();
+        //dd($start_date);
+        //select sponsorship
+        if ($sponsorship_id == 1) {
+            $end_date = Carbon::now()->addDay();
+            //$end_date = $start_date + 86400;
+        } elseif ($sponsorship_id == 2) {
+            $end_date = Carbon::now()->addDay(3);
+        } elseif ($sponsorship_id == 3) {
+            $end_date = Carbon::now()->addDay(6);
+        }
+        //dd($end_date);
+
+        //
+        $accountSponsor = AccountSponsorship::create([
+            'account_id' => $doctor_id,
+            'sponsorship_id' => $sponsorship_id,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+
+        ]);
+        dd('fatto');
     }
 }
