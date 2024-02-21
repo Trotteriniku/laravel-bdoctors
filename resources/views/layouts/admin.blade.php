@@ -27,8 +27,13 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    {{-- BrainTree Drop-in --}}
+    <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+
+
 </head>
 
 <body>

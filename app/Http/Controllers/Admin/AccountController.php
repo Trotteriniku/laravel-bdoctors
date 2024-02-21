@@ -16,6 +16,7 @@ use App\Models\Specialization;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
+
 class AccountController extends Controller
 {
     /**
@@ -196,4 +197,5 @@ class AccountController extends Controller
         $account->delete();
         return to_route('admin.accounts.index')->with('message', "$account->title eliminato con successo");
     }
+
 }

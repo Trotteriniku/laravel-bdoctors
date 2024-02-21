@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\MessageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\SponsorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::middleware(['auth', 'verified'])
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
         Route::get('/messages/{id}', [MessageController::class, 'show'])->name('messages.show');
+        Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors.index');
+        Route::get('/braintree/token', 'SponsorController@getClientToken');
         Route::resource('accounts', AccountController::class)->parameters([
             'accounts' => 'account:id',
         ]);
