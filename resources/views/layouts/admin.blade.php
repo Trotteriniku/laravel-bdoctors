@@ -29,6 +29,10 @@
 
     {{-- BrainTree Drop-in --}}
     <script src="https://js.braintreegateway.com/web/dropin/1.42.0/js/dropin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.100.0/js/client.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.100.0/js/hosted-fields.min.js"></script>
+
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])

@@ -15,10 +15,20 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Specialization;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class AccountController extends Controller
 {
+
+    public function isVisible() {
+        // Controlla se esiste una sponsorizzazione attiva
+        $now = Carbon::now();
+        $account_id = Auth::id();
+        $account = Account::findOrFail($account_id);
+        return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -66,6 +76,8 @@ class AccountController extends Controller
         return redirect()->route('admin.dashboard');
     }
 
+
+
     /**
      * Display the specified resource.
      */
@@ -83,8 +95,11 @@ class AccountController extends Controller
             ->where('account_specialization.account_id', $user_id)
             ->select('specializations.*') // Seleziona i campi desiderati dalla tabella specialization
             ->get();
+        $visible = $this->isVisible();
+        //dd($visible);
+        return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations', 'visible'));
 
-        return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations'));
+
     }
 
     /**
@@ -126,7 +141,7 @@ class AccountController extends Controller
         //adding image data
         if (array_key_exists('image', $data)) {
             // Check if we already have a profile image
-            if ($account->image) {
+            if ($account->images) {
                 // Extract the relative path from the absolute URL
                 $image_path = str_replace(asset('storage/'), '', $account->image);
                 // Delete the old profile image using the relative path
@@ -197,5 +212,8 @@ class AccountController extends Controller
         $account->delete();
         return to_route('admin.accounts.index')->with('message', "$account->title eliminato con successo");
     }
+
+
+
 
 }

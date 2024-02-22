@@ -3,6 +3,15 @@
 @section('content')
     <div class="container mt-4 pt-5" style="background-color: #f6f9ff;">
         <div class="row justify-content-center">
+
+
+        @if($visible)
+            <div>Sei visibile sul sito.</div>
+        @else
+            <div>Non sei attualmente visibile sul sito. Acquista una sponsorizzazione per aumentare la tua visibilità.</div>
+        @endif
+
+
             <div class="col-md-8">
 
                 <div class="mb-4 d-flex justify-content-center align-items-center"
@@ -14,17 +23,23 @@
                         <img class="img-fluid" src="{{ asset('images/Bdoctor.png') }}" alt="Foto del medico">
                     @endif
 
+
                 </div>
 
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class="w-100  d-flex justify-content-center">
-                            @if ($account->image)
-                                <div class="box-img mt-3 ">
-                                    <img src="{{ asset($account->image) }}" alt="hello">
-                                </div>
-                            @endif
+                    <div class="w-100 d-flex flex-column align-items-center ">
+                    @if ($account->image)
+                        <div class="box-img mt-3">
+                            <img src="{{ asset($account->image) }}" alt="hello">
                         </div>
+                    @endif
+                    @if($visible)
+                        <div class="mysponsor">
+                            Sponsorizzazione attiva
+                        </div>
+                    @endif
+                </div>
                         <h1 class="card-title fw-semibold border-bottom">Informazioni Utente</h1>
                         <div class="row " style="color: #0476D9">
                             <div class="col-md-6">
