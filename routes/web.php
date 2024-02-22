@@ -26,7 +26,6 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
 Route::get('/login', [ProfileController::class, 'index'])->name('login');
 
-
 // Route::get('accounts/index', [AccountController::class, 'index'])->name('accounts.index');
 // Route::resource('accounts', AccountController::class);
 
@@ -42,7 +41,7 @@ Route::middleware(['auth', 'verified'])
         Route::get('/sponsors/{id}', [SponsorController::class, 'show'])->name('sponsors.show');
         Route::post('/sponsors', [SponsorController::class, 'store'])->name('sponsors.store');
 
-        Route::get('/braintree/token', 'SponsorController@getClientToken');
+        Route::get('/braintree/token', [SponsorController::class, 'getClientToken']);
         Route::resource('accounts', AccountController::class)->parameters([
             'accounts' => 'account:id',
         ]);
@@ -55,7 +54,6 @@ Route::middleware(['auth', 'verified'])
         ]);*/
         Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
         Route::get('/reviews/{id}', [ReviewController::class, 'show'])->name('reviews.show');
-
     });
 
 Route::middleware('auth')->group(function () {

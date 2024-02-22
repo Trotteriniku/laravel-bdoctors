@@ -77,6 +77,8 @@
     </div>
     <script>
         braintree.client.create({
+            // let braintreeTokenizationKey =
+            // alert(braintreeTokenizationKey);
             authorization: 'sandbox_v2z5tg6c_byyn8b675ysh2zkv'
         }, function(err, clientInstance) {
             if (err) {
