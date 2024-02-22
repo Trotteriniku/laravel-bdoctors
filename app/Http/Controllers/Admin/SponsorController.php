@@ -125,7 +125,9 @@ public function store(Request $request)
             'start_date' => $start_date,
             'end_date' => $end_date,
         ]);
-
+/* Account::create([
+    'visible' => 1,
+]); */
         return redirect()->route('admin.accounts.show', ['account' => $doctor_id])->with('success', 'Pagamento effettuato con successo.');
 
     } else {

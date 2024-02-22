@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Specialization;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 class AccountController extends Controller
@@ -83,8 +84,11 @@ class AccountController extends Controller
             ->where('account_specialization.account_id', $user_id)
             ->select('specializations.*') // Seleziona i campi desiderati dalla tabella specialization
             ->get();
+        $visible = $this->isVisible();
+        //dd($visible);
+        return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations', 'visible'));
 
-        return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations'));
+
     }
 
     /**
@@ -196,6 +200,15 @@ class AccountController extends Controller
     {
         $account->delete();
         return to_route('admin.accounts.index')->with('message', "$account->title eliminato con successo");
+    }
+
+
+    public function isVisible() {
+        // Controlla se esiste una sponsorizzazione attiva
+        $now = Carbon::now();
+        $account_id = Auth::id();
+        $account = Account::findOrFail($account_id);
+        return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
     }
 
 }
