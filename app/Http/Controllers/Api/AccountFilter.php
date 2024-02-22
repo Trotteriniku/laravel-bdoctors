@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 class AccountFilter extends Controller
 {
+    public function isVisible($account)
+    {
+        // Controlla se esiste una sponsorizzazione attiva
+        $now = Carbon::now();
+        return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
+    }
     /**
      * Display a listing of the resource.
      */
@@ -40,7 +46,6 @@ class AccountFilter extends Controller
             $order = 'DESC';
         }
 
-
         $accounts = Account::with(['user', 'specializations', 'ratings', 'reviews'])
             ->select('accounts.*')
             ->leftJoin('reviews', 'accounts.id', '=', 'reviews.account_id')
@@ -59,7 +64,6 @@ class AccountFilter extends Controller
             $averageRating = $account->ratings()->avg('value');
 
             if (empty($averageRating)) {
-
                 $averageRating = 0;
             }
             $account->average_rating = $averageRating;
@@ -68,15 +72,10 @@ class AccountFilter extends Controller
             return $averageRating >= $minVote;
         });
 
-
-
-
-
         $accounts = $accounts->filter(function ($account) {
             $numberReview = $account->reviews()->count();
 
             if (empty($numberReview)) {
-
                 $numberReview = 0;
             }
             $account->total_reviews = $numberReview;
@@ -86,17 +85,19 @@ class AccountFilter extends Controller
         });
         //// dd(array(...$accounts));
 
-        $accounts = array(...$accounts);
+        $accounts = [...$accounts];
         $totalReviews = array_column($accounts, 'total_reviews');
 
         // Ordina l'array principale in base all'array di valori di 'total_reviews'
         if ($order === 'DESC') {
             array_multisort($totalReviews, SORT_DESC, $accounts);
-
         } else {
             array_multisort($totalReviews, SORT_ASC, $accounts);
         }
 
+        foreach ($accounts as $account) {
+            $account['visible'] = $this->isVisible($account);
+        }
 
         //}
         //pagination

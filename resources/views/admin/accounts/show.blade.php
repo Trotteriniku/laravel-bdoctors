@@ -23,17 +23,23 @@
                         <img class="img-fluid" src="{{ asset('images/Bdoctor.png') }}" alt="Foto del medico">
                     @endif
 
+
                 </div>
 
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class="w-100  d-flex justify-content-center">
-                            @if ($account->image)
-                                <div class="box-img mt-3 ">
-                                    <img src="{{ asset($account->image) }}" alt="hello">
-                                </div>
-                            @endif
+                    <div class="w-100 d-flex flex-column align-items-center ">
+                    @if ($account->image)
+                        <div class="box-img mt-3">
+                            <img src="{{ asset($account->image) }}" alt="hello">
                         </div>
+                    @endif
+                    @if($visible)
+                        <div class="mysponsor">
+                            Sponsorizzazione attiva
+                        </div>
+                    @endif
+                </div>
                         <h1 class="card-title fw-semibold border-bottom">Informazioni Utente</h1>
                         <div class="row " style="color: #0476D9">
                             <div class="col-md-6">

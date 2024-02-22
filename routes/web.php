@@ -40,7 +40,6 @@ Route::middleware(['auth', 'verified'])
         Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsors.index');
         Route::get('/sponsors/{id}', [SponsorController::class, 'show'])->name('sponsors.show');
         Route::post('/sponsors', [SponsorController::class, 'store'])->name('sponsors.store');
-
         Route::get('/braintree/token', [SponsorController::class, 'getClientToken']);
         Route::resource('accounts', AccountController::class)->parameters([
             'accounts' => 'account:id',

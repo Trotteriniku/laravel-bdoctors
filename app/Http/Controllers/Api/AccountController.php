@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
-    public function isVisible($account) {
+    public function isVisible($account)
+    {
         // Controlla se esiste una sponsorizzazione attiva
         $now = Carbon::now();
         return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
@@ -79,19 +80,18 @@ class AccountController extends Controller
     // PRESI DATI ACCOUNT + ALTRE ENTITTA' E CONVERTITI IN FILE JSON
     public function show($id)
     {
-        $accounts = Account::where('id', $id)->with('specializations', 'sponsorships', 'ratings', 'user')->first();
-        return response()->json($accounts);
+        $account = Account::where('id', $id)->with('specializations', 'sponsorships', 'ratings', 'user')->first();
+
+        $now = Carbon::now();
+        $account['visible'] = $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
+
+        return response()->json($account);
     }
 
-
-    public function checkVisibility() {
+    public function checkVisibility()
+    {
         $doctor = Auth::user(); // Ottieni il dottore autenticato
         $isVisible = $doctor->isVisible();
         return response()->json(['isVisible' => $isVisible]);
-
     }
-
-
-
 }
-
