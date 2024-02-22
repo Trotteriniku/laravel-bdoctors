@@ -41,38 +41,95 @@ class SponsorController extends Controller
     }
 
     // Questo metodo dovrebbe essere completato con la logica per processare il pagamento
-    public function store(Request $request)
-    {
-        // Configura il gateway Braintree
-        // Usa $request->paymentMethodNonce e altri parametri per creare una transazione
-        // ...
-        // dd($request);
-        $sponsorship_id = $request->sponsor;
-        $sponsorship = Sponsorship::findOrFail($sponsorship_id);
+//    public function storeveccio (Request $request)
+//     {
+//         // Configura il gateway Braintree
+//         // Usa $request->paymentMethodNonce e altri parametri per creare una transazione
+//         // ...
+//         dd($request);
+//         $sponsorship_id = $request->sponsor;
+//         $sponsorship = Sponsorship::findOrFail($sponsorship_id);
 
-        $doctor_id = Auth::id();
+//         $doctor_id = Auth::id();
 
-        $start_date = Carbon::now();
-        //dd($start_date);
-        //select sponsorship
-        if ($sponsorship_id == 1) {
-            $end_date = Carbon::now()->addDay();
-            //$end_date = $start_date + 86400;
-        } elseif ($sponsorship_id == 2) {
-            $end_date = Carbon::now()->addDay(3);
-        } elseif ($sponsorship_id == 3) {
-            $end_date = Carbon::now()->addDay(6);
-        }
-        //dd($end_date);
+//         $start_date = Carbon::now();
+//         //dd($start_date);
+//         //select sponsorship
+//         if ($sponsorship_id == 1) {
+//             $end_date = Carbon::now()->addDay();
+//             //$end_date = $start_date + 86400;
+//         } elseif ($sponsorship_id == 2) {
+//             $end_date = Carbon::now()->addDay(3);
+//         } elseif ($sponsorship_id == 3) {
+//             $end_date = Carbon::now()->addDay(6);
+//         }
+//         //dd($end_date);
 
-        //
-        $accountSponsor = AccountSponsorship::create([
+//         //
+//         $accountSponsor = AccountSponsorship::create([
+//             'account_id' => $doctor_id,
+//             'sponsorship_id' => $sponsorship_id,
+//             'start_date' => $start_date,
+//             'end_date' => $end_date,
+
+//         ]);
+//         dd('fatto');
+//     }
+
+
+
+public function store(Request $request)
+{
+    //dd($request);
+    //$request->sponsor = 2;
+    $sponsorship_id = $request->sponsor;
+    $sponsorship = Sponsorship::findOrFail($sponsorship_id);
+    $request->validate([
+        'sponsor' => 'required|exists:sponsorships,id',
+        'payment_method_nonce' => 'required',
+    ]);
+
+
+    $gateway = new BraintreeGateway([
+        'environment' => env('BRAINTREE_ENVIRONMENT'),
+        'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+        'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+        'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+    ]);
+
+    $result = $gateway->transaction()->sale([
+        'amount' => $sponsorship->price, // Assumi che questo sia il costo della sponsorizzazione. Dovresti recuperarlo dinamicamente.
+        'paymentMethodNonce' => $request->payment_method_nonce,
+        'options' => [
+            'submitForSettlement' => true
+        ]
+    ]);
+
+    $doctor_id = Auth::id();
+
+    $start_date = Carbon::now();
+
+    if ($request->sponsor == 1) {
+        $end_date = Carbon::now()->addDay();
+        //$end_date = $start_date + 86400;
+    } elseif ($request->sponsor== 2) {
+        $end_date = Carbon::now()->addDay(3);
+    } elseif ($request->sponsor == 3) {
+        $end_date = Carbon::now()->addDay(6);
+    }
+
+    if ($result->success) {
+        AccountSponsorship::create([
             'account_id' => $doctor_id,
             'sponsorship_id' => $sponsorship_id,
             'start_date' => $start_date,
             'end_date' => $end_date,
-
         ]);
-        dd('fatto');
+
+        return redirect()->route('admin.accounts.show', ['account' => $doctor_id])->with('success', 'Pagamento effettuato con successo.');
+
+    } else {
+        return back()->withErrors('Errore nel processamento del pagamento.');
     }
+}
 }

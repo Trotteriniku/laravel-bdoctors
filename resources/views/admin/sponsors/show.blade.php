@@ -3,16 +3,18 @@
 @section('content')
     <div class="container d-flex  justify-content-center mt-5 pt-5 ">
         <form action="{{ route('admin.sponsors.store') }}" method="POST" id="cardForm">
+            @csrf
             <div class="panel">
                 <header class="panel__header">
                     <h1>Pagamento con Carta</h1>
                 </header>
+                <input type="hidden" id="sponsor" name="sponsor" value="{{ $sponsorship->id }}" />
                 <div class="panel__content">
                     <div class="textfield--float-label">
                         <!-- Begin hosted fields section -->
                         <label class="hosted-field--label" for="card-number">
 
-                        <span class="icon">
+                            <span class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                     <path d="M0 0h24v24H0z" fill="none" />
                                     <path
@@ -20,7 +22,6 @@
                                 </svg></span> Numero Carta
                         </label>
                         <div id="card-number" class="hosted-field">
-                             <input type="text"/>
                         </div>
                         <!-- End hosted fields section -->
                     </div>
@@ -35,7 +36,6 @@
                             </span>
                             Data di scadenza</label>
                         <div id="expiration-date" class="hosted-field">
-                            <input type="text"/>
                         </div>
                         <!-- End hosted fields section -->
                     </div>
@@ -50,7 +50,6 @@
                             </span>
                             CVV</label>
                         <div id="cvv" class="hosted-field">
-                            <input type="text"/>
                         </div>
                         <!-- End hosted fields section -->
                     </div>
@@ -65,13 +64,12 @@
                             </span>
                             Codice Postale</label>
                         <div id="postal-code" class="hosted-field">
-                            <input type="text"/>
                         </div>
                         <!-- End hosted fields section -->
                     </div>
                 </div>
-                <footer class="panel__footer">
-                    <button class="pay-button">Paga</button>
+                <footer class="panel__footer d-flex">
+                    <button class="pay-button" type="submit">Paga</button>
                 </footer>
             </div>
         </form>
@@ -171,7 +169,9 @@
                 });
 
                 $('#cardForm').submit(function(event) {
-                    event.preventDefault();
+                    event.preventDefault(); // Impedisce il submit predefinito del form
+
+                    var form = this; // Salva un riferimento al form
 
                     hostedFieldsInstance.tokenize(function(err, payload) {
                         if (err) {
@@ -179,10 +179,25 @@
                             return;
                         }
 
-                        // This is where you would submit payload.nonce to your server
-                        alert('Submit your nonce to your server here!');
+                        $('#sponsor').val('{{ $sponsorship->id }}');
+
+                        // Crea un input nascosto con il nonce e aggiungilo al form
+                        $('<input>').attr({
+                            type: 'hidden',
+                            name: 'payment_method_nonce',
+                            value: payload.nonce
+                        }).appendTo(form);
+
+
+                        $('#cardForm').get(0).submit();
+
+
+
+                        // Usa il riferimento al form precedentemente salvato per inviare il form al server
+                        //form.submit(); // Ora 'form' si riferisce all'elemento del form DOM
                     });
                 });
+
             });
         });
     </script>
