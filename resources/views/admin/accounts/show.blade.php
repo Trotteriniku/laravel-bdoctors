@@ -5,6 +5,11 @@
         <div class="row justify-content-center">
 
 
+        @if($visible)
+            <div>Sei visibile sul sito.</div>
+        @else
+            <div>Non sei attualmente visibile sul sito. Acquista una sponsorizzazione per aumentare la tua visibilità.</div>
+        @endif
 
 
             <div class="col-md-8">

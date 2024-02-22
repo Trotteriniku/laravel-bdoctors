@@ -6,9 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Account;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
+    public function isVisible($account) {
+        // Controlla se esiste una sponsorizzazione attiva
+        $now = Carbon::now();
+        return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
+    }
     // PRESI TUTTI I DATI DI ACCOUNT E CONVERTITI IN UN FILE JSON
     public function index(Request $request)
     {
@@ -23,6 +30,10 @@ class AccountController extends Controller
                 ->get();
         } else {
             $accounts = Account::with(['specializations', 'sponsorships', 'ratings', 'user'])->get();
+        }
+
+        foreach ($accounts as $account) {
+            $account['visible'] = $this->isVisible($account);
         }
 
         return response()->json([
@@ -71,38 +82,16 @@ class AccountController extends Controller
         $accounts = Account::where('id', $id)->with('specializations', 'sponsorships', 'ratings', 'user')->first();
         return response()->json($accounts);
     }
-}
 
-/*
-public function index(Request $request)
-{
-    $specializationId = $request->query('specialization');
-    $rating = $request->query('rating'); // Assumiamo che 'rating' sia un valore minimo per il filtro
 
-    // Inizia con una query base che include le relazioni desiderate
-    $query = Account::with(['specializations', 'sponsorships', 'ratings', 'user']);
+    public function checkVisibility() {
+        $doctor = Auth::user(); // Ottieni il dottore autenticato
+        $isVisible = $doctor->isVisible();
+        return response()->json(['isVisible' => $isVisible]);
 
-    // Applica il filtro di specializzazione, se presente
-    if ($specializationId) {
-        $query = $query->whereHas('specializations', function ($query) use ($specializationId) {
-            $query->where('id', $specializationId);
-        });
     }
 
-    // Applica il filtro di valutazione, se presente
-    if ($rating) {
-        $query = $query->whereHas('ratings', function ($query) use ($rating) {
-            $query->where('rating', '>=', $rating); // Assicurati che 'rating' sia il nome corretto del campo nella tua tabella di valutazioni
-        });
-    }
 
-    // Esegui la query e ottieni i risultati
-    $accounts = $query->get();
 
-    // Restituisci i risultati come JSON
-    return response()->json([
-        'success' => true,
-        'results' => $accounts
-    ]);
 }
- */
+

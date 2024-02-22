@@ -113,9 +113,9 @@ public function store(Request $request)
         $end_date = Carbon::now()->addDay();
         //$end_date = $start_date + 86400;
     } elseif ($request->sponsor== 2) {
-        $end_date = Carbon::now()->addDay(3);
+        $end_date = Carbon::now()->addDays(3);
     } elseif ($request->sponsor == 3) {
-        $end_date = Carbon::now()->addDay(6);
+        $end_date = Carbon::now()->addDays(6);
     }
 
     if ($result->success) {
