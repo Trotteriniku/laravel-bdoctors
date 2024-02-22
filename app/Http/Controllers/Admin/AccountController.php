@@ -17,11 +17,10 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-
 class AccountController extends Controller
 {
-
-    public function isVisible() {
+    public function isVisible()
+    {
         // Controlla se esiste una sponsorizzazione attiva
         $now = Carbon::now();
         $account_id = Auth::id();
@@ -70,13 +69,11 @@ class AccountController extends Controller
             $cv_path = Storage::put('cv', $request->cv);
             $formData['cv-preview'] = $cv_path;
         }
-        $formData['visible'] = 1;
+        $formData['visible'] = 0;
         $account = Account::create($formData);
         Auth::login($account);
         return redirect()->route('admin.dashboard');
     }
-
-
 
     /**
      * Display the specified resource.
@@ -98,8 +95,6 @@ class AccountController extends Controller
         $visible = $this->isVisible();
         //dd($visible);
         return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations', 'visible'));
-
-
     }
 
     /**
@@ -212,8 +207,4 @@ class AccountController extends Controller
         $account->delete();
         return to_route('admin.accounts.index')->with('message', "$account->title eliminato con successo");
     }
-
-
-
-
 }
