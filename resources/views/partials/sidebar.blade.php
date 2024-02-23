@@ -24,7 +24,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('admin.accounts.edit', Auth::id()) }}">
                     <i class="fa-solid fa-wrench"></i>
-                    <span>Modifica il profilo</span>
+                    <span>Modifica Profilo</span>
                 </a>
             </li><!-- End Message Page Nav -->
 
@@ -47,7 +47,7 @@
 
                 <a class="nav-link collapsed" href="{{ route('admin.sponsors.index', Auth::id()) }}">
                     <i class="fa-solid fa-cart-plus"></i>
-                    <span>Sponsor</span>
+                    <span>Sponsorizzazioni</span>
                 </a>
             </li><!-- End Login Page Nav -->
 
@@ -61,7 +61,7 @@
                     <a class="nav-link collapsed txt-dark fs-5" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
+                        {{ __('Esci') }}
                     </a>
                 </span>
 
