@@ -3,9 +3,9 @@
 return [
     'users' => [
         [
-            'name' => 'Alessandro',
+            'name' => 'Alessandra',
             'surname' => 'Ferrari',
-            'email' => 'alessandro.ferrari@example.com',
+            'email' => 'alessandra.ferrari@example.com',
             'password' => 'sicuro1234',
         ],
         [
@@ -21,21 +21,21 @@ return [
             'password' => 'barisicura',
         ],
         [
-            'name' => 'Daniela',
+            'name' => 'Daniele',
             'surname' => 'Conti',
-            'email' => 'daniela.conti@example.com',
+            'email' => 'daniele.conti@example.com',
             'password' => 'contidani',
         ],
         [
-            'name' => 'Emanuele',
+            'name' => 'Emanuela',
             'surname' => 'Marino',
-            'email' => 'emanuele.marino@example.com',
+            'email' => 'emanuela.marino@example.com',
             'password' => 'sardegnalibera',
         ],
         [
-            'name' => 'Francesca',
+            'name' => 'Francesco',
             'surname' => 'Greco',
-            'email' => 'francesca.greco@example.com',
+            'email' => 'francesco.greco@example.com',
             'password' => 'genova2024',
         ],
         [
@@ -51,15 +51,15 @@ return [
             'password' => 'verona2024',
         ],
         [
-            'name' => 'Luigi',
+            'name' => 'Chiara',
             'surname' => 'Barbieri',
-            'email' => 'luigi.barbieri@example.com',
+            'email' => 'chiara.barbieri@example.com',
             'password' => 'bolognasicura',
         ],
         [
-            'name' => 'Marta',
+            'name' => 'Mario',
             'surname' => 'Fontana',
-            'email' => 'marta.fontana@example.com',
+            'email' => 'mario.fontana@example.com',
             'password' => 'romaeterna',
         ],
     ],
@@ -276,21 +276,19 @@ return [
     'account_sponsorship' => [
         [
             'account_id' => 1,
-            'sponsorship_id' => 2,
-            'start_date' => '2024-02-15',
-            'end_date' => '2024-02-16',
+            'sponsorship_id' => 3,
         ],
         [
             'account_id' => 2,
             'sponsorship_id' => 3,
-            'start_date' => '2024-02-15',
-            'end_date' => '2024-02-18',
         ],
         [
-            'account_id' => 2,
+            'account_id' => 3,
             'sponsorship_id' => 3,
-            'start_date' => '2024-02-15',
-            'end_date' => '2024-02-21',
+        ],
+        [
+            'account_id' => 4,
+            'sponsorship_id' => 3,
         ],
     ],
 

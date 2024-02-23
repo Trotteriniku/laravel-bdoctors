@@ -90,7 +90,15 @@
                         <div class="text-center">La sponsorizzazione avrà una durata di
                             {{ substr($sponsorship->duration, 0, -3) }} ore </div>
                         <div class="d-flex">
-                            <button class="pay-button text-center mt-3" type="submit">Acquista</button>
+                            @if ($alreadySponsored)
+                                <button class="btn btn-primary" disabled>
+                                    Sei gia sponsorizzato
+                                </button>
+                            @else
+                                <button class="btn btn-primary text-white text-decoration-none" type="submit">
+                                    Paga
+                                </button>
+                            @endif
                         </div>
 
                     </footer>

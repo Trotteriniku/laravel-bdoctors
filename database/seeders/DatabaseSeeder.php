@@ -19,17 +19,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call([
-            UserSeeder::class,
-            AccountSeeder::class,
-            MessageSeeder::class,
-            RatingSeeder::class,
-            ReviewSeeder::class,
-            SpecializationSeeder::class,
-            SponsorshipSeeder::class,
-            AccountSpecializationSeeder::class,
-            AccountRatingSeeder::class,
-
-        ]);
+        $this->call([UserSeeder::class, AccountSeeder::class, MessageSeeder::class, RatingSeeder::class, ReviewSeeder::class, SpecializationSeeder::class, SponsorshipSeeder::class, AccountSpecializationSeeder::class, AccountRatingSeeder::class, AccountSponsorshipSeeder::class]);
     }
 }
