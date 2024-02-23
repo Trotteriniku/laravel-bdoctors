@@ -1,79 +1,22 @@
 <div class="card">
-    <div class="filter">
-        <a class="icon" href="#" data-bs-toggle="dropdown">
-            <i class="fa-solid fa-ellipsis"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-            <li class="dropdown-header text-start">
-                <h6>Filtri</h6>
-            </li>
 
-            <li><a class="dropdown-item" href="#">Oggi</a></li>
-            <li><a class="dropdown-item" href="#">Questo Mese</a></li>
-            <li><a class="dropdown-item" href="#">Quest'anno</a></li>
-        </ul>
-    </div>
 
     <div class="card-body">
 
-        <h5 class="card-title">Recensioni <span>| Oggi</span></h5>
+        <h5 class="card-title">Recensioni</h5>
 
         <div class="activity">
+            @foreach ($reviews as $review)
+                <div class="activity-item d-flex">
+                    <div class="activite-label">{{ $review->created_at->format('H:i') }}</div>
+                    <i class='fa-solid fa-circle-fill activity-badge text-success align-self-start'></i>
+                    <div class="activity-content">
 
-            <div class="activity-item d-flex">
-                <div class="activite-label">tempo</div>
-                <i class='fa-solid fa-circle-fill activity-badge text-success align-self-start'></i>
-                <div class="activity-content">
-
-                    <a href="#" class="fw-bold text-dark">nome</a>recensione
+                        <a href="{{ route('admin.reviews.show', $review->id) }}"
+                            class="fw-bold text-dark">{{ $review->title }}</a>
+                    </div>
                 </div>
-            </div><!-- End activity item-->
-
-            <div class="activity-item d-flex">
-                <div class="activite-label">tempo</div>
-                <i class='fa-solid fa-circle-fill activity-badge text-success align-self-start'></i>
-                <div class="activity-content">
-
-                    <a href="#" class="fw-bold text-dark">nome</a>recensione
-                </div>
-            </div><!-- End activity item-->
-
-            <div class="activity-item d-flex">
-                <div class="activite-label">tempo</div>
-                <i class='fa-solid fa-circle-fill activity-badge text-success align-self-start'></i>
-                <div class="activity-content">
-
-                    <a href="#" class="fw-bold text-dark">nome</a>recensione
-                </div>
-            </div><!-- End activity item-->
-
-            <div class="activity-item d-flex">
-                <div class="activite-label">tempo</div>
-                <i class='fa-solid fa-circle-fill activity-badge text-success align-self-start'></i>
-                <div class="activity-content">
-
-                    <a href="#" class="fw-bold text-dark">nome</a>recensione
-                </div>
-            </div><!-- End activity item-->
-
-            <div class="activity-item d-flex">
-                <div class="activite-label">tempo</div>
-                <i class='fa-solid fa-circle-fill activity-badge text-success align-self-start'></i>
-                <div class="activity-content">
-
-                    <a href="#" class="fw-bold text-dark">nome</a>recensione
-                </div>
-            </div><!-- End activity item-->
-
-            <div class="activity-item d-flex">
-                <div class="activite-label">tempo</div>
-                <i class='fa-solid fa-circle-fill activity-badge text-success align-self-start'></i>
-                <div class="activity-content">
-
-                    <a href="#" class="fw-bold text-dark">nome</a>recensione
-                </div>
-            </div><!-- End activity item-->
-
+            @endforeach
         </div>
 
     </div>

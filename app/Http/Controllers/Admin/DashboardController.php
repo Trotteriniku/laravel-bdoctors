@@ -20,6 +20,12 @@ class DashboardController extends Controller
         $reviews = Review::where('account_id', $account_id)->get();
         $ratings = AccountRating::where('account_id', $account_id)->get();
 
-        return view('admin.dashboard', compact('messages', 'reviews', 'ratings'));
+        $averageRating = AccountRating::where('account_id', $account_id)->avg('rating_id');
+        $totalMessages = Message::where('account_id', $account_id)->count();
+        $totalReviews = Review::where('account_id', $account_id)->count();
+
+
+
+        return view('admin.dashboard', compact('messages', 'reviews', 'ratings', 'averageRating', 'totalReviews', 'totalMessages'));
     }
 }
