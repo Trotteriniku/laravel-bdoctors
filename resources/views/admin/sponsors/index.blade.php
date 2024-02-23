@@ -21,6 +21,7 @@
                             @endif
 
                         </h5>
+
                         @if ($alreadySponsored)
                             <button class="btn btn-primary" disabled>
                                 Sei gia sponsorizzato
@@ -30,6 +31,7 @@
                             Paga
                         </a>
                         @endif
+
                     </div>
                 </div>
             @endforeach
