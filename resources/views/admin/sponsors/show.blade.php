@@ -96,7 +96,7 @@
                                 </button>
                             @else
                                 <button class="btn btn-primary text-white text-decoration-none" type="submit">
-                                    Paga
+                                    Acquista
                                 </button>
                             @endif
                         </div>

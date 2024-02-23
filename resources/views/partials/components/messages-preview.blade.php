@@ -11,46 +11,17 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="fw-bold txt-dark">Mail Urgente</td>
-                <td><a href="#" class="text-primary">12.42</a>
-                </td>
-                <td>Tizio</td>
-                <td>Tizio@gmail.com</td>
+            @foreach ($messages as $message)
+                <tr>
+                    <td class="fw-bold txt-dark">{{ $message->title }}</td>
+                    <td><a href="#" class="text-primary">{{ $message->created_at }}</a>
+                    </td>
+                    <td>{{ $message->name }}</td>
+                    <td>{{ $message->email }}</td>
+                </tr>
+            @endforeach
 
-            </tr>
-            <tr>
-                <td class="fw-bold txt-dark">Mail Urgente</td>
-                <td><a href="#" class="text-primary">12.42</a>
-                </td>
-                <td>Tizio</td>
-                <td>Tizio@gmail.com</td>
 
-            </tr>
-            <tr>
-                <td class="fw-bold txt-dark">Mail Urgente</td>
-                <td><a href="#" class="text-primary">12.42</a>
-                </td>
-                <td>Tizio</td>
-                <td>Tizio@gmail.com</td>
-
-            </tr>
-            <tr>
-                <td class="fw-bold txt-dark">Mail Urgente</td>
-                <td><a href="#" class="text-primary">12.42</a>
-                </td>
-                <td>Tizio</td>
-                <td>Tizio@gmail.com</td>
-
-            </tr>
-            <tr>
-                <td class="fw-bold txt-dark">Mail Urgente</td>
-                <td><a href="#" class="text-primary">12.42</a>
-                </td>
-                <td>Tizio</td>
-                <td>Tizio@gmail.com</td>
-
-            </tr>
         </tbody>
     </table>
 

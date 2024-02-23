@@ -28,6 +28,16 @@ class AccountController extends Controller
         return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
     }
 
+    public function isFirstVisible()
+    {
+        // Controlla se esiste una sponsorizzazione attiva
+        $before = Carbon::now()->subSeconds(5);
+        $account_id = Auth::id();
+        $account = Account::findOrFail($account_id);
+        //controlla se la data di inizio della sponsorizzazioe e' gia passata
+        return $account->sponsorships()->where('start_date', '>=', $before)->where('end_date', '>=', $before)->exists();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -93,8 +103,10 @@ class AccountController extends Controller
             ->select('specializations.*') // Seleziona i campi desiderati dalla tabella specialization
             ->get();
         $visible = $this->isVisible();
-        //dd($visible);
-        return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations', 'visible'));
+        //controllare se l'account è appena stato creato
+        $justVisible = $this->isFirstVisible();
+        //dd($justVisible);
+        return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations', 'visible', 'justVisible'));
     }
 
     /**
