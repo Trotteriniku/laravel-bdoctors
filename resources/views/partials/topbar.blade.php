@@ -24,12 +24,12 @@
                 </a>
             </li><!-- End Search Icon-->
 
-            <li class="nav-item dropdown">
+            <!--<li class="nav-item dropdown">
 
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                     <i class="fa-regular fa-bell"></i>
                     <span class="badge bg-primary badge-number">4</span>
-                </a><!-- End Notification Icon -->
+                </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                     <li class="dropdown-header">
@@ -95,16 +95,16 @@
                         <a href="#">Mostra tutte le notifiche</a>
                     </li>
 
-                </ul><!-- End Notification Dropdown Items -->
+                </ul>
 
-            </li><!-- End Notification Nav -->
+            </li>-->
 
-            <li class="nav-item dropdown">
+            <!--<li class="nav-item dropdown">
 
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                     <i class="fa-regular fa-comment"></i>
                     <span class="badge bg-success badge-number">3</span>
-                </a><!-- End Messages Icon -->
+                </a>
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                     <li class="dropdown-header">
@@ -161,9 +161,9 @@
                         <a href="#">Mostra tutti i messaggi</a>
                     </li>
 
-                </ul><!-- End Messages Dropdown Items -->
+                </ul> -->
 
-            </li><!-- End Messages Nav -->
+            </li>
 
             <li class="nav-item dropdown pe-3">
 

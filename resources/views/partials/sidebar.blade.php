@@ -7,7 +7,7 @@
                 <a class="nav-link {{ Request::routeIs('admin.dashboard') ? '' : 'collapsed' }}"
                     href="{{ route('admin.dashboard') }}">
                     <i class="fa-solid fa-grid"></i>
-                    <span>Dashboard</span>
+                    <span>Home</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
