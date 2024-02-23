@@ -23,7 +23,7 @@
                         </h5>
                         <button class="btn btn-primary ">
                             <a class="text-white text-decoration-none" href="{{ route('admin.sponsors.show', $item->id) }}">
-                                Conferma
+                                Paga
                             </a>
                         </button>
                     </div>
