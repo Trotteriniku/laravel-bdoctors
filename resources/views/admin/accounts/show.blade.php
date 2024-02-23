@@ -11,8 +11,11 @@
                         Il pagamento è andato a buon fine! Sei visibile come un dottore consigliato!
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+
                 @elseif(!$visible)
                     <div class="d-flex justify-content-center mb-3" style="z-index: 1000">
+
+               
 
                         <a style="background-color: transparent; outline: none; "
                             href=" {{ route('admin.sponsors.index') }}">
@@ -124,4 +127,19 @@
         </div>
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var alertElement = document.querySelector('.alert-success');
+
+
+            if (alertElement) {
+
+                setTimeout(function() {
+
+                    alertElement.remove();
+                }, 3000);
+            }
+        });
+    </script>
 @endsection
