@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers\Admin;
+<?php namespace App\Http\Controllers\Admin;
 
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
@@ -13,18 +11,29 @@ use Carbon\Carbon;
 use App\Jobs\UpdateAccountVisibility;
 class SponsorController extends Controller
 {
+    public function isVisible()
+    {
+        // Controlla se esiste una sponsorizzazione attiva
+        $now = Carbon::now();
+        $account_id = Auth::id();
+        $account = Account::findOrFail($account_id);
+        return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
+    }
+
     public function index()
     {
         $accounts = Account::all();
         $sponsorships = Sponsorship::all();
+        $alreadySponsored = $this->isVisible();
         $clientToken = $this->getClientToken(); // Ottieni il token del cliente come stringa
-        return view('admin.sponsors.index', compact('sponsorships', 'clientToken', 'accounts'));
+        return view('admin.sponsors.index', compact('sponsorships', 'clientToken', 'accounts', 'alreadySponsored'));
     }
 
     public function show($id)
     {
         $sponsorship = Sponsorship::findOrFail($id);
-        return view('admin.sponsors.show', compact('sponsorship'));
+        $alreadySponsored = $this->isVisible();
+        return view('admin.sponsors.show', compact('sponsorship', 'alreadySponsored'));
     }
 
     // Metodo per generare il client token
