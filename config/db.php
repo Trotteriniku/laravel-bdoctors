@@ -271,7 +271,25 @@ return [
         ['account_id' => 8, 'rating_id' => 1],
     ],
 
-    'account_specialization' => [['account_id' => 1, 'specialization_id' => 1], ['account_id' => 2, 'specialization_id' => 3], ['account_id' => 3, 'specialization_id' => 5], ['account_id' => 4, 'specialization_id' => 2], ['account_id' => 5, 'specialization_id' => 1], ['account_id' => 6, 'specialization_id' => 2], ['account_id' => 8, 'specialization_id' => 5], ['account_id' => 10, 'specialization_id' => 5], ['account_id' => 8, 'specialization_id' => 4], ['account_id' => 10, 'specialization_id' => 3], ['account_id' => 6, 'specialization_id' => 4], ['account_id' => 4, 'specialization_id' => 2], ['account_id' => 7, 'specialization_id' => 2], ['account_id' => 5, 'specialization_id' => 2], ['account_id' => 3, 'specialization_id' => 1], ['account_id' => 9, 'specialization_id' => 5], ['account_id' => 7, 'specialization_id' => 2]],
+    'account_specialization' => [
+        ['account_id' => 1, 'specialization_id' => 1],
+        ['account_id' => 2, 'specialization_id' => 3],
+        ['account_id' => 3, 'specialization_id' => 5],
+        ['account_id' => 4, 'specialization_id' => 2],
+        ['account_id' => 5, 'specialization_id' => 1],
+        ['account_id' => 6, 'specialization_id' => 2],
+        ['account_id' => 8, 'specialization_id' => 5],
+        ['account_id' => 10, 'specialization_id' => 5],
+        ['account_id' => 8, 'specialization_id' => 4],
+        ['account_id' => 10, 'specialization_id' => 7],
+        ['account_id' => 6, 'specialization_id' => 4],
+        ['account_id' => 4, 'specialization_id' => 7],
+        ['account_id' => 7, 'specialization_id' => 2],
+        ['account_id' => 5, 'specialization_id' => 2],
+        ['account_id' => 3, 'specialization_id' => 1],
+        ['account_id' => 9, 'specialization_id' => 5],
+        ['account_id' => 7, 'specialization_id' => 1]
+    ],
 
     'account_sponsorship' => [
         [
