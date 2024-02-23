@@ -8,9 +8,9 @@
                     <circle r="20" cy="50" cx="50"></circle>
                 </svg></div> --}}
             <div id="paymentSuccessMessage" style="display: none;">Pagamento riuscito!</div>
-            <form action="{{ route('admin.sponsors.store') }}" method="POST" id="cardForm">
+            <form action="{{ route('admin.sponsors.store') }}" method="POST" id="cardForm" class="w-75">
                 @csrf
-                <div class="panel position-relative ">
+                <div class="panel position-relative  ">
                     <div id="paymentLoader" style="display: none;"
                         class="text-center pt-5 bg-primary position-absolute top-0 end-0 bottom-0 start-0">
                         <h3 class="text-white"> <i class="fa-solid fa-wallet fa-bounce fa-xl text-white"></i> Caricamento..
@@ -41,7 +41,7 @@
                         </div>
                         <div class="textfield--float-label">
                             <!-- Begin hosted fields section -->
-                            <label class="hosted-field--label" for="expiration-date">
+                            <label class="hosted-field--label text-nowrap " for="expiration-date">
                                 <span class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
@@ -69,9 +69,9 @@
                             </div>
                             <!-- End hosted fields section -->
                         </div>
-                        <div class="textfield--float-label">
+                        <div class="textfield--float-label ">
                             <!-- Begin hosted fields section -->
-                            <label class="hosted-field--label" for="postal-code">
+                            {{-- <label class="hosted-field--label" for="postal-code">
                                 <span class="icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                         viewBox="0 0 24 24">
@@ -79,23 +79,33 @@
                                             d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                                     </svg>
                                 </span>
-                                Codice Postale</label>
-                            <div id="postal-code" class="hosted-field">
-                            </div>
-                            <!-- End hosted fields section -->
+                                Codice Postale
+                            </label> --}}
+                            {{-- <div id="postal-code" class="hosted-field"> --}}
                         </div>
+                        <!-- End hosted fields section -->
                     </div>
                     <footer class="panel__footer ">
                         <div class="text-center">Stai effettuando un pagamento di {{ $sponsorship->price }}€ </div>
                         <div class="text-center">La sponsorizzazione avrà una durata di
                             {{ substr($sponsorship->duration, 0, -3) }} ore </div>
                         <div class="d-flex">
-                            <button class="pay-button text-center mt-3" type="submit">Acquista</button>
+                            @if ($alreadySponsored)
+                                <button class="btn btn-primary" disabled>
+                                    Sei gia sponsorizzato
+                                </button>
+                            @else
+                                <button class="btn btn-primary text-white text-decoration-none" type="submit">
+                                    Paga
+                                </button>
+                            @endif
                         </div>
 
                     </footer>
                 </div>
-            </form>
+
+        </div>
+        </form>
 
         </div>
     </main>
@@ -141,10 +151,7 @@
                         selector: '#expiration-date',
                         placeholder: 'MM/YY'
                     },
-                    postalCode: {
-                        selector: '#postal-code',
-                        placeholder: '11111'
-                    }
+
                 }
             }, function(err, hostedFieldsInstance) {
                 if (err) {

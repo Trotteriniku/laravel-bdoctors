@@ -21,11 +21,17 @@
                             @endif
 
                         </h5>
-                        <button class="btn btn-primary ">
-                            <a class="text-white text-decoration-none" href="{{ route('admin.sponsors.show', $item->id) }}">
-                                Conferma
-                            </a>
-                        </button>
+
+                        @if ($alreadySponsored)
+                            <button class="btn btn-primary" disabled>
+                                Sei gia sponsorizzato
+                            </button>
+                        @else
+                            <a class="btn btn-primary text-white text-decoration-none" href="{{ route('admin.sponsors.show', $item->id) }}">
+                            Paga
+                        </a>
+                        @endif
+
                     </div>
                 </div>
             @endforeach

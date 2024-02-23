@@ -15,7 +15,7 @@
                             </a>
                         </div><!-- End Logo -->
 
-                        <div class="card mb-3">
+                        <div class="card mb-3 w-100 ">
 
                             <div class="card-body">
 
@@ -29,9 +29,9 @@
 
                                     <div class="mb-4 row">
                                         <label for="email"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                                            class="col-md-3 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-7 ">
                                             <input id="email" type="email"
                                                 class="form-control @error('email') is-invalid @enderror" name="email"
                                                 value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -46,9 +46,9 @@
 
                                     <div class="mb-4 row">
                                         <label for="password"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                            class="col-md-3 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-7">
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror" name="password"
                                                 required autocomplete="current-password">
