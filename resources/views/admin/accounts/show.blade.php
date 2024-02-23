@@ -14,7 +14,7 @@
                 @else
                     <div class="text-center mb-3">
 
-                            Acquista una sponsorizzazione per aumentare la tua visibilità.
+                        Acquista una sponsorizzazione per aumentare la tua visibilità.
 
                     </div>
                 @endif
@@ -121,4 +121,19 @@
             </div>
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var alertElement = document.querySelector('.alert-success');
+
+
+            if (alertElement) {
+
+                setTimeout(function() {
+
+                    alertElement.remove();
+                }, 3000);
+            }
+        });
+    </script>
 @endsection
