@@ -12,9 +12,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @else
-                    <div class="text-center mb-3">Non sei attualmente visibile sul sito. Acquista una sponsorizzazione per
-                        aumentare la tua
-                        visibilità.</div>
+                    <div class="text-center mb-3">
+
+                            Acquista una sponsorizzazione per aumentare la tua visibilità.
+
+                    </div>
                 @endif
 
 
