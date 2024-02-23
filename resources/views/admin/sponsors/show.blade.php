@@ -85,8 +85,14 @@
                             <!-- End hosted fields section -->
                         </div>
                     </div>
-                    <footer class="panel__footer d-flex">
-                        <button class="pay-button" type="submit">Paga</button>
+                    <footer class="panel__footer ">
+                        <div class="text-center">Stai effettuando un pagamento di {{ $sponsorship->price }}€ </div>
+                        <div class="text-center">La sponsorizzazione avrà una durata di
+                            {{ substr($sponsorship->duration, 0, -3) }} ore </div>
+                        <div class="d-flex">
+                            <button class="pay-button text-center mt-3" type="submit">Paga</button>
+                        </div>
+
                     </footer>
                 </div>
             </form>
