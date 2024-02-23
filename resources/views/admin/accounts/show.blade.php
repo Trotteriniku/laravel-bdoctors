@@ -7,7 +7,10 @@
 
 
                 @if ($visible)
-                    <div>Sei visibile sul sito.</div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Il pagamento è andato a buon fine! Sei visibile come un dottore consigliato!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 @else
                     <div class="text-center mb-3">Non sei attualmente visibile sul sito. Acquista una sponsorizzazione per
                         aumentare la tua

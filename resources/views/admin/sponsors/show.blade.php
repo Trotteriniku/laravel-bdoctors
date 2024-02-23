@@ -2,10 +2,22 @@
 
 @section('content')
     <main id="main" class="main">
-        <div class="container d-flex  justify-content-center mt-5 pt-5 ">
+        <div class="container  d-flex  justify-content-center mt-5 pt-5 ">
+
+            {{--   <div id="paymentLoader" style="display: none;">Caricamento...<svg id="spinner" viewBox="25 25 50 50">
+                    <circle r="20" cy="50" cx="50"></circle>
+                </svg></div> --}}
+            <div id="paymentSuccessMessage" style="display: none;">Pagamento riuscito!</div>
             <form action="{{ route('admin.sponsors.store') }}" method="POST" id="cardForm">
                 @csrf
-                <div class="panel">
+                <div class="panel position-relative ">
+                    <div id="paymentLoader" style="display: none;"
+                        class="text-center pt-5 bg-primary position-absolute top-0 end-0 bottom-0 start-0">
+                        <h3 class="text-white"> <i class="fa-solid fa-wallet fa-bounce fa-xl text-white"></i> Caricamento..
+                        </h3>
+
+                        <i class=" mt-5 fa-solid  text-white fa-spinner fa-spin-pulse fa-spin-reverse  fs-1"></i>
+                    </div>
                     <header class="panel__header">
                         <h1>Pagamento con Carta</h1>
                     </header>
@@ -139,15 +151,15 @@
                 }
 
                 hostedFieldsInstance.on('focus', function(event) {
-                    var field = event.fields[event.emittedBy];
+                    let field = event.fields[event.emittedBy];
 
                     findLabel(field).addClass('label-float').removeClass('filled');
                 });
 
                 // Emulates floating label pattern
                 hostedFieldsInstance.on('blur', function(event) {
-                    var field = event.fields[event.emittedBy];
-                    var label = findLabel(field);
+                    let field = event.fields[event.emittedBy];
+                    let label = findLabel(field);
 
                     if (field.isEmpty) {
                         label.removeClass('label-float');
@@ -159,14 +171,14 @@
                 });
 
                 hostedFieldsInstance.on('empty', function(event) {
-                    var field = event.fields[event.emittedBy];
+                    let field = event.fields[event.emittedBy];
 
                     findLabel(field).removeClass('filled').removeClass('invalid');
                 });
 
                 hostedFieldsInstance.on('validityChange', function(event) {
-                    var field = event.fields[event.emittedBy];
-                    var label = findLabel(field);
+                    let field = event.fields[event.emittedBy];
+                    let label = findLabel(field);
 
                     if (field.isPotentiallyValid) {
                         label.removeClass('invalid');
@@ -178,30 +190,26 @@
                 $('#cardForm').submit(function(event) {
                     event.preventDefault(); // Impedisce il submit predefinito del form
 
-                    var form = this; // Salva un riferimento al form
+                    // Mostra il loader prima dell'inizio del processo di tokenizzazione
+                    $('#paymentLoader').show();
 
                     hostedFieldsInstance.tokenize(function(err, payload) {
                         if (err) {
                             console.error(err);
+                            // Nascondi il loader in caso di errore
+                            $('#paymentLoader').hide();
                             return;
                         }
-
-                        $('#sponsor').val('{{ $sponsorship->id }}');
 
                         // Crea un input nascosto con il nonce e aggiungilo al form
                         $('<input>').attr({
                             type: 'hidden',
                             name: 'payment_method_nonce',
                             value: payload.nonce
-                        }).appendTo(form);
+                        }).appendTo('#cardForm');
 
-
+                        // Invia il form. Il loader rimarrà visibile fino a quando la pagina non verrà ricaricata o non verrà eseguito il redirect.
                         $('#cardForm').get(0).submit();
-
-
-
-                        // Usa il riferimento al form precedentemente salvato per inviare il form al server
-                        //form.submit(); // Ora 'form' si riferisce all'elemento del form DOM
                     });
                 });
 
