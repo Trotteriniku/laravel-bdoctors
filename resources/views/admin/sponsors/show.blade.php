@@ -19,7 +19,7 @@
                         <i class=" mt-5 fa-solid  text-white fa-spinner fa-spin-pulse fa-spin-reverse  fs-1"></i>
                     </div>
                     <header class="panel__header">
-                        <h1>Pagamento con Carta</h1>
+                        <h3>Grazie per aver acquistato la nostra sponsorizzazione</h3>
                     </header>
                     <input type="hidden" id="sponsor" name="sponsor" value="{{ $sponsorship->id }}" />
                     <div class="panel__content">
@@ -90,7 +90,15 @@
                         <div class="text-center">La sponsorizzazione avrà una durata di
                             {{ substr($sponsorship->duration, 0, -3) }} ore </div>
                         <div class="d-flex">
-                            <button class="pay-button text-center mt-3" type="submit">Paga</button>
+                            @if ($alreadySponsored)
+                                <button class="btn btn-primary" disabled>
+                                    Sei gia sponsorizzato
+                                </button>
+                            @else
+                                <button class="btn btn-primary text-white text-decoration-none" type="submit">
+                                    Paga
+                                </button>
+                            @endif
                         </div>
 
                     </footer>

@@ -10,7 +10,7 @@
 
     <div class="search-bar">
         <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+            <input type="text" name="query" placeholder="Cerca..." title="Enter search keyword">
             <button type="submit" title="Search"><i class="fa-solid fa-search"></i></button>
         </form>
     </div><!-- End Search Bar -->
@@ -33,8 +33,8 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                     <li class="dropdown-header">
-                        You have 4 new notifications
-                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        Hai 4 nuove notifiche
+                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Mostra Tutto</span></a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -92,7 +92,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li class="dropdown-footer">
-                        <a href="#">Show all notifications</a>
+                        <a href="#">Mostra tutte le notifiche</a>
                     </li>
 
                 </ul><!-- End Notification Dropdown Items -->
@@ -108,8 +108,8 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                     <li class="dropdown-header">
-                        You have 3 new messages
-                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        Hai 3 nuovi messaggi
+                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Mostra Tutto</span></a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -158,7 +158,7 @@
                     </li>
 
                     <li class="dropdown-footer">
-                        <a href="#">Show all messages</a>
+                        <a href="#">Mostra tutti i messaggi</a>
                     </li>
 
                 </ul><!-- End Messages Dropdown Items -->
@@ -182,9 +182,9 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="{{ route('admin.accounts.show', Auth::id()) }}">
                             <i class="fa-solid fa-person"></i>
-                            <span>My Profile</span>
+                            <span>Profilo</span>
                         </a>
                     </li>
                     <li>
@@ -194,7 +194,7 @@
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <i class="fa-solid fa-gear"></i>
-                            <span>Account Settings</span>
+                            <span>Impostazioni Account</span>
                         </a>
                     </li>
                     <li>
@@ -204,7 +204,7 @@
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <i class="fa-solid fa-question-circle"></i>
-                            <span>Need Help?</span>
+                            <span>Hai bisogno di aiuto?</span>
                         </a>
                     </li>
                     <li>
@@ -216,7 +216,7 @@
                         <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('Esci') }}
                         </a>
                         </span>
 
