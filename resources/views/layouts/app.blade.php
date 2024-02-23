@@ -30,8 +30,7 @@
 
 <body>
     <div id="app">
-        <main>
-            @yield('content')
+        @yield('content')
         </main>
     </div>
 </body>
