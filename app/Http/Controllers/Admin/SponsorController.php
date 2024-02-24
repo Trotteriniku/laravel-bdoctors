@@ -115,7 +115,7 @@ class SponsorController extends Controller
         $start_date = Carbon::now();
 
         if ($request->sponsor == 1) {
-            $end_date = Carbon::now()->addSeconds(15);
+            $end_date = Carbon::now()->addDay();
             //$end_date = $start_date + 86400;
         } elseif ($request->sponsor == 2) {
             $end_date = Carbon::now()->addDays(3);
