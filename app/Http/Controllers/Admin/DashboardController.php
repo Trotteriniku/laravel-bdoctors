@@ -33,7 +33,7 @@ class DashboardController extends Controller
         //anno corrente
         $year = now()->year; // Considera l'anno corrente
 
-        $reviewsCount = DB::table('reviews')
+        $ratingCount = DB::table('account_rating')
             ->select(DB::raw('MONTH(created_at) as month'), DB::raw('count(*) as count'))
             ->where('account_id', $account_id)
             ->whereYear('created_at', $year) // Filtra per l'anno corrente
@@ -46,7 +46,7 @@ class DashboardController extends Controller
 
         $lastYear = now()->year - 1; // Considera l'anno precedente
 
-        $lastReviewsCount = DB::table('reviews')
+        $lastRatingCount = DB::table('account_rating')
             ->select(DB::raw('MONTH(created_at) as month'), DB::raw('count(*) as count'))
             ->where('account_id', $account_id)
             ->whereYear('created_at', $lastYear) // Filtra per l'anno corrente
@@ -75,12 +75,12 @@ class DashboardController extends Controller
 
         $monthlyCounts = [];
         for ($m = 1; $m <= 12; $m++) {
-            $monthlyCounts[$monthNames[$m]] = $reviewsCount->get($m, 0);
+            $monthlyCounts[$monthNames[$m]] = $ratingCount->get($m, 0);
         }
 
         $lastMonthlyCounts = [];
         for ($m = 1; $m <= 12; $m++) {
-            $lastMonthlyCounts[$monthNames[$m]] = $lastReviewsCount->get($m, 0);
+            $lastMonthlyCounts[$monthNames[$m]] = $lastRatingCount->get($m, 0);
         }
 
 

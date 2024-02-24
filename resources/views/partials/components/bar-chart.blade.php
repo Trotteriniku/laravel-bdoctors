@@ -1,6 +1,6 @@
 <div class="card-body">
     <div class="d-flex justify-content-between align-items-center">
-        <h5 class="card-title">Statistiche delle valutazioni</h5>
+        <h5 class="card-title">Statistiche delle valuatazioni</h5>
 
         <select class="" id="yearSelector">
             <option value="2024" class="dropdown-header text-start" data-counts='@json($monthlyCounts)'>2024
