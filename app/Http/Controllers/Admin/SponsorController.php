@@ -1,4 +1,5 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Sponsorship;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use App\Models\AccountSponsorship;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Jobs\UpdateAccountVisibility;
+
 class SponsorController extends Controller
 {
     public function isVisible()
@@ -115,12 +117,12 @@ class SponsorController extends Controller
         $start_date = Carbon::now();
 
         if ($request->sponsor == 1) {
-            $end_date = Carbon::now()->addDay();
+            $end_date = Carbon::now()->addSeconds(60)->addHours(1);
             //$end_date = $start_date + 86400;
         } elseif ($request->sponsor == 2) {
-            $end_date = Carbon::now()->addDays(3);
+            $end_date = Carbon::now()->addDays(3)->addHours(1);
         } elseif ($request->sponsor == 3) {
-            $end_date = Carbon::now()->addDays(6);
+            $end_date = Carbon::now()->addDays(6)->addHours(1);
         }
 
         if ($result->success) {

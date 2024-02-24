@@ -3,11 +3,13 @@
      <div class="card info-card sales-card position-relative ">
          <div class="card-body">
              <h5 class="card-title">Sponsor</h5>
-             <div class="d-flex align-items-center">
+             <div class="d-flex justify-content-center align-items-center">
                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                      <i class="fa-solid fa-rocket" style="color: #263656;"></i>
                  </div>
-                 <div class="ps-3 ">
+
+                 <div>
+
                      @if ($activeSponsor)
                          <h6 class="text-nowrap days-left d-inline-block">
                          </h6>
@@ -15,13 +17,17 @@
                              data-end-time="{{ $activeSponsor->end_date }}" style="font-size: 1.2em">
                              <!-- Il contenuto di questo tag verrà aggiornato via JS -->
                          </a>
-                         <div class=" position-absolute top-0 end-0 px-3 py-2 ">
+
+                  
+
+                         <div class=" scadenza position-absolute top-0 end-0 px-3 py-2 ">
+
                              Scade il
                              <span
                                  class="fw-semibold">{{ \Carbon\Carbon::parse($activeSponsor->end_date)->format('d/m/Y') }}</span>
                          </div>
                      @else
-                         <a class="text-nowrap" href="{{ route('admin.sponsors.index') }}">acquista uno sponsor</a>
+                         <a class="text-nowrap" href="{{ route('admin.sponsors.index') }}">Sponsorizzati</a>
                      @endif
                  </div>
              </div>
@@ -31,7 +37,8 @@
              <script>
                  document.addEventListener('DOMContentLoaded', function() {
                      const endTimeElement = document.querySelector('.time-left');
-                     const endTimeDays = document.querySelector('.days-left')
+                     const endTimeDays = document.querySelector('.days-left');
+                     const endDate = document.querySelector('.scadenza')
                      const endTime = new Date(endTimeElement.dataset.endTime).getTime();
 
                      function updateCountdown() {
@@ -48,7 +55,9 @@
                          // Aggiorna il contenuto di endTimeElement con ore, minuti e secondi
                          if (distance < 0) {
                              endTimeDays.innerHTML = "";
-                             endTimeElement.innerHTML = "Acquista uno sponsor gia ";
+                             endTimeElement.innerHTML = "Sponsorizzati ";
+                             endDate.innerHTML = ""
+
                              clearInterval(countdownInterval); // Interrompe l'aggiornamento se la sponsorizzazione è scaduta
                          } else {
                              if (days === 1) {
