@@ -11,11 +11,10 @@
                         Il pagamento è andato a buon fine! Sei visibile come un dottore consigliato!
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-
                 @elseif(!$visible)
                     <div class="d-flex justify-content-center mb-3" style="z-index: 1000">
 
-               
+
 
                         <a style="background-color: transparent; outline: none; "
                             href=" {{ route('admin.sponsors.index') }}">
@@ -65,6 +64,15 @@
                             <div class="col-md-6">
                                 <p><strong>Email:</strong> {{ $user->email }}</p>
                                 <p><strong>Telefono:</strong> {{ $account->phone }}</p>
+                                <p>
+                                    @foreach ($specializations as $specialization)
+                                        <strong" style="color: #0476D9">
+                                            <p><strong>Specializzazioni:</strong> {{ $specialization->name }} &nbsp;</p>
+                                            </strong>
+                                    @endforeach
+                                </p>
+                            </div>
+                            <div class="card mb-4 ">
 
                             </div>
                         </div>
@@ -112,7 +120,7 @@
                     </div>
                 </div>
 
-                <div class="card mb-4 ">
+                {{--     <div class="card mb-4 ">
                     <div class="card-body">
                         <h1 class="card-title fw-semibold border-bottom">Specializzazioni</h1>
                         @foreach ($specializations as $specialization)
@@ -121,7 +129,7 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>

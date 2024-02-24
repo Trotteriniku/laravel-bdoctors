@@ -1,25 +1,24 @@
  <!-- Sponsor Card -->
- <div class="col-xxl-4 col-md-6">
-     <div class="card info-card sales-card">
-
-
+ <div class="col-12 col-md-6">
+     <div class="card info-card sales-card position-relative ">
          <div class="card-body">
              <h5 class="card-title">Sponsor</h5>
              <div class="d-flex align-items-center">
                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                      <i class="fa-solid fa-rocket" style="color: #263656;"></i>
                  </div>
-                 <div class="ps-3">
+                 <div class="ps-3 ">
                      @if ($activeSponsor)
                          <h6 class="text-nowrap days-left d-inline-block">
                          </h6>
-                         <a href="{{ route('admin.sponsors.index') }}" class="d-inline time-left"
+                         <a href="{{ route('admin.sponsors.index') }}" class="d-inline time-left "
                              data-end-time="{{ $activeSponsor->end_date }}" style="font-size: 1.2em">
                              <!-- Il contenuto di questo tag verrà aggiornato via JS -->
                          </a>
-                         <div>
+                         <div class=" position-absolute top-0 end-0 px-3 py-2 ">
                              Scade il
-                             {{ \Carbon\Carbon::parse($activeSponsor->end_date)->format('d/m/Y') }}
+                             <span
+                                 class="fw-semibold">{{ \Carbon\Carbon::parse($activeSponsor->end_date)->format('d/m/Y') }}</span>
                          </div>
                      @else
                          <a class="text-nowrap" href="{{ route('admin.sponsors.index') }}">acquista uno sponsor</a>
@@ -27,8 +26,6 @@
                  </div>
              </div>
          </div>
-
-
          <!-- script -->
          @if ($activeSponsor)
              <script>
@@ -54,8 +51,16 @@
                              endTimeElement.innerHTML = "Acquista uno sponsor gia ";
                              clearInterval(countdownInterval); // Interrompe l'aggiornamento se la sponsorizzazione è scaduta
                          } else {
-                             endTimeDays.innerHTML = `<strong>${days} giorni</strong>`
-                             endTimeElement.innerHTML = `${hours}:${minutes}:${seconds} `;
+                             if (days === 1) {
+                                 endTimeDays.innerHTML =
+                                     `<strong>${days} giorno </strong> <span class="text-dark fw-light">e</span>`
+                             } else {
+                                 endTimeDays.innerHTML =
+                                     `<strong class"">${days} giorni  </strong> <span class="text-dark fw-light">e</span>`
+                             }
+
+                             endTimeElement.innerHTML =
+                                 `<div><strong style="color: #0476D9;">${hours}:${minutes}:${seconds}  </strong> <span class="text-dark fw-light">ore rimanenti </span></div>`;
                          }
                      }
 
@@ -73,20 +78,20 @@
  </div><!-- End Sales Card -->
 
  <!-- Revenue Card -->
- <div class="col-xxl-4 col-md-6">
+ <div class="col-12 col-md-3">
      <div class="card info-card revenue-card">
 
          <div class="card-body">
-             <h5 class="card-title">Recensioni </h5>
+             <h5 class="card-title">Recensioni Totali </h5>
 
              <div class="d-flex align-items-center ">
                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                     <i class="fa-regular fa-thumbs-up"></i>
+                     <i class="fa-solid fa-book-open"></i>
                  </div>
-                 <div class="ps-3">
-                     <a href="{{ route('admin.reviews.index') }}"
-                         class="text-danger small pt-1 fw-bold display-6">{{ $totalReviews }}</a>
-
+                 <div class="ps-3 d-flex justify-content-between">
+                     <a href="{{ route('admin.reviews.index') }}" class="text-danger small pt-1 fw-bold display-6">
+                         {{ $totalReviews }}</a>
+                     {{--     <span>Recensioni Totali</span> --}}
                  </div>
              </div>
          </div>
@@ -96,22 +101,22 @@
 
 
  <!-- Messages Card -->
- <div class="col-xxl-4 col-xl-12">
+ <div class="col-12 col-md-3">
 
      <div class="card info-card customers-card">
 
 
 
          <div class="card-body">
-             <h5 class="card-title">Messaggi</h5>
+             <h5 class="card-title">Messaggi Ricevuti</h5>
              <div class="d-flex align-items-center ">
                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                      <i class="fa-regular fa-comment"></i>
                  </div>
                  <div class="ps-3">
 
-                     <a href="{{ route('admin.messages.index') }}"
-                         class="text-danger small pt-1 fw-bold display-6">{{ $totalMessages }}</a>
+                     <a href="{{ route('admin.messages.index') }}" class="text-danger small pt-1 fw-bold display-6">
+                         {{ $totalMessages }}</a>
 
                  </div>
              </div>

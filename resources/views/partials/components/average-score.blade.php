@@ -13,7 +13,9 @@
                 </div>
 
                 <div class="ps-3">
-                    <span class="text-success small pt-1 fw-bold display-6">{{ substr($averageRating, 0, 3) }}</span>
+                    <span class="text-success">Hai una media di </span> <br> <span
+                        class="text-success small pt-1 fw-bold display-6">{{ substr($averageRating, 0, 3) }}</span>
+                    <span class="text-success">su 5</span>
 
                 </div>
             </div>
