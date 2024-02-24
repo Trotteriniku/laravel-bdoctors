@@ -3,15 +3,15 @@
     <main id="main" class="main">
 
         <!--<div class="pagetitle">
-                    <h1>Dashboard</h1>
+                                                <h1>Dashboard</h1>
 
-                    <nav>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                    </nav>
-                </div>-->
+                                                <nav>
+                                                    <ol class="breadcrumb">
+                                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                                        <li class="breadcrumb-item active">Dashboard</li>
+                                                    </ol>
+                                                </nav>
+                                            </div>-->
 
         <section class="section dashboard">
             <div class="row">
@@ -47,19 +47,9 @@
                     {{-- CARD BAR-CHART --}}
                     <div class="col-12">
                         <div class="card">
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filtri</h6>
-                                    </li>
 
-                                    <li><a class="dropdown-item" href="#">Questo mese</a></li>
-                                    <li><a class="dropdown-item" href="#">Quest'anno</a></li>
-                                </ul>
-                            </div>
+
+
                             @include('partials.components.bar-chart')
                         </div>
                     </div>
