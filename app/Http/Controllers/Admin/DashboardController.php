@@ -8,7 +8,9 @@ use App\Models\Message;
 use App\Models\Review;
 use App\Models\Account;
 use App\Models\AccountRating;
+use App\Models\AccountSponsorship;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -24,8 +26,10 @@ class DashboardController extends Controller
         $totalMessages = Message::where('account_id', $account_id)->count();
         $totalReviews = Review::where('account_id', $account_id)->count();
 
+        //prendo lo sponsor attivo
+        $activeSponsor = AccountSponsorship::where('account_id', $account_id)->where('start_date', '<=', Carbon::now())->where('end_date', '>=', Carbon::now())->first();
 
-
-        return view('admin.dashboard', compact('messages', 'reviews', 'ratings', 'averageRating', 'totalReviews', 'totalMessages'));
+        //dd($activeSponsor);
+        return view('admin.dashboard', compact('messages', 'reviews', 'ratings', 'averageRating', 'totalReviews', 'totalMessages', 'activeSponsor'));
     }
 }
