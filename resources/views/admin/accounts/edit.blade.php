@@ -36,7 +36,7 @@
 
 
                                         {{-- IMAGE --}}
-                                        <div class="col-10">
+                                        <div class="col-12 col-md-10">
                                             <label for="imageUpload" class="form-label">Immagine del profilo</label>
                                             <input type="file" accept=".jpeg,.jpg,.png" name="image"
                                                 class="form-control @error('image') is-invalid @enderror" id="imageUpload">
@@ -46,7 +46,7 @@
                                         </div>
 
                                         {{-- Anteprima dell'immagine --}}
-                                        <div class="col-2 d-flex justify-content-end">
+                                        <div class="col-12 col-md-2 d-flex justify-content-end">
                                             <div class="box-img border">
                                                 <img id="uploadPreview" style="width: 100%;"
                                                     src="{{ $account->image ? asset($account->image) : 'https://placehold.jp/023E73/ffffff/150x150.png?text=Anteprima%20Immagine' }}">

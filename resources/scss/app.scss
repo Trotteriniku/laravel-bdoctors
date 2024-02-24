@@ -86,7 +86,11 @@ height: 100px;
     z-index: 9000;
 
 }
-
+.card-margin {
+    margin-right: 10px; /* Aggiungi un margine destro */
+    margin-left: 10px; /* Aggiungi un margine sinistro */
+    max-height: 350px;
+}
 /*  */
 /* CSSS PAYMENT */
 /*--------------------

@@ -13,8 +13,11 @@
                 </div>
 
                 <div class="ps-3">
+
                     @if ($averageRating)
-                        <span class="text-success small pt-1 fw-bold display-6">{{ substr($averageRating, 0, 3) }}</span>
+                        <span class="text-success">Hai una media di </span> <br> <span
+                        class="text-success small pt-1 fw-bold display-6">{{ substr($averageRating, 0, 3) }}</span>
+                    <span class="text-success">su 5</span>
                     @endif
                     @if (!$averageRating)
                         <span class="text-success  pt-1 fw-bold">Ancora nessuna stella <i
@@ -22,6 +25,7 @@
                                 href="{{ route('admin.sponsors.index') }}">Sponsorizzati <i class="fa-solid fa-rocket"
                                     style="color: #263656;"></i></a></span>
                     @endif
+
 
                 </div>
             </div>
