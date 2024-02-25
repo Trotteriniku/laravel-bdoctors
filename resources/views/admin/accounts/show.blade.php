@@ -90,7 +90,7 @@
 
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h1 class="card-title fw-semibold border-bottom ">Messaggi Ricevuti</h1>
+                        <h1 class="card-title fw-semibold border-bottom ">Messaggi Totali </h1>
                         @foreach ($messages as $message)
                             <div class="border-bottom mb-3 pb-3">
                                 <h4 class="card-subtitle mb-2 text-muted" style="color: #0476D9">{{ $message->title }}

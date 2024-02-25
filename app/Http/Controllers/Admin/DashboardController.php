@@ -33,20 +33,55 @@ class DashboardController extends Controller
         //anno corrente
         $year = now()->year; // Considera l'anno corrente
 
+        // rating
         $ratingCount = DB::table('account_rating')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('AVG(rating_id) as average_rating'))
+            ->where('account_id', $account_id)
+            ->whereYear('created_at', $year) // Filtra per l'anno corrente
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy('month', 'asc')
+            ->get()
+            ->pluck('average_rating', 'month');
+
+        //messages
+        $messagesCount = DB::table('messages')
             ->select(DB::raw('MONTH(created_at) as month'), DB::raw('count(*) as count'))
             ->where('account_id', $account_id)
             ->whereYear('created_at', $year) // Filtra per l'anno corrente
             ->groupBy(DB::raw('MONTH(created_at)'))
             ->orderBy('month', 'asc')
             ->get()
-            ->pluck('count', 'month'); // Crea un array associativo [mese => conteggio]
+            ->pluck('count', 'month');
 
+        //revews
+
+        $reviewsCount = DB::table('reviews')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('count(*) as count'))
+            ->where('account_id', $account_id)
+            ->whereYear('created_at', $year) // Filtra per l'anno corrente
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy('month', 'asc')
+            ->get()
+            ->pluck('count', 'month');
+
+        //
         //anno precedente
+        //
 
         $lastYear = now()->year - 1; // Considera l'anno precedente
 
+        // ratings
         $lastRatingCount = DB::table('account_rating')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('AVG(rating_id) as average_rating'))
+            ->where('account_id', $account_id)
+            ->whereYear('created_at', $lastYear) // Filtra per l'anno corrente
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy('month', 'asc')
+            ->get()
+            ->pluck('average_rating', 'month');
+
+        // reviews
+        $lastReviewsCount = DB::table('reviews')
             ->select(DB::raw('MONTH(created_at) as month'), DB::raw('count(*) as count'))
             ->where('account_id', $account_id)
             ->whereYear('created_at', $lastYear) // Filtra per l'anno corrente
@@ -55,6 +90,15 @@ class DashboardController extends Controller
             ->get()
             ->pluck('count', 'month');
 
+        // messages
+        $lastMessagesCount = DB::table('messages')
+            ->select(DB::raw('MONTH(created_at) as month'), DB::raw('count(*) as count'))
+            ->where('account_id', $account_id)
+            ->whereYear('created_at', $lastYear) // Filtra per l'anno corrente
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy('month', 'asc')
+            ->get()
+            ->pluck('count', 'month');
 
         // Assicurati che l'array contenga tutte i mesi dell'anno con conteggio 0 se non ci sono messaggi
         $monthlyCounts = [];
@@ -73,6 +117,7 @@ class DashboardController extends Controller
             12 => 'Dicembre',
         ];
 
+        //ratings
         $monthlyCounts = [];
         for ($m = 1; $m <= 12; $m++) {
             $monthlyCounts[$monthNames[$m]] = $ratingCount->get($m, 0);
@@ -83,17 +128,35 @@ class DashboardController extends Controller
             $lastMonthlyCounts[$monthNames[$m]] = $lastRatingCount->get($m, 0);
         }
 
+        //messages
 
-        // dd($monthlyCounts);
+        $messagesMonthlyCounts = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $messagesMonthlyCounts[$monthNames[$m]] = $messagesCount->get($m, 0);
+        }
 
-        //dd($activeSponsor);
-        return view('admin.dashboard', compact('messages', 'reviews', 'ratings', 'averageRating', 'totalReviews', 'totalMessages', 'activeSponsor', 'monthlyCounts', 'lastMonthlyCounts'));
+        $lastMessagesMonthlyCounts = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $lastMessagesMonthlyCounts[$monthNames[$m]] = $lastMessagesCount->get($m, 0);
+        }
+
+        // reviews
+
+        $reviewsMonthlyCounts = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $reviewsMonthlyCounts[$monthNames[$m]] = $reviewsCount->get($m, 0);
+        }
+
+        $lastReviewsMonthlyCounts = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $lastReviewsMonthlyCounts[$monthNames[$m]] = $lastReviewsCount->get($m, 0);
+        }
+
+        //dd($monthlyCounts);
+
+        return view('admin.dashboard', compact('messages', 'reviews', 'ratings', 'averageRating', 'totalReviews', 'totalMessages', 'activeSponsor', 'monthlyCounts', 'lastMonthlyCounts', 'messagesMonthlyCounts', 'lastMessagesMonthlyCounts', 'reviewsMonthlyCounts', 'lastReviewsMonthlyCounts'));
     }
 }
-
-
-
-
 
 // {
 //     public function showStatistics($doctorId)
