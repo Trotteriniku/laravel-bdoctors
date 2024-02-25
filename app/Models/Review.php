@@ -9,7 +9,7 @@ use App\Models\Account;
 class Review extends Model
 {
     use HasFactory;
-    protected $fillable = ['account_id', 'name', 'content', 'title', 'email'];
+    protected $fillable = ['account_id', 'name', 'content', 'title', 'email', 'created_at'];
 
     public function account()
     {

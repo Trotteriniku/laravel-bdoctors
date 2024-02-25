@@ -68,7 +68,7 @@
                     {
                         label: "Recensioni",
                         data: dataReviews,
-                        fill: true,
+                        fill: false,
                         borderColor: "rgb(237, 59, 59)",
                         tension: 0.4,
                     },

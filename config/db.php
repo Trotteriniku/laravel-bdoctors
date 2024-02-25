@@ -214,86 +214,106 @@ return [
         [
             'account_id' => 1,
             'rating_id' => 1,
+            'created_at' => '2023-07-10 08:30:00',
         ],
         [
             'account_id' => 1,
             'rating_id' => 4,
+            'created_at' => '2023-07-10 08:30:00',
         ],
         [
             'account_id' => 1,
             'rating_id' => 4,
+            'created_at' => '2023-08-10 08:30:00',
         ],
         [
             'account_id' => 1,
             'rating_id' => 5,
+            'created_at' => '2023-08-10 08:30:00',
         ],
         [
             'account_id' => 1,
             'rating_id' => 3,
+            'created_at' => '2023-08-10 08:30:00',
         ],
         [
             'account_id' => 1,
             'rating_id' => 2,
+            'created_at' => '2023-09-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 1
+            'rating_id' => 1,
+            'created_at' => '2023-10-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 2
+            'rating_id' => 2,
+            'created_at' => '2023-10-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 3
+            'rating_id' => 3,
+            'created_at' => '2023-10-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 4
+            'rating_id' => 4,
+            'created_at' => '2023-11-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 5
+            'rating_id' => 5,
+            'created_at' => '2023-11-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 1
+            'rating_id' => 1,
+            'created_at' => '2023-12-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 2
+            'rating_id' => 2,
+            'created_at' => '2023-12-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 3
+            'rating_id' => 3,
+            'created_at' => '2024-01-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 4
+            'rating_id' => 4,
+            'created_at' => '2024-01-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 5
+            'rating_id' => 5,
+            'created_at' => '2024-01-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 1
+            'rating_id' => 1,
+            'created_at' => '2024-02-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 2
+            'rating_id' => 2,
+            'created_at' => '2024-02-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 3
+            'rating_id' => 3,
+            'created_at' => '2024-02-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 4
+            'rating_id' => 4,
+            'created_at' => '2024-02-10 08:30:00',
         ],
         [
             'account_id' => 1,
-            'rating_id' => 5
+            'rating_id' => 5,
         ],
         [
             'account_id' => 2,
@@ -351,31 +371,9 @@ return [
         ['account_id' => 8, 'rating_id' => 1],
     ],
 
-    'account_specialization' => [
-        ['account_id' => 1, 'specialization_id' => 1],
-        ['account_id' => 2, 'specialization_id' => 3],
-        ['account_id' => 3, 'specialization_id' => 5],
-        ['account_id' => 4, 'specialization_id' => 2],
-        ['account_id' => 5, 'specialization_id' => 1],
-        ['account_id' => 6, 'specialization_id' => 2],
-        ['account_id' => 8, 'specialization_id' => 5],
-        ['account_id' => 10, 'specialization_id' => 5],
-        ['account_id' => 8, 'specialization_id' => 4],
-        ['account_id' => 10, 'specialization_id' => 7],
-        ['account_id' => 6, 'specialization_id' => 4],
-        ['account_id' => 4, 'specialization_id' => 7],
-        ['account_id' => 7, 'specialization_id' => 2],
-        ['account_id' => 5, 'specialization_id' => 2],
-        ['account_id' => 3, 'specialization_id' => 1],
-        ['account_id' => 9, 'specialization_id' => 5],
-        ['account_id' => 7, 'specialization_id' => 1]
-    ],
+    'account_specialization' => [['account_id' => 1, 'specialization_id' => 1], ['account_id' => 2, 'specialization_id' => 3], ['account_id' => 3, 'specialization_id' => 5], ['account_id' => 4, 'specialization_id' => 2], ['account_id' => 5, 'specialization_id' => 1], ['account_id' => 6, 'specialization_id' => 2], ['account_id' => 8, 'specialization_id' => 5], ['account_id' => 10, 'specialization_id' => 5], ['account_id' => 8, 'specialization_id' => 4], ['account_id' => 10, 'specialization_id' => 7], ['account_id' => 6, 'specialization_id' => 4], ['account_id' => 4, 'specialization_id' => 7], ['account_id' => 7, 'specialization_id' => 2], ['account_id' => 5, 'specialization_id' => 2], ['account_id' => 3, 'specialization_id' => 1], ['account_id' => 9, 'specialization_id' => 5], ['account_id' => 7, 'specialization_id' => 1]],
 
     'account_sponsorship' => [
-        [
-            'account_id' => 1,
-            'sponsorship_id' => 3,
-        ],
         [
             'account_id' => 2,
             'sponsorship_id' => 3,
@@ -388,15 +386,20 @@ return [
             'account_id' => 4,
             'sponsorship_id' => 3,
         ],
+        [
+            'account_id' => 5,
+            'sponsorship_id' => 3,
+        ],
     ],
 
     'messages' => [
         [
-            'account_id' => 5,
+            'account_id' => 1,
             'name' => 'Mario Rossi',
             'content' => 'Vorrei prenotare una visita per domani',
             'title' => 'Visita Urgente',
             'email' => 'mariorossi@example.com',
+            'created_at' => '2023-07-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -404,6 +407,7 @@ return [
             'content' => 'È possibile avere un appuntamento per una consulenza?',
             'title' => 'Consulenza',
             'email' => 'lucabianchi@example.com',
+            'created_at' => '2023-08-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -411,6 +415,7 @@ return [
             'content' => 'Ho bisogno di un controllo di routine, quando posso venire?',
             'title' => 'Controllo',
             'email' => 'giuliaverdi@example.com',
+            'created_at' => '2023-08-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -418,6 +423,7 @@ return [
             'content' => 'Devo rinnovare la mia prescrizione, posso farlo online?',
             'title' => 'Rinnovo',
             'email' => 'marconeri@example.com',
+            'created_at' => '2023-09-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -425,6 +431,7 @@ return [
             'content' => 'Desidero cancellare il mio appuntamento di domani.',
             'title' => 'Cancellazione ',
             'email' => 'elenaferrari@example.com',
+            'created_at' => '2023-09-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -432,6 +439,7 @@ return [
             'content' => 'Mi serve una visita specialistica al più presto, potete aiutarmi?',
             'title' => 'Esami',
             'email' => 'marisabianchi@example.com',
+            'created_at' => '2023-09-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -439,6 +447,7 @@ return [
             'content' => 'Ho urgente bisogno di una consulenza dermatologica, avete disponibilità?',
             'title' => 'Consulenza',
             'email' => 'francescamartini@example.com',
+            'created_at' => '2023-11-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -446,6 +455,7 @@ return [
             'content' => 'Vorrei sapere se effettuate visite ortopediche in clinica.',
             'title' => 'TAC',
             'email' => 'robertogalli@example.com',
+            'created_at' => '2023-11-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -453,6 +463,7 @@ return [
             'content' => 'Devo fare un controllo oculistico, quale è il primo appuntamento disponibile?',
             'title' => 'Appuntamento',
             'email' => 'chiarabruno@example.com',
+            'created_at' => '2023-11-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -460,6 +471,7 @@ return [
             'content' => 'È possibile prenotare una visita per problemi di allergia?',
             'title' => 'Visita',
             'email' => 'giovanniricci@example.com',
+            'created_at' => '2023-12-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -467,6 +479,7 @@ return [
             'content' => 'C\'è la possibilità di effettuare un check-up completo entro la prossima settimana?',
             'title' => 'Richiesta',
             'email' => 'davidebianchi@example.com',
+            'created_at' => '2023-12-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -474,6 +487,7 @@ return [
             'content' => 'Avrei bisogno di una consulenza nutrizionale, potete aiutarmi?',
             'title' => 'Consulenza',
             'email' => 'lauramancini@example.com',
+            'created_at' => '2023-12-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -481,6 +495,7 @@ return [
             'content' => 'Desidererei informazioni sulle procedure per gli esami del sangue.',
             'title' => 'Informazioni',
             'email' => 'simoneferrara@example.com',
+            'created_at' => '2023-12-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -488,6 +503,7 @@ return [
             'content' => 'Posso prenotare una visita ginecologica urgente?',
             'title' => 'Visita',
             'email' => 'alessiaromano@example.com',
+            'created_at' => '2023-12-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -495,6 +511,7 @@ return [
             'content' => 'Avrei necessità di una consulenza psicologica, avete disponibilità?',
             'title' => 'Reclamo',
             'email' => 'matteocosta@example.com',
+            'created_at' => '2024-01-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -502,6 +519,7 @@ return [
             'content' => 'Ho bisogno di un appuntamento per una valutazione ortodontica per mio figlio.',
             'title' => 'Esame',
             'email' => 'elisarizzo@example.com',
+            'created_at' => '2024-01-10 08:30:00',
         ],
 
         [
@@ -540,7 +558,8 @@ return [
             'title' => ' Competenza e Attese',
             'email' => 'telemaco99@tim.it',
             'content' => 'molto competente e premuroso nel suo lavoro. Tuttavia, spesso ho dovuto aspettare più del previsto per il mio turno',
-            'account_id' => 3,
+            'account_id' => 1,
+            'created_at' => '2023-06-10 08:30:00',
         ],
         [
             'name' => 'Marco Gentile',
@@ -548,6 +567,7 @@ return [
             'email' => 'marco.gentile@example.com',
             'content' => 'Estremamente professionale e cortese, ha risposto a tutte le mie domande con pazienza.',
             'account_id' => 1,
+            'created_at' => '2023-07-10 08:30:00',
         ],
         [
             'name' => 'Anna Ricci',
@@ -555,6 +575,7 @@ return [
             'email' => 'anna.ricci@example.com',
             'content' => 'Servizio impeccabile e tempi di attesa ridotti al minimo. Consigliatissimo.',
             'account_id' => 1,
+            'created_at' => '2023-08-10 08:30:00',
         ],
         [
             'name' => 'Luigi Bianchi',
@@ -562,6 +583,7 @@ return [
             'email' => 'luigi.bianchi@example.com',
             'content' => 'Una esperienza molto positiva, personale attento e disponibile.',
             'account_id' => 1,
+            'created_at' => '2023-09-10 08:30:00',
         ],
         [
             'name' => 'Sofia Lorenzi',
@@ -569,6 +591,7 @@ return [
             'email' => 'sofia.lorenzi@example.com',
             'content' => 'Nonostante un\'attesa più lunga del previsto, la qualità del servizio è stata eccellente.',
             'account_id' => 1,
+            'created_at' => '2023-09-10 08:30:00',
         ],
         [
             'name' => 'Giovanni Rossi',
@@ -576,6 +599,7 @@ return [
             'email' => 'giovanni.rossi@example.com',
             'content' => 'Competenza e professionalità al top. Un vero punto di riferimento nel settore.',
             'account_id' => 1,
+            'created_at' => '2023-10-10 08:30:00',
         ],
         [
             'name' => 'Laura Neri',
@@ -583,6 +607,7 @@ return [
             'email' => 'laura.neri@example.com',
             'content' => 'Mi ha dedicato molto tempo per una consulenza approfondita, mostrando grande competenza.',
             'account_id' => 1,
+            'created_at' => '2023-11-11 08:30:00',
         ],
         [
             'name' => 'Francesco Verdi',
@@ -590,6 +615,7 @@ return [
             'email' => 'francesco.verdi@example.com',
             'content' => 'Medico molto attento e preciso nelle sue diagnosi, altamente raccomandato.',
             'account_id' => 1,
+            'created_at' => '2023-11-11 08:30:00',
         ],
         [
             'name' => 'Chiara Mazzini',
@@ -597,6 +623,7 @@ return [
             'email' => 'chiara.mazzini@example.com',
             'content' => 'Affidabile e competente, sempre attenta alle esigenze del paziente.',
             'account_id' => 1,
+            'created_at' => '2023-12-11 08:30:00',
         ],
         [
             'name' => 'Daniele Ferri',
@@ -604,6 +631,7 @@ return [
             'email' => 'daniele.ferri@example.com',
             'content' => 'Sempre disponibile e di supporto, fa sentire il paziente a proprio agio.',
             'account_id' => 1,
+            'created_at' => '2023-12-12 08:30:00',
         ],
         [
             'name' => 'Elena Grimaldi',
@@ -611,6 +639,7 @@ return [
             'email' => 'elena.grimaldi@example.com',
             'content' => 'Professionalità assicurata. Una garanzia per chi cerca cure di alto livello.',
             'account_id' => 1,
+            'created_at' => '2023-12-10 08:30:00',
         ],
         [
             'name' => 'Simone Conti',
@@ -618,6 +647,7 @@ return [
             'email' => 'simone.conti@example.com',
             'content' => 'Ottimo rapporto qualità-prezzo. Servizi medici di alta qualità a costi accessibili.',
             'account_id' => 1,
+            'created_at' => '2024-01-10 08:30:00',
         ],
         [
             'name' => 'Valentina Amato',
@@ -625,6 +655,7 @@ return [
             'email' => 'valentina.amato@example.com',
             'content' => 'Cura e attenzione per il paziente sono le sue priorità. Altamente soddisfatta.',
             'account_id' => 1,
+            'created_at' => '2024-01-10 08:30:00',
         ],
         [
             'name' => 'Michele Lombardi',

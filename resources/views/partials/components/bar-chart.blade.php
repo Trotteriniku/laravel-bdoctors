@@ -36,7 +36,7 @@
                             "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
                         ],
                         datasets: [{
-                            label: "Statistiche voti",
+                            label: "Statistiche voti medi",
                             data: data,
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
