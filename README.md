@@ -1,230 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Cos'è BDoctors?
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+BDoctors è un sito web innovativo che permette ai suoi utenti di cercare medici di ogni specialità e di contattarli in un istante. Seleziona il servizio che cerchi, prenota un appuntamento con il dottore e lascia una recensione e una valutazione.
 
-## Installazione Laravel
+Se sei un medico, registrarti su Bdoctors ti permetterà di farti trovare da pazienti ovunque ti trovi, di gestire dinamicamente tutti i tuoi dati, controllare i messaggi e le recensioni degli utenti e analizzare le statistiche mensili e annuali dei tuoi dati!
+Inoltre, se vuoi aumentare la tua visibilità nelle ricerche e apparire nella homepage del nostro sito, considera di acquistare uno dei nostri piani di sponsorizzazione.
 
-```bash
-cd your parent_folder_path
+# Cosa significa per noi BDoctors?
 
-#con laravel installer
-laravel new your_project_name_here
+BDoctors è il nostro progetto finale del corso di Boolean Carreers che dimostra le nostre competenze da Jr-Full-Stack Web Developer.
+Durante le tre intense settimane della realizzazione del progetto abbimo messo in gioco le nostre competenze imparate nel corso, abbiamo  imparato a documentarci e implementare nuove feature nei progetti e  lavorare come un vero team di sviluppo, dividendo il nostro lavoro in milestone.
+Ogni 4 giorni abbiamo presentato tutte le feature inserite nel progetto ai nostri cooridinatori, valutando tutti gli edge-cases e adattando la grafica per essere il user-friendly possibile 
 
-#per versione 9
-composer create-project --prefer-dist laravel/laravel:^9.2 your_project_name_here
 
-cd your_project_name_here
+## Sviluppato da...
 
-code . -r
+- Mekki Ouertani [Github](https://github.com/mekkiouertani) [Linkedin](https://www.linkedin.com/in/mekkiouertani/)
 
-php artisan serve
+- Simone Negrisoli [Github](https://github.com/SimoneNegrisoli) [Linkedin](https://www.linkedin.com/in/simonenegrisoli/)
 
-ctrl + c
+- Alberto Stizzoli [Github](https://github.com/albertostizzoli) [Linkedin](https://www.linkedin.com/in/alberto-stizzoli-82a676260/)
 
-```
+- Stefano Zidda [Github](https://github.com/Trotteriniku) [Linkedin](https://www.linkedin.com/in/stefano-zidda-357aba2b1/)
 
-## Configurazione Laravel
+- Luca Masera [Github](https://github.com/luca-masera) [Linkedin](https://www.linkedin.com/in/luca-masera-a67ab52b1/)
 
-```bash
-npm remove postcss
+- Francesco Carrara [Github](https://github.com/fcarrara24) [Linkedin](https://www.linkedin.com/in/francesco-carrara-4b7a642ab/)
 
-#installo dbal per migration e seeder
-composer require doctrine/dbal
+## Tecnologie usate
 
-composer require guzzlehttp/guzzle
++ Laravel 10.0
 
-composer require laravel/breeze --dev
-php artisan breeze:install #blade
++ Vue 3.x
 
++ Bootstrap 5.x
 
-composer require pacificdev/laravel_9_preset
++ GitHub
 
-#solo per versione 9
-php artisan preset:ui bootstrap --auth
++ My-SQL
 
-npm install bootstrap axios @fortawesome/fontawesome-free sass
++ Braintree
 
-#in vite config aggiungo agli alias
-'~@fortawesome': path.resolve(__dirname, 'node_modules/@fortawesome'),
-
-#copio la cartella dei webfont e se voglio la rinomino e la copio nella cartella font
-
-#app.js
-import "./bootstrap";
-import "~resources/scss/app.scss";
-import * as bootstrap from "bootstrap";
-import.meta.glob(["../img/**", "../fonts/**"]);
-
-#app.scss
-@use './partials/variables' as *;
-
-$fa-font-path: "../fonts/webfonts" !default;
-
-@import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/regular";
-@import "~@fortawesome/fontawesome-free/scss/solid";
-@import "~@fortawesome/fontawesome-free/scss/brands";
-
-@import '~bootstrap/scss/bootstrap';
-
-h1 {
-    color: $text-color;
-}
-
-#vite.config.js
-import { defineConfig } from "vite";
-import laravel from "laravel-vite-plugin";
-import * as path from "path";
-
-export default defineConfig({
-    plugins: [
-        laravel({
-            input: ["resources/scss/app.scss", "resources/js/app.js"],
-            refresh: true,
-        }),
-    ],
-    // Add resolve object and aliases
-    resolve: {
-        alias: {
-            "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
-            "~@fortawesome": path.resolve(
-                __dirname,
-                "node_modules/@fortawesome"
-            ),
-            "~resources": "/resources/",
-        },
-    },
-});
-
-#sistemo (cambio/rimuovo) template e routing
-
-#volendo personalizzo paginazione e pagine di errore
-php artisan vendor:publish --tag=laravel-errors
-php artisan vendor:publish --tag=laravel-pagination
-
-#comandi git
-
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin your_git_url
-git push -u origin main
-
-
-```
-
-## Clono progetto da github
-
-```bash
-# copio file .env.example e lo rinomino in .env
-
-composer install
-
-php artisan key:generate
-
-npm install
-
-# creo il database da phpmyadmin
-
-# inserisco i dati per il collegamento al db in env
-
-#creo migration
-php artisan make:migration create_nome_tabella_table
-php artisan make:migration update_users_table --table=users
-php artisan make:migration add_phone_number_to_users_table
-
-#lanciare migration
-php artisan migrate
-
-#revert migration
-php artisan migrate:rollback
-
-
-#popolare il db
-php artisan make:seeder UsersTableSeeder
-
-php artisan db:seed --class=UsersTableSeeder
-
-# preparo le rotte file web.php es.
-Route::get('/books', [BookController::class, 'index'])->name('books.index');
-# oppure resource route per tutte le operazioni CRUD
-Route::resource('books', BookController::class);
-
-# creo controller
-php artisan make:controller NomeController
-#con opzione resource controller
-php artisan make:controller NomeController --resource
-
-
-#creo model
-php artisan make:model Nome
-#posso creare il model e contestualmente resource controller, migration, seeder e form request per validazioni
-php artisan make:model Nome -rcms --requests
-
-# creo le views relative
-
-#creo form request per validazione
-
-php artisan make:request StoreMomemodelRequest
-
-
-```
-
-## Auth
-
-```bash
-#in app/Providers/RouteServiceProvider.php modifico
-public const HOME = '/admin';
-
-# Se l’utente non è autenticato, sarà dirottato automaticamente verso la pagina di login.
-# Questo comportamento è modificabile nel file in app/Http/Middleware/Authenticate.php
-
-php artisan make:controller Admin/DashboardController
-# nel controller
-public function index(){
-        return view('admin.dashboard');
-    }
-
-Route::middleware(['auth', 'verified'])
-   ->name('admin.')
-   ->prefix('admin')
-   ->group(function () {
-         Route::get('/', [DashboardController::class, 'index'])
-         ->name('dashboard');
-   });
-
-....
-
-Route::fallback(function() {
-    return redirect()->route('admin.dashboard');
-});
-
-```
-
-## File Storage
-
-```bash
-#modifico in env file system
-es. FILESYSTEM_DISK=public
-
-#In config/filestystems.php
-#Caricheremo i nostri file nella cartella storage/app/public
-# modifichiamo quindi
-'default' => env('FILESYSTEM_DRIVER', 'public'),
-
-#lanciare comando
-php artisan storage:link
-
-#salvare
-Storage::put('images', $data['image']); //ritorna il path
-
-#per visualizzare
-<img src="{{ asset('storage/' . $post->cover_image) }}">
-
-```
++ Carbon
