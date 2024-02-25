@@ -1,13 +1,17 @@
 <div class="card-body">
     <div class="d-flex justify-content-between align-items-center">
-        <h5 class="card-title">Statistiche delle valuatazioni</h5>
+        <h5 class="card-title w-75">Statistiche delle valutazioni </h5>
 
-        <select class="" id="yearSelector">
-            <option value="2024" class="dropdown-header text-start" data-counts='@json($monthlyCounts)'>2024
-            </option>
-            <option value="2023" class="dropdown-header text-start" data-counts='@json($lastMonthlyCounts)'>2023
-            </option>
-        </select>
+        <div class="d-flex justify-content-around align-items-center no-wrap w-25">
+            <span>Filtra:</span>
+            <select class="form-select w-50" id="yearSelector">
+                <option value="2024" class="dropdown-header text-start" data-counts='@json($monthlyCounts)'>2024
+                </option>
+                <option value="2023" class="dropdown-header text-start" data-counts='@json($lastMonthlyCounts)'>2023
+                </option>
+            </select>
+        </div>
+
     </div>
     <canvas id="barChart" style="max-height: 400px;"></canvas>
 

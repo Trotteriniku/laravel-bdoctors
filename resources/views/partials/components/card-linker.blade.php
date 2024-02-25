@@ -1,14 +1,14 @@
  <!-- Sponsor Card -->
  <div class="col-12 col-md-6">
-     <div class="card info-card sales-card position-relative ">
+     <div class="card info-card sales-card position-relative my-height-85">
          <div class="card-body">
              <h5 class="card-title">Sponsor</h5>
-             <div class="d-flex justify-content-center align-items-center">
+             <div class="d-flex justify-content-start align-items-center">
                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                      <i class="fa-solid fa-rocket" style="color: #263656;"></i>
                  </div>
 
-                 <div>
+                 <div class="ps-3">
 
                      @if ($activeSponsor)
                          <h6 class="text-nowrap days-left d-inline-block">
@@ -18,7 +18,7 @@
                              <!-- Il contenuto di questo tag verrà aggiornato via JS -->
                          </a>
 
-                  
+
 
                          <div class=" scadenza position-absolute top-0 end-0 px-3 py-2 ">
 
@@ -88,7 +88,7 @@
 
  <!-- Revenue Card -->
  <div class="col-12 col-md-3">
-     <div class="card info-card revenue-card">
+     <div class="card info-card revenue-card my-height-85">
 
          <div class="card-body">
              <h5 class="card-title">Recensioni Totali </h5>
