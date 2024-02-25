@@ -45,7 +45,7 @@ class AccountController extends Controller
     {
         $accounts = Account::all();
         $specializations = Specialization::all();
-        $title = 'BDoctors - Profilo';
+        $title = 'BDoc | Dashboard - Profilo';
         return view('admin.accounts.index', compact('accounts', 'specializations', 'title'));
     }
 
@@ -107,7 +107,7 @@ class AccountController extends Controller
         //controllare se l'account è appena stato creato
         $justVisible = $this->isFirstVisible();
         //dd($justVisible);
-        $title = 'BDoctors - Profilo';
+        $title = 'BDoc | Dashboard - Profilo';
         return view('admin.accounts.show', compact('account', 'user', 'reviews', 'messages', 'specializations', 'visible', 'justVisible', 'title'));
     }
 
@@ -118,7 +118,7 @@ class AccountController extends Controller
     {
         $user_id = Auth::id();
         $specializations = Specialization::all();
-        $title = 'BDoctors - Modifica Profilo';
+        $title = 'BDoc | Dashboard - Modifica Profilo';
         return view('admin.accounts.edit', compact('account', 'specializations', 'user_id', 'title'));
     }
 

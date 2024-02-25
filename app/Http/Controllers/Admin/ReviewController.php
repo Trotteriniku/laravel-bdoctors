@@ -16,7 +16,7 @@ class ReviewController extends Controller
         $reviews = Review::where('account_id', Auth::id())->orderBy('created_at', 'desc')->get();
         $ratings = AccountRating::where('account_id', Auth::id())->get();
         //dd($reviews);
-        $title = 'BDoctors - Recensioni';
+        $title = 'BDoc | Dashboard - Recensioni';
         return view('admin.reviews.index', compact('reviews', 'ratings', 'title'));
     }
 
@@ -24,7 +24,7 @@ class ReviewController extends Controller
     {
         //dd($id);
         $review = Review::findOrFail($id);
-        $title = 'BDoctors - Recensioni';
+        $title = 'BDoc | Dashboard - Recensioni';
         return view('admin.reviews.show', compact('review', 'title'));
     }
 }

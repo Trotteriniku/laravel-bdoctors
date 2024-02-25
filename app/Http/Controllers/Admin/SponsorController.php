@@ -28,7 +28,7 @@ class SponsorController extends Controller
         $sponsorships = Sponsorship::all();
         $alreadySponsored = $this->isVisible();
         $clientToken = $this->getClientToken(); // Ottieni il token del cliente come stringa
-        $title = 'BDoctors - Sponsorships';
+        $title = 'BDoc | Dashboard - Sponsorships';
         return view('admin.sponsors.index', compact('sponsorships', 'clientToken', 'accounts', 'alreadySponsored', 'title'));
     }
 
@@ -36,7 +36,7 @@ class SponsorController extends Controller
     {
         $sponsorship = Sponsorship::findOrFail($id);
         $alreadySponsored = $this->isVisible();
-        $title = 'BDoctors - Purchase';
+        $title = 'BDoc | Dashboard - Purchase';
         return view('admin.sponsors.show', compact('sponsorship', 'alreadySponsored', 'title'));
     }
 

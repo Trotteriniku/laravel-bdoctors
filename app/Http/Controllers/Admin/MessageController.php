@@ -16,7 +16,7 @@ class MessageController extends Controller
     public function index()
     {
         $messages = Message::where('account_id', Auth::id())->orderBy('created_at', 'desc')->get();
-        $title = 'BDoctors - Messaggi';
+        $title = 'BDoc | Dashboard  - Messaggi';
         return view('admin.messages.index', compact('messages', 'title'));
 
     }
@@ -29,7 +29,7 @@ class MessageController extends Controller
     public function show($id)
     {
         $message = Message::findOrFail($id);
-        $title = 'BDoctors - Messaggio';
+        $title = 'BDoc | Dashboard - Messaggio';
         return view('admin.messages.show', compact('message', 'title'));
     }
 

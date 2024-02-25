@@ -153,7 +153,7 @@ class DashboardController extends Controller
         }
 
         //dd($monthlyCounts);
-        $title = 'BDoctors - Dashboard';
+        $title = 'BDoc | Dashboard';
         return view('admin.dashboard', compact('messages', 'reviews', 'ratings', 'averageRating', 'totalReviews', 'totalMessages', 'activeSponsor', 'monthlyCounts', 'lastMonthlyCounts', 'messagesMonthlyCounts', 'lastMessagesMonthlyCounts', 'reviewsMonthlyCounts', 'lastReviewsMonthlyCounts', 'title'));
     }
 
