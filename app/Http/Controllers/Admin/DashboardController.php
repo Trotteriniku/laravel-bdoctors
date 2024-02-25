@@ -153,28 +153,10 @@ class DashboardController extends Controller
         }
 
         //dd($monthlyCounts);
-
-        return view('admin.dashboard', compact('messages', 'reviews', 'ratings', 'averageRating', 'totalReviews', 'totalMessages', 'activeSponsor', 'monthlyCounts', 'lastMonthlyCounts', 'messagesMonthlyCounts', 'lastMessagesMonthlyCounts', 'reviewsMonthlyCounts', 'lastReviewsMonthlyCounts'));
+        $title = 'BDoctors - Dashboard';
+        return view('admin.dashboard', compact('messages', 'reviews', 'ratings', 'averageRating', 'totalReviews', 'totalMessages', 'activeSponsor', 'monthlyCounts', 'lastMonthlyCounts', 'messagesMonthlyCounts', 'lastMessagesMonthlyCounts', 'reviewsMonthlyCounts', 'lastReviewsMonthlyCounts', 'title'));
     }
+
 }
 
-// {
-//     public function showStatistics($doctorId)
-//     {
-//         $messagesPerMonthYear = Message::select(DB::raw('YEAR(created_at) year, MONTH(created_at) month'), DB::raw('count(*) as count'))
-//             ->where('account_id', $doctorId)
-//             ->groupBy('year', 'month')
-//             ->orderBy('year', 'desc')
-//             ->orderBy('month', 'desc')
-//             ->get();
 
-//         $reviewsPerMonthYear = Review::select(DB::raw('YEAR(created_at) year, MONTH(created_at) month'), DB::raw('count(*) as count'))
-//             ->where('account_id', $doctorId)
-//             ->groupBy('year', 'month')
-//             ->orderBy('year', 'desc')
-//             ->orderBy('month', 'desc')
-//             ->get();
-
-//         // Continua con il codice per preparare i dati per i grafici...
-//     }
-// }

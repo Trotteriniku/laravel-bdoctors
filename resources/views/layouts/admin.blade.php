@@ -20,7 +20,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- <title>{{ config('app.name', 'BDoctors - Dashboard') }}</title> --}}
-    <title>BDoctors</title>
+    <title>{{ $title ?? 'Bdoctors - Dashboard' }}</title>
 
 
     <!-- Fonts -->

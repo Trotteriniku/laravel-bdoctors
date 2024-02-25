@@ -28,14 +28,16 @@ class SponsorController extends Controller
         $sponsorships = Sponsorship::all();
         $alreadySponsored = $this->isVisible();
         $clientToken = $this->getClientToken(); // Ottieni il token del cliente come stringa
-        return view('admin.sponsors.index', compact('sponsorships', 'clientToken', 'accounts', 'alreadySponsored'));
+        $title = 'BDoctors - Sponsorships';
+        return view('admin.sponsors.index', compact('sponsorships', 'clientToken', 'accounts', 'alreadySponsored', 'title'));
     }
 
     public function show($id)
     {
         $sponsorship = Sponsorship::findOrFail($id);
         $alreadySponsored = $this->isVisible();
-        return view('admin.sponsors.show', compact('sponsorship', 'alreadySponsored'));
+        $title = 'BDoctors - Purchase';
+        return view('admin.sponsors.show', compact('sponsorship', 'alreadySponsored', 'title'));
     }
 
     // Metodo per generare il client token
@@ -51,41 +53,7 @@ class SponsorController extends Controller
         return $gateway->clientToken()->generate(); // Ritorna il token come stringa
     }
 
-    // Questo metodo dovrebbe essere completato con la logica per processare il pagamento
-    //    public function storeveccio (Request $request)
-    //     {
-    //         // Configura il gateway Braintree
-    //         // Usa $request->paymentMethodNonce e altri parametri per creare una transazione
-    //         // ...
-    //         dd($request);
-    //         $sponsorship_id = $request->sponsor;
-    //         $sponsorship = Sponsorship::findOrFail($sponsorship_id);
 
-    //         $doctor_id = Auth::id();
-
-    //         $start_date = Carbon::now();
-    //         //dd($start_date);
-    //         //select sponsorship
-    //         if ($sponsorship_id == 1) {
-    //             $end_date = Carbon::now()->addDay();
-    //             //$end_date = $start_date + 86400;
-    //         } elseif ($sponsorship_id == 2) {
-    //             $end_date = Carbon::now()->addDay(3);
-    //         } elseif ($sponsorship_id == 3) {
-    //             $end_date = Carbon::now()->addDay(6);
-    //         }
-    //         //dd($end_date);
-
-    //         //
-    //         $accountSponsor = AccountSponsorship::create([
-    //             'account_id' => $doctor_id,
-    //             'sponsorship_id' => $sponsorship_id,
-    //             'start_date' => $start_date,
-    //             'end_date' => $end_date,
-
-    //         ]);
-    //         dd('fatto');
-    //     }
 
     public function store(Request $request)
     {
@@ -138,7 +106,6 @@ class SponsorController extends Controller
                 // Programma il job per impostare 'visible' a 0 al termine della sponsorizzazione.
                 $this->scheduleVisibilityUpdate($doctor_id, $end_date);
             }
-
             return redirect()
                 ->route('admin.accounts.show', ['account' => $doctor_id])
                 ->with('success', 'Pagamento effettuato con successo.');

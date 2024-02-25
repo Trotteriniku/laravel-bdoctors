@@ -16,14 +16,15 @@ class ReviewController extends Controller
         $reviews = Review::where('account_id', Auth::id())->orderBy('created_at', 'desc')->get();
         $ratings = AccountRating::where('account_id', Auth::id())->get();
         //dd($reviews);
-        return view('admin.reviews.index', compact('reviews', 'ratings'));
+        $title = 'BDoctors - Recensioni';
+        return view('admin.reviews.index', compact('reviews', 'ratings', 'title'));
     }
 
     public function show($id)
     {
         //dd($id);
         $review = Review::findOrFail($id);
-
-        return view('admin.reviews.show', compact('review'));
+        $title = 'BDoctors - Recensioni';
+        return view('admin.reviews.show', compact('review', 'title'));
     }
 }
