@@ -214,6 +214,7 @@ return [
         [
             'account_id' => 1,
             'rating_id' => 1,
+            'created_at' => '2023-07-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -237,63 +238,63 @@ return [
         ],
         [
             'account_id' => 1,
-            'rating_id' => 1
+            'rating_id' => 1,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 2
+            'rating_id' => 2,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 3
+            'rating_id' => 3,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 4
+            'rating_id' => 4,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 5
+            'rating_id' => 5,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 1
+            'rating_id' => 1,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 2
+            'rating_id' => 2,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 3
+            'rating_id' => 3,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 4
+            'rating_id' => 4,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 5
+            'rating_id' => 5,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 1
+            'rating_id' => 1,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 2
+            'rating_id' => 2,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 3
+            'rating_id' => 3,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 4
+            'rating_id' => 4,
         ],
         [
             'account_id' => 1,
-            'rating_id' => 5
+            'rating_id' => 5,
         ],
         [
             'account_id' => 2,
@@ -351,25 +352,7 @@ return [
         ['account_id' => 8, 'rating_id' => 1],
     ],
 
-    'account_specialization' => [
-        ['account_id' => 1, 'specialization_id' => 1],
-        ['account_id' => 2, 'specialization_id' => 3],
-        ['account_id' => 3, 'specialization_id' => 5],
-        ['account_id' => 4, 'specialization_id' => 2],
-        ['account_id' => 5, 'specialization_id' => 1],
-        ['account_id' => 6, 'specialization_id' => 2],
-        ['account_id' => 8, 'specialization_id' => 5],
-        ['account_id' => 10, 'specialization_id' => 5],
-        ['account_id' => 8, 'specialization_id' => 4],
-        ['account_id' => 10, 'specialization_id' => 7],
-        ['account_id' => 6, 'specialization_id' => 4],
-        ['account_id' => 4, 'specialization_id' => 7],
-        ['account_id' => 7, 'specialization_id' => 2],
-        ['account_id' => 5, 'specialization_id' => 2],
-        ['account_id' => 3, 'specialization_id' => 1],
-        ['account_id' => 9, 'specialization_id' => 5],
-        ['account_id' => 7, 'specialization_id' => 1]
-    ],
+    'account_specialization' => [['account_id' => 1, 'specialization_id' => 1], ['account_id' => 2, 'specialization_id' => 3], ['account_id' => 3, 'specialization_id' => 5], ['account_id' => 4, 'specialization_id' => 2], ['account_id' => 5, 'specialization_id' => 1], ['account_id' => 6, 'specialization_id' => 2], ['account_id' => 8, 'specialization_id' => 5], ['account_id' => 10, 'specialization_id' => 5], ['account_id' => 8, 'specialization_id' => 4], ['account_id' => 10, 'specialization_id' => 7], ['account_id' => 6, 'specialization_id' => 4], ['account_id' => 4, 'specialization_id' => 7], ['account_id' => 7, 'specialization_id' => 2], ['account_id' => 5, 'specialization_id' => 2], ['account_id' => 3, 'specialization_id' => 1], ['account_id' => 9, 'specialization_id' => 5], ['account_id' => 7, 'specialization_id' => 1]],
 
     'account_sponsorship' => [
         [
@@ -392,11 +375,12 @@ return [
 
     'messages' => [
         [
-            'account_id' => 5,
+            'account_id' => 1,
             'name' => 'Mario Rossi',
             'content' => 'Vorrei prenotare una visita per domani',
             'title' => 'Visita Urgente',
             'email' => 'mariorossi@example.com',
+            'created_at' => '2023-05-10 08:30:00',
         ],
         [
             'account_id' => 1,
@@ -540,7 +524,8 @@ return [
             'title' => ' Competenza e Attese',
             'email' => 'telemaco99@tim.it',
             'content' => 'molto competente e premuroso nel suo lavoro. Tuttavia, spesso ho dovuto aspettare più del previsto per il mio turno',
-            'account_id' => 3,
+            'account_id' => 1,
+            'created_at' => '2023-06-10 08:30:00',
         ],
         [
             'name' => 'Marco Gentile',

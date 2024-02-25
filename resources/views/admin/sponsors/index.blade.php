@@ -28,7 +28,7 @@
                             @else
                                 <a class="btn btn-primary text-white text-decoration-none"
                                     href="{{ route('admin.sponsors.show', $item->id) }}">
-                                    Paga
+                                    Acquista
                                 </a>
                             @endif
                         </div>

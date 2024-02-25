@@ -22,8 +22,10 @@ class MessageSeeder extends Seeder
             $newData->name = $message['name'];
             $newData->content = $message['content'];
             $newData->email = $message['email'];
+            if (isset($message['created_at'])) {
+                $newData->created_at = $message['created_at'];
+            }
             $newData->save();
-
         }
     }
 }

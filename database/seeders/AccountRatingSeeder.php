@@ -20,10 +20,18 @@ class AccountRatingSeeder extends Seeder
         $relations = config('db.account_rating');
 
         foreach ($relations as $relation) {
-            AccountRating::create([
-                'account_id' => $relation['account_id'],
-                'rating_id' => $relation['rating_id'],
-            ]);
+            if (isset($relation['created_at'])) {
+                AccountRating::create([
+                    'account_id' => $relation['account_id'],
+                    'rating_id' => $relation['rating_id'],
+                    'created_at' => $relation['created_at'],
+                ]);
+            } else {
+                AccountRating::create([
+                    'account_id' => $relation['account_id'],
+                    'rating_id' => $relation['rating_id'],
+                ]);
+            }
         }
     }
 }
