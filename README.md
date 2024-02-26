@@ -1,6 +1,7 @@
 # Cos'è BDoctors?
 
-BDoctors è un sito web innovativo che permette ai suoi utenti di cercare medici di ogni specialità e di contattarli in un istante. Seleziona il servizio che cerchi, prenota un appuntamento con il dottore e lascia una recensione e una valutazione.
+BDoctors è un sito web innovativo che permette ai suoi utenti di cercare i medici per specializzazione, dando la possibilità di applicare ulteriori filtri, ordinarli per numero di recensioni e per numero di stelle. 
+Selezionando il dottore, si possono visionare i suoi dati e, attraverso un form, può essere contattato e recensito.
 
 Se sei un medico, registrarti su Bdoctors ti permetterà di farti trovare da pazienti ovunque ti trovi, di gestire dinamicamente tutti i tuoi dati, controllare i messaggi e le recensioni degli utenti e analizzare le statistiche mensili e annuali dei tuoi dati!
 Inoltre, se vuoi aumentare la tua visibilità nelle ricerche e apparire nella homepage del nostro sito, considera di acquistare uno dei nostri piani di sponsorizzazione.
