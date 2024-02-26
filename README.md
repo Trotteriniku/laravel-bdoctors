@@ -1,3 +1,5 @@
+![immagine](public/images/screen-dashboard.png)
+
 # Cos'è BDoctors?
 
 BDoctors è un sito web innovativo che permette ai suoi utenti di cercare i medici per specializzazione, dando la possibilità di applicare ulteriori filtri, ordinarli per numero di recensioni e per numero di stelle. 
@@ -8,7 +10,7 @@ Inoltre, se vuoi aumentare la tua visibilità nelle ricerche e apparire nella ho
 
 # Cosa significa per noi BDoctors?
 
-BDoctors è il nostro progetto finale del corso di Boolean Carreers che dimostra le nostre competenze da Jr-Full-Stack Web Developer.
+BDoctors è il nostro progetto finale del corso di Boolean Carrers che dimostra le nostre competenze da Jr-Full-Stack Web Developer.
 Durante le tre intense settimane della realizzazione del progetto abbimo messo in gioco le nostre competenze imparate nel corso, abbiamo  imparato a documentarci e implementare nuove feature nei progetti e  lavorare come un vero team di sviluppo, dividendo il nostro lavoro in milestone.
 Ogni 4 giorni abbiamo presentato tutte le feature inserite nel progetto ai nostri cooridinatori, valutando tutti gli edge-cases e adattando la grafica per essere il user-friendly possibile 
 
@@ -42,3 +44,37 @@ Ogni 4 giorni abbiamo presentato tutte le feature inserite nel progetto ai nostr
 + Braintree
 
 + Carbon
+
+## Installazione
+
+Il progetto utilizza doppia tecnologia: [Vue.js](https://github.com/mekkiouertani/vue-bdoctors) e [Laravel](https://github.com/Trotteriniku/laravel-bdoctors)
+ con MySql Link Repo Back-office Link Repo Front-office 
+
+### Back-Office (Laravel): 
++  clonare repo da GitHub copiare il file .env-example e rinominarlo in .env, 
++  aggiornare alcuni dati come quello del Db lanciare i seguenti comandi 
+
+```bash
+composer install 
+npm install 
+php artisan storage:link 
+php artisan migrate
+php artisan db:seed 
+```
++ per lanciare il server aprire 3 terminali e lanciare: 
+
+```bash
+php -S localhost:8000 -t public 
+npm run dev 
+php artisan queue:work 
+```
+
+### Front-Office (Vue.js)
++ clonare repo da GitHub 
+ ```bash
+ npm install 
+ ```
++ e dopo lanciare il server con il comando 
+ ```bash
+ npm run dev
+ ```
