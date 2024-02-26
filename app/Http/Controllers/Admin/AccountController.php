@@ -25,7 +25,11 @@ class AccountController extends Controller
         $now = Carbon::now();
         $account_id = Auth::id();
         $account = Account::findOrFail($account_id);
-        return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
+        // Utilizza wherePivot per accedere ai campi della tabella pivot
+        return $account->sponsorships()
+            ->wherePivot('start_date', '<=', $now)
+            ->wherePivot('end_date', '>=', $now)
+            ->exists();
     }
 
     public function isFirstVisible()
@@ -34,8 +38,11 @@ class AccountController extends Controller
         $before = Carbon::now()->subSeconds(5);
         $account_id = Auth::id();
         $account = Account::findOrFail($account_id);
-        //controlla se la data di inizio della sponsorizzazioe e' gia passata
-        return $account->sponsorships()->where('start_date', '>=', $before)->where('end_date', '>=', $before)->exists();
+        // Utilizza wherePivot per accedere ai campi della tabella pivot
+        return $account->sponsorships()
+            ->wherePivot('start_date', '>=', $before)
+            ->wherePivot('end_date', '>=', $before)
+            ->exists();
     }
 
     /**

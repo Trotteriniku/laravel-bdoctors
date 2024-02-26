@@ -9,6 +9,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Account;
+use Illuminate\Support\Facades\Log;
+
 
 class UpdateAccountVisibility implements ShouldQueue
 {
@@ -27,15 +29,16 @@ class UpdateAccountVisibility implements ShouldQueue
      */
     public function handle()
     {
+        Log::info('UpdateAccountVisibility job started for account ID: ' . $this->account_id);
 
-        // Trova l'account usando l'ID.
         $account = Account::find($this->account_id);
 
-        // Controlla se l'account esiste prima di tentare di aggiornarlo.
         if ($account) {
             $account->update(['visible' => 0]);
+            Log::info('Account visibility updated to 0 for account ID: ' . $this->account_id);
         } else {
-            \Log::error("Account con ID {$this->account_id} non trovato.");
+            Log::error("Account with ID {$this->account_id} not found.");
         }
     }
+
 }

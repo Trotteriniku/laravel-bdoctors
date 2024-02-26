@@ -13,13 +13,18 @@ use App\Jobs\UpdateAccountVisibility;
 
 class SponsorController extends Controller
 {
+
     public function isVisible()
     {
-        // Controlla se esiste una sponsorizzazione attiva
         $now = Carbon::now();
         $account_id = Auth::id();
         $account = Account::findOrFail($account_id);
-        return $account->sponsorships()->where('start_date', '<=', $now)->where('end_date', '>=', $now)->exists();
+
+        // Accedi alla tabella pivot usando il metodo wherePivot
+        return $account->sponsorships()
+            ->wherePivot('start_date', '<=', $now)
+            ->wherePivot('end_date', '>=', $now)
+            ->exists();
     }
 
     public function index()
@@ -85,12 +90,12 @@ class SponsorController extends Controller
         $start_date = Carbon::now();
 
         if ($request->sponsor == 1) {
-            $end_date = Carbon::now()->addSeconds(60)->addHours(1);
+            $end_date = Carbon::now()->addSeconds(60);
             //$end_date = $start_date + 86400;
         } elseif ($request->sponsor == 2) {
-            $end_date = Carbon::now()->addDays(3)->addHours(1);
+            $end_date = Carbon::now()->addDays(3);
         } elseif ($request->sponsor == 3) {
-            $end_date = Carbon::now()->addDays(6)->addHours(1);
+            $end_date = Carbon::now()->addDays(6);
         }
 
         if ($result->success) {

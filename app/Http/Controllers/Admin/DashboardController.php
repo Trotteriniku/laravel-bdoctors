@@ -28,7 +28,11 @@ class DashboardController extends Controller
         $totalReviews = Review::where('account_id', $account_id)->count();
 
         //prendo lo sponsor attivo
-        $activeSponsor = AccountSponsorship::where('account_id', $account_id)->where('start_date', '<=', Carbon::now())->where('end_date', '>=', Carbon::now())->first();
+        $activeSponsor = $account->sponsorships()
+            ->wherePivot('start_date', '<=', Carbon::now())
+            ->wherePivot('end_date', '>=', Carbon::now())
+            ->first();
+        ;
 
         //anno corrente
         $year = now()->year; // Considera l'anno corrente
